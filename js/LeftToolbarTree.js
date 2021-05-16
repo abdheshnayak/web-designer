@@ -1,0 +1,168 @@
+const hashMap = Hash();
+// const clearActive = () => {
+//   var actives = document.querySelectorAll(".element.active");
+
+//   actives.forEach((element) => {
+//     if (element.classList.contains("active")) {
+//       hashMap.getVirtualElement(element).active = false;
+//     }
+//     // element.classList.remove("active");
+//   });
+// };
+
+const treeElementClick = (e) => {
+  var tempElement = e.target.parentElement;
+  //   console.log(tempElement);
+  //   refreshDomTree();
+
+  if (tempElement.classList.contains("element")) {
+    hashMap.activeElement = tempElement;
+  } else if (tempElement.parentElement.classList.contains("element")) {
+    hashMap.activeElement = tempElement.parentElement;
+  }
+
+  if (e.target.classList.contains("collapser")) {
+    hashMap.getVirtualElement(hashMap.activeElement).collapsed =
+      !hashMap.getVirtualElement(hashMap.activeElement).collapsed;
+
+    // refreshDomTree();
+    // console.log("collapse toggle");
+    // return;
+  }
+
+  //   console.log(hashMap.getVirtualElement(hashMap.activeElement));
+
+  hashMap.getVirtualElement(hashMap.activeElement).active = true;
+
+  hashMap.activeElement.classList.add("active");
+
+  refreshDomTree();
+};
+
+const getElementIcon = (element) => {
+  switch (element) {
+    case "a":
+      return "fa-link";
+    case "img":
+      return "fa-image";
+    case "div":
+      return "fa-rectangle-landscape";
+    case "p":
+      return "fa-text";
+    case "span":
+      return "fa-text";
+    default:
+      return "fa-question-square";
+  }
+};
+
+function getOffset(el) {
+  var _x = 0;
+  var _y = 0;
+  while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+    _x += el.offsetLeft - el.scrollLeft;
+    _y += el.offsetTop - el.scrollTop;
+    el = el.offsetParent;
+  }
+  return { top: _y, left: _x };
+}
+
+const treeElementHover = (e) => {
+  var tempElement = e.target.parentElement;
+
+  var result;
+  if (tempElement.classList.contains("element")) {
+    result = tempElement;
+  } else if (tempElement.parentElement.classList.contains("element")) {
+    result = tempElement.parentElement;
+  }
+
+  var overlay = document.getElementById("overlay");
+
+  var designElement = hashMap.getDesignElement(result);
+
+  overlay.style.width = designElement.offsetWidth;
+  overlay.style.height = designElement.offsetHeight;
+  overlay.style.left = getOffset(designElement).left;
+  overlay.style.top = getOffset(designElement).top;
+
+  //   console.log(x, y);
+  //   console.log(designElement);
+};
+const treeElementLeave = (e) => {
+  var overlay = document.getElementById("overlay");
+  overlay.style.width = 0;
+  overlay.style.height = 0;
+};
+function getElementName(name, element) {
+  var nameOuter = document.createElement("div");
+  nameOuter.classList.add("name");
+  var caretDown = document.createElement("i");
+  if (element.collapsed) {
+    caretDown.classList.add("fas", "fa-caret-right", "collapser");
+  } else {
+    caretDown.classList.add("fas", "fa-caret-down", "collapser");
+  }
+  var elementIcon = document.createElement("i");
+  elementIcon.classList.add("far", getElementIcon(element.element));
+  var nameSpan = document.createElement("span");
+  nameSpan.innerText = name || element.element;
+
+  if (element.childrens.length <= 0) {
+    caretDown.classList.add("fa-genderless");
+    caretDown.classList.remove("fa-caret-down", "fa-caret-right", "collapser");
+  }
+  nameOuter.appendChild(caretDown);
+  nameOuter.appendChild(elementIcon);
+  nameOuter.appendChild(nameSpan);
+
+  nameOuter.addEventListener("click", treeElementClick);
+  nameOuter.addEventListener("mouseover", treeElementHover);
+  nameOuter.addEventListener("mouseleave", treeElementLeave);
+
+  return nameOuter;
+}
+
+function updateTree(para, tree) {
+  var TreeElements = tree.querySelector(".elements");
+  //   console.log(TreeElements);
+
+  para.childrens.forEach((element) => {
+    var elementDom = document.createElement("div");
+    elementDom.classList.add("element");
+    //
+    if (element.active) {
+      elementDom.classList.add("active");
+      hashMap.activeElement = elementDom;
+    }
+    var elementName = getElementName(element.name, element);
+    var ElementsObject = document.createElement("div");
+    ElementsObject.classList.add("elements");
+    if (element.collapsed) {
+      ElementsObject.classList.add("hide");
+    }
+
+    elementDom.appendChild(elementName);
+    elementDom.appendChild(ElementsObject);
+    // element.setTreeDom(elementDom);
+
+    hashMap.addItem(element, elementDom);
+    console.log(hashMap);
+    TreeElements.appendChild(elementDom);
+
+    updateTree(element, elementDom);
+  });
+}
+
+const refreshDomTree = () => {
+  hashMap.clearHash();
+  var Tree = document.getElementById("body-tree");
+  //   Tree.addEventListener("click", treeElementClick);
+  Tree.querySelector(".elements").innerHTML = null;
+  body.setTreeDom(Tree);
+  updateTree(body, Tree);
+
+  refreshDesign();
+};
+
+// active Search
