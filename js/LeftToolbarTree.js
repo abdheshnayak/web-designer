@@ -64,7 +64,6 @@ const treeElementHover = (e) => {
   } else if (tempElement.parentElement.classList.contains("element")) {
     result = tempElement.parentElement;
   }
-  // console.log(result);
 
   var overlay = document.getElementById("overlay");
 

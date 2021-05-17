@@ -11,8 +11,6 @@
     <title>Web Designer</title>
   </head>
   <body>
-    <div id="overlay"></div>
-
     <div class="main">
       <div class="main-inner">
         <div class="navbar">
@@ -170,7 +168,16 @@
           <div class="design-container">
             <div class="screen-size-bar">desktop(1920×1080)</div>
             <div class="design-wrapper cursor-screen">
-              <div class="design-inner" id="root">hello</div>
+              <div class="design-outer">
+                <div id="overlay"></div>
+                <iframe
+                  class="design-inner"
+                  src=""
+                  id="root"
+                  frameborder="0"
+                ></iframe>
+              </div>
+              <!-- <div class="design-inner" id="root">hello</div> -->
             </div>
             <div class="bottom-bar">zoom + -</div>
           </div>

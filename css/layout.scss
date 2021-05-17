@@ -305,19 +305,19 @@ body {
       background-color: $design-body-background;
       height: 100%;
       width: 100%;
-      padding: 2rem;
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: center;
+      padding: 1rem;
 
-      overflow: auto;
-      // padding: 20rem;
-      // box-sizing: content-box;
+      .design-outer {
+        position: relative;
+        overflow: hidden;
+      }
 
-      & > .design-inner {
+      .design-inner {
         background-color: white;
-        width: 1920px;
-        min-height: 1080;
+        width: calc(100% - 2rem);
+        height: 100%;
+        // width: 1920px;
+        // min-height: 1080;
         margin: 0 auto;
         // overflow: auto;
       }
@@ -337,6 +337,6 @@ body {
 #overlay {
   background-color: rgba($color: blue, $alpha: 0.25);
   border: 1px solid rgba($color: blue, $alpha: 0.25);
-  position: fixed;
+  position: absolute;
   z-index: 9999;
 }

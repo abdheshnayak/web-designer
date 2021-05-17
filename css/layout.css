@@ -264,13 +264,16 @@
   background-color: #e5e5e5;
   height: 100%;
   width: 100%;
-  padding: 2rem;
-  overflow: auto; }
+  padding: 1rem; }
 
-.main-inner .design-container .design-wrapper > .design-inner {
+.main-inner .design-container .design-wrapper .design-outer {
+  position: relative;
+  overflow: hidden; }
+
+.main-inner .design-container .design-wrapper .design-inner {
   background-color: white;
-  width: 1920px;
-  min-height: 1080;
+  width: calc(100% - 2rem);
+  height: 100%;
   margin: 0 auto; }
 
 .main-inner .design-container .bottom-bar {
@@ -284,5 +287,5 @@
 #overlay {
   background-color: rgba(0, 0, 255, 0.25);
   border: 1px solid rgba(0, 0, 255, 0.25);
-  position: fixed;
+  position: absolute;
   z-index: 9999; }
