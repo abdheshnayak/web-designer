@@ -119,9 +119,37 @@ const buttonClickHandler = (e) => {
     case "move-down":
       moveUpDown(element, false);
       break;
+    case "zoom-plus":
+      zoomValue += 0.2;
+      document.querySelector(".design-outer").style =
+        "-moz-transform: scale(" +
+        zoomValue +
+        ");-o-transform: scale(" +
+        zoomValue +
+        ");-webkit-transform: scale(" +
+        zoomValue +
+        ");";
+      break;
+    case "zoom-minus":
+      zoomValue -= 0.2;
+      if (zoomValue < 0.1) {
+        zoomValue = 0.1;
+      }
+
+      document.querySelector(".design-outer").style =
+        "-moz-transform: scale(" +
+        zoomValue +
+        ");-o-transform: scale(" +
+        zoomValue +
+        ");-webkit-transform: scale(" +
+        zoomValue +
+        ");";
+
+      break;
   }
   //   console.log(e);
 };
+
 var temp;
 
 const rightSideToolbar = () => {
@@ -143,7 +171,13 @@ const rightSideToolbar = () => {
     "position-selector",
     "display-selector",
   ];
-  const elementActions = ["delete-item", "move-up", "move-down"];
+  const elementActions = [
+    "delete-item",
+    "move-up",
+    "move-down",
+    "zoom-plus",
+    "zoom-minus",
+  ];
 
   elementActions.forEach((element) => {
     document

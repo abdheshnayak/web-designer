@@ -306,6 +306,7 @@ body {
       height: 100%;
       width: 100%;
       padding: 1rem;
+      overflow: auto;
 
       .design-outer {
         position: relative;
@@ -326,6 +327,30 @@ body {
       background-color: $nav-color;
       color: white;
       border-top: 1px solid #e5e5e5;
+      & > .zoom-bar {
+        // padding: 0.5rem;
+        display: inline-flex;
+        & > div {
+          display: inline-flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 0.5rem;
+          & > span {
+            font-size: 0.75rem;
+          }
+        }
+        & > i {
+          border-radius: 0.25rem;
+          cursor: pointer;
+          padding: 0.5rem;
+          padding-bottom: 0.25rem;
+          margin: 0.25rem;
+          background-color: #333;
+          &:hover {
+            background-color: #18a0fb;
+          }
+        }
+      }
     }
   }
 

@@ -267,7 +267,8 @@
   background-color: #e5e5e5;
   height: 100%;
   width: 100%;
-  padding: 1rem; }
+  padding: 1rem;
+  overflow: auto; }
 
 .main-inner .design-container .design-wrapper .design-outer {
   position: relative;
@@ -283,6 +284,29 @@
   background-color: #2c2c2c;
   color: white;
   border-top: 1px solid #e5e5e5; }
+
+.main-inner .design-container .bottom-bar > .zoom-bar {
+  display: inline-flex; }
+
+.main-inner .design-container .bottom-bar > .zoom-bar > div {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 0.5rem; }
+
+.main-inner .design-container .bottom-bar > .zoom-bar > div > span {
+  font-size: 0.75rem; }
+
+.main-inner .design-container .bottom-bar > .zoom-bar > i {
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  padding-bottom: 0.25rem;
+  margin: 0.25rem;
+  background-color: #333; }
+
+.main-inner .design-container .bottom-bar > .zoom-bar > i:hover {
+  background-color: #18a0fb; }
 
 .main-inner .cl-dim {
   color: #b3b3b3; }

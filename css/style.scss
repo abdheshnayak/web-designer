@@ -1,2 +1,18 @@
-body {
+.design-outer {
+  width: 1920px;
+  height: 1080px;
+}
+.design-outer {
+  zoom: 0.75;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.5);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .design-outer {
+    zoom: 1;
+  }
 }
