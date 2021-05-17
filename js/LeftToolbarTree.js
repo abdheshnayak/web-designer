@@ -166,4 +166,5 @@ const refreshDomTree = () => {
   if (!body.active) {
     Tree.classList.remove("active");
   }
+  localStorage.setItem("savedDesign", JSON.stringify(body));
 };

@@ -1,3 +1,15 @@
+function generateClassName(length) {
+  var result = [];
+  var characters = "abcdefghijklmnopqrstuvwxyz";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result.push(
+      characters.charAt(Math.floor(Math.random() * charactersLength))
+    );
+  }
+  return result.join("");
+}
+
 const handleToolbarElementClick = (e) => {
   var element;
   if (e.target.tagName == "I" || e.target.tagName == "SPAN") {
@@ -10,7 +22,10 @@ const handleToolbarElementClick = (e) => {
   var virtElement = hashMap.getVirtualElement(hashMap.activeElement);
 
   var child = new DomObject();
-  child.init({ element: tag.toLowerCase() });
+
+  let randClass = generateClassName(6);
+
+  child.init({ element: tag.toLowerCase(), className: randClass });
 
   virtElement.addChildrens([child]);
   virtElement.setCollapsed(false);

@@ -1,37 +1,46 @@
 // *************************************************
-
+var body;
 const init = () => {
-  body.init({ name: "body", element: "div" });
+  var savedObject = localStorage.getItem("savedDesign") || null;
 
-  // console.log(body.styles.height.getHeight());
-  // console.log(body.styles.border.getBorderString());
-  // console.log(body);
+  if (savedObject) {
+    savedObject = JSON.parse(savedObject);
+    body = new DomObject(savedObject);
+  } else {
+    body = new DomObject();
+  }
 
-  // sdfsdfsdf
+  // body.init({ name: "body", element: "div" });
 
-  const img = new DomObject();
-  img.init({ name: "image", element: "img" });
+  // // console.log(body.styles.height.getHeight());
+  // // console.log(body.styles.border.getBorderString());
+  // // console.log(body);
 
-  const a = new DomObject();
-  a.init({ name: "ancor", element: "a" });
-  a.addChildrens([img]);
-  a.setActive(true);
+  // // sdfsdfsdf
 
-  const p = new DomObject();
-  p.init({ name: "para", element: "p" });
+  // const img = new DomObject();
+  // img.init({ name: "image", element: "img" });
 
-  const span = new DomObject();
-  span.init({ name: "span", element: "span" });
+  // const a = new DomObject();
+  // a.init({ name: "ancor", element: "a" });
+  // a.addChildrens([img]);
+  // a.setActive(true);
 
-  const span2 = new DomObject();
-  span2.init({ name: "span2", element: "span" });
+  // const p = new DomObject();
+  // p.init({ name: "para", element: "p" });
 
-  span.addChildrens([span2]);
+  // const span = new DomObject();
+  // span.init({ name: "span", element: "span" });
 
-  p.addChildrens([span]);
-  p.text = "hello";
+  // const span2 = new DomObject();
+  // span2.init({ name: "span2", element: "span" });
 
-  body.addChildrens([a, p]);
+  // span.addChildrens([span2]);
+
+  // p.addChildrens([span]);
+  // p.text = "hello";
+
+  // body.addChildrens([a, p]);
 };
 
 const getParent = (parent, searchElement) => {

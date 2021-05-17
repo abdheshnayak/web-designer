@@ -43,10 +43,10 @@ function Border() {
   return that;
 }
 
-function Width() {
+function Width({ value, unit } = {}) {
   var that = {
-    unit: "px",
-    value: "auto",
+    unit: unit || "px",
+    value: value || "auto",
   };
   that.setWidth = (value, unit) => {
     that.unit = unit;
@@ -60,10 +60,10 @@ function Width() {
   return that;
 }
 
-function Height() {
+function Height({ value, unit } = {}) {
   var that = {
-    unit: "px",
-    value: "auto",
+    unit: unit || "px",
+    value: value || "auto",
   };
   that.setHeight = (value, unit) => {
     that.unit = unit;

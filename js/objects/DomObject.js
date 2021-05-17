@@ -1,21 +1,49 @@
-function DomObject() {
+function DomObject({
+  name,
+  id,
+  className,
+  element,
+  attributes,
+  childrens,
+  styles,
+  mobileStyle,
+  tablet,
+  active,
+  collapsed,
+  text,
+} = {}) {
   var that = {
-    name: "",
-    id: "",
-    className: "",
-    element: "",
-    attributes: {
+    name: name || "",
+    id: id || "",
+    className: className || "",
+    element: element || "",
+    attributes: attributes || {
       title: "",
       data: "",
     },
     childrens: [],
-    styles: {},
-    mobileStyle: {},
-    tablet: {},
-    active: false,
-    collapsed: true,
-    text: null,
+    styles: styles || {},
+    mobileStyle: mobileStyle || {},
+    tablet: tablet || {},
+    active: active || false,
+    collapsed: collapsed || true,
+    text: text || null,
   };
+
+  if (childrens)
+    childrens.forEach((element) => {
+      that.childrens.push(new DomObject(element));
+    });
+
+  if (that.styles.width) {
+    that.styles.width = new Width({ value: styles.width.value });
+    // console.log(styles);
+  }
+  if (that.styles.height) {
+    that.styles.height = new Height({ value: styles.height.value });
+  }
+  // that.parse();
+  // if(childrens.length)
 
   that.setCollapsed = (collapsed) => {
     that.collapsed = collapsed;
@@ -23,9 +51,10 @@ function DomObject() {
   that.setActive = (active) => {
     that.active = active;
   };
-  that.init = ({ name, element }) => {
-    that.name = name || null;
-    that.element = element;
+  that.init = ({ name, element, className } = {}) => {
+    that.className = className || that.className;
+    that.name = name || that.name;
+    that.element = element || that.element;
   };
 
   that.setTreeDom = (element) => {
@@ -72,6 +101,10 @@ function DomObject() {
       ...that.styles,
       ...styles,
     };
+  };
+
+  that.getName = () => {
+    return that.name;
   };
 
   that.styles.getWidth = () => {

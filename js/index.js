@@ -1,4 +1,4 @@
-const body = new DomObject();
+// const body = new DomObject();
 
 init();
 

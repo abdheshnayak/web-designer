@@ -44,6 +44,18 @@ function Hash() {
       return result[0].element;
     } else return null;
   };
+
+  that.getVirtualElementFromDesign = (element) => {
+    var result = that.hash.filter((item, index) => {
+      if (item.designDom == element) {
+        return true;
+      }
+    });
+    if (result.length > 0) {
+      return result[0].element;
+    } else return null;
+  };
+
   that.setDesignDom = (element, designDom) => {
     that.hash.forEach((item, index) => {
       if (item.element == element) {
