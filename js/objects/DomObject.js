@@ -140,6 +140,12 @@ function DomObject({
       styleString +=
         "background-color:" + that.styles["background-color"] + ";";
     }
+    if (that.styles.margin) {
+      styleString += "margin:" + that.styles.margin + ";";
+    }
+    if (that.styles.padding) {
+      styleString += "padding:" + that.styles.padding + ";";
+    }
 
     return styleString;
   };

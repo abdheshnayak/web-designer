@@ -18,6 +18,10 @@ const updateRightToolBar = () => {
   document.getElementById("position-selector").value = element.styles.position;
   document.getElementById("display-selector").value = element.styles.display;
   document.getElementById("color-field").value = element.styles.color || null;
+  document.getElementById("margin-field").value = element.styles.margin || null;
+  document.getElementById("padding-field").value =
+    element.styles.padding || null;
+
   document.getElementById("background-color-field").value =
     element.styles["background-color"] || null;
 
@@ -72,6 +76,12 @@ const inputFieldsHandler = (e) => {
     case "html-text-field":
       element.text = e.target.value;
       break;
+    case "margin-field":
+      element.styles.margin = e.target.value.trim();
+      break;
+    case "padding-field":
+      element.styles.padding = e.target.value.trim();
+      break;
     case "width-unit":
       if (!element.styles.width) {
         element.addStyles({ width: new Width() });
@@ -124,6 +134,8 @@ const rightSideToolbar = () => {
     "color-field",
     "background-color-field",
     "html-text-field",
+    "margin-field",
+    "padding-field",
   ];
   const optionsFields = [
     "width-unit",
