@@ -1,9 +1,15 @@
-* {
+.toolbar,
+.navbar {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   transition: all 0.1s ease-in-out;
   font: normal 400 16px/20px Inter, sans-serif; }
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
 .hide {
   display: none !important; }

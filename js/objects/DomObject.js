@@ -14,6 +14,7 @@ function DomObject() {
     tablet: {},
     active: false,
     collapsed: true,
+    text: null,
   };
 
   that.setCollapsed = (collapsed) => {
@@ -80,6 +81,34 @@ function DomObject() {
   that.styles.getHeight = () => {
     if (that.styles.height) return that.styles.height.getHeight();
     else return "Height: auto;";
+  };
+
+  that.getStyles = () => {
+    var styleString = "";
+
+    // width
+    if (that.styles.width) {
+      styleString += that.styles.getWidth();
+    }
+    if (that.styles.height) {
+      styleString += that.styles.getHeight();
+    }
+    if (that.styles.position) {
+      styleString += "position:" + that.styles.position + ";";
+    }
+    if (that.styles.color) {
+      styleString += "color:" + that.styles.color + ";";
+    }
+    if (that.styles.display) {
+      styleString += "display:" + that.styles.display + ";";
+    }
+
+    if (that.styles["background-color"]) {
+      styleString +=
+        "background-color:" + that.styles["background-color"] + ";";
+    }
+
+    return styleString;
   };
 
   return that;

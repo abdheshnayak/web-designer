@@ -4,7 +4,8 @@ function updateDesign(para, designRoot) {
     if (element.className) {
       elementDom.classList.add(element.className);
     }
-    elementDom.style = "width:5rem;" + "height:5rem;";
+    elementDom.style = element.getStyles();
+    elementDom.innerText = element.text || "";
 
     designRoot.appendChild(elementDom);
 

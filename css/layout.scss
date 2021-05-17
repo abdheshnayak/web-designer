@@ -76,7 +76,8 @@ body {
         background-color: white;
         position: absolute;
         bottom: 0;
-        width: 100%;
+        // width: 100%;
+        width: calc(100% - 1rem);
         border-top: 1px solid #e5e5e5;
         & > .inner {
           width: 100%;

@@ -21,6 +21,8 @@ const updateRightToolBar = () => {
   document.getElementById("background-color-field").value =
     element.styles["background-color"] || null;
 
+  document.getElementById("html-text-field").value = element.text || null;
+
   if (element.styles.width) {
     document.getElementById("width-field").value = element.styles.width.value;
     document.getElementById("width-unit").value = element.styles.width.unit;
@@ -67,7 +69,9 @@ const inputFieldsHandler = (e) => {
     case "background-color-field":
       element.styles["background-color"] = e.target.value.trim();
       break;
-
+    case "html-text-field":
+      element.text = e.target.value;
+      break;
     case "width-unit":
       if (!element.styles.width) {
         element.addStyles({ width: new Width() });
@@ -118,6 +122,7 @@ const rightSideToolbar = () => {
     "height-field",
     "color-field",
     "background-color-field",
+    "html-text-field",
   ];
   const optionsFields = [
     "width-unit",

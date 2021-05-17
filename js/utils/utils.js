@@ -29,6 +29,7 @@ const init = () => {
   span.addChildrens([span2]);
 
   p.addChildrens([span]);
+  p.text = "hello";
 
   body.addChildrens([a, p]);
 };
