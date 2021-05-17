@@ -46,6 +46,9 @@ const wheelScrollHandler = (e) => {
       ");-webkit-transform: scale(" +
       zoomValue +
       ");";
+
+    document.getElementById("zoom-status").innerText =
+      Math.floor(zoomValue * 100) + "%";
     e.preventDefault();
     return false;
   }

@@ -129,6 +129,9 @@ const buttonClickHandler = (e) => {
         ");-webkit-transform: scale(" +
         zoomValue +
         ");";
+      document.getElementById("zoom-status").innerText =
+        Math.floor(zoomValue * 100) + "%";
+
       break;
     case "zoom-minus":
       zoomValue -= 0.2;
@@ -144,6 +147,9 @@ const buttonClickHandler = (e) => {
         ");-webkit-transform: scale(" +
         zoomValue +
         ");";
+
+      document.getElementById("zoom-status").innerText =
+        Math.floor(zoomValue * 100) + "%";
 
       break;
   }
