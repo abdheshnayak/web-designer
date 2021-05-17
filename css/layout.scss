@@ -314,7 +314,7 @@ body {
 
       .design-inner {
         background-color: white;
-        width: 100%;
+        width: calc(100% - 2rem);
         height: 100%;
         // width: 1920px;
         // min-height: 1080;
@@ -336,7 +336,6 @@ body {
 
 #overlay {
   background-color: rgba($color: blue, $alpha: 0.25);
-  // border: 1px solid rgba($color: blue, $alpha: 0.25);
   position: absolute;
   z-index: 9999;
 }

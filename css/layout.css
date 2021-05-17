@@ -275,7 +275,7 @@
 
 .main-inner .design-container .design-wrapper .design-inner {
   background-color: white;
-  width: 100%;
+  width: calc(100% - 2rem);
   height: 100%;
   margin: 0 auto; }
 
