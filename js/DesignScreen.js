@@ -26,7 +26,7 @@
 var zoomValue = 1;
 const wheelScrollHandler = (e) => {
   // console.log(e);
-  var smooth = 0.05;
+  var smooth = 0.01;
   console.log(zoomValue);
   if (e.ctrlKey) {
     if (e.deltaY < 0) {
