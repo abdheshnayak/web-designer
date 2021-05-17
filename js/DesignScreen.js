@@ -46,14 +46,7 @@ function updateDesign(para, designRoot) {
 }
 
 const refreshDesign = () => {
-  var designRoot = document.createElement("div");
-
   body.className = body.className || "designRoot";
-
-  designRoot.classList.add(body.className);
-
-  designRoot.style = " width: 1920px";
-
   var viewport = document.createElement("meta");
   viewport.setAttribute("name", "viewport");
   viewport.setAttribute("content", "width=device-width");
@@ -61,10 +54,6 @@ const refreshDesign = () => {
   var StylesDom = document.createElement("style");
 
   StylesDom.innerText = getCssStyles(body);
-
-  updateDesign(body, designRoot);
-
-  hashMap.setDesignDom(body, designRoot);
 
   var x = document.getElementById("root");
   var iframe = x.contentWindow || x.contentDocument;
@@ -74,5 +63,10 @@ const refreshDesign = () => {
   iframe.head.innerText = null;
   iframe.head.appendChild(viewport);
   iframe.head.appendChild(StylesDom);
-  iframe.body.appendChild(designRoot);
+  updateDesign(body, iframe.body);
+  iframe.body.classList.add(body.className);
+  iframe.body.style = "width: 1920px";
+  hashMap.setDesignDom(body, iframe.body);
+
+  // iframe.body.appendChild(designRoot);
 };
