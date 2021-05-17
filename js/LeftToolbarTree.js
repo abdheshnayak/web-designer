@@ -64,7 +64,6 @@ const treeElementHover = (e) => {
   } else if (tempElement.parentElement.classList.contains("element")) {
     result = tempElement.parentElement;
   }
-  // console.log(result);
 
   var overlay = document.getElementById("overlay");
 
@@ -156,7 +155,6 @@ const refreshDomTree = () => {
   Tree.querySelector(".name").addEventListener("mouseover", treeElementHover);
   Tree.querySelector(".name").addEventListener("mouseleave", treeElementLeave);
   hashMap.addItem(body, Tree);
-  hashMap.setDesignDom(body, document.getElementById("root"));
 
   Tree.querySelector(".elements").innerHTML = null;
 

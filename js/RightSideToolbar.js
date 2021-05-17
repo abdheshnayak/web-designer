@@ -3,7 +3,7 @@ const updateRightToolBar = () => {
 
   //   console.log(element);
 
-  if (!element) {
+  if (!element || (element && element.name == "body")) {
     document.getElementById("right-toolbar-block").classList.add("hide");
     document.getElementById("dom-tree-element-action").classList.add("hide");
     return;

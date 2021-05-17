@@ -82,3 +82,7 @@ const moveUpDown = (element, upOrDown) => {
     refreshDomTree();
   }
 };
+
+const findElementWithName = (element, name) => {};
+
+const isNameReserved = (name) => {};
