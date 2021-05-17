@@ -9,38 +9,6 @@ const init = () => {
   } else {
     body = new DomObject();
   }
-
-  // body.init({ name: "body", element: "div" });
-
-  // // console.log(body.styles.height.getHeight());
-  // // console.log(body.styles.border.getBorderString());
-  // // console.log(body);
-
-  // // sdfsdfsdf
-
-  // const img = new DomObject();
-  // img.init({ name: "image", element: "img" });
-
-  // const a = new DomObject();
-  // a.init({ name: "ancor", element: "a" });
-  // a.addChildrens([img]);
-  // a.setActive(true);
-
-  // const p = new DomObject();
-  // p.init({ name: "para", element: "p" });
-
-  // const span = new DomObject();
-  // span.init({ name: "span", element: "span" });
-
-  // const span2 = new DomObject();
-  // span2.init({ name: "span2", element: "span" });
-
-  // span.addChildrens([span2]);
-
-  // p.addChildrens([span]);
-  // p.text = "hello";
-
-  // body.addChildrens([a, p]);
 };
 
 const getParent = (parent, searchElement) => {

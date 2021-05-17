@@ -47,8 +47,10 @@ function updateDesign(para, designRoot) {
 
 const refreshDesign = () => {
   var designRoot = document.createElement("div");
-  designRoot.classList.add("designRoot");
-  body.className = "designRoot";
+
+  body.className = body.className || "designRoot";
+
+  designRoot.classList.add(body.className);
 
   designRoot.style = " width: 1920px";
 
