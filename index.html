@@ -12,6 +12,7 @@
   </head>
   <body>
     <div id="overlay"></div>
+
     <div class="main">
       <div class="main-inner">
         <div class="navbar">
@@ -23,106 +24,132 @@
         </div>
         <div class="body">
           <div class="left-toolbar toolbar">
-            <div class="toolbar-block">
-              <div class="elements-list-block">
-                <div class="element">
-                  <i class="far fa-rectangle-landscape"></i>
-                  <span>div</span>
-                </div>
-                <div class="element">
-                  <i class="far fa-text"></i>
-                  <span>span</span>
-                </div>
-                <div class="element">
-                  <i class="far fa-text"></i>
-                  <span>p</span>
-                </div>
+            <div class="toolbar-inner">
+              <div class="toolbar-block">
+                <div class="elements-list-block">
+                  <div class="element">
+                    <i class="far fa-rectangle-landscape"></i>
+                    <span>div</span>
+                  </div>
+                  <div class="element">
+                    <i class="far fa-text"></i>
+                    <span>span</span>
+                  </div>
+                  <div class="element">
+                    <i class="far fa-text"></i>
+                    <span>p</span>
+                  </div>
 
-                <div class="element">
-                  <i class="far fa-link"></i>
-                  <span>a</span>
-                </div>
-                <div class="element">
-                  <i class="far fa-image"></i>
-                  <span>img</span>
-                </div>
-                <div class="element">
-                  <i class="far fa-bold"></i>
-                  <span>b</span>
-                </div>
-                <div class="element">
-                  <i class="far fa-italic"> </i>
-                  <span>i</span>
+                  <div class="element">
+                    <i class="far fa-link"></i>
+                    <span>a</span>
+                  </div>
+                  <div class="element">
+                    <i class="far fa-image"></i>
+                    <span>img</span>
+                  </div>
+                  <div class="element">
+                    <i class="far fa-bold"></i>
+                    <span>b</span>
+                  </div>
+                  <div class="element">
+                    <i class="far fa-italic"> </i>
+                    <span>i</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- tree block -->
-            <div class="toolbar-block">
-              <!-- <div class="row type-1">
-                <span class="text">
-                  <i class="far fa-hashtag"></i>
-                  <span>div</span>
-                </span>
-              </div> -->
-
-              <!-- tree -->
-              <div class="elements-wrapper">
-                <!-- start -->
-                <div class="pl-none element" id="body-tree">
-                  <div class="name">
-                    <i class="fas fa-caret-down"></i>
+              <!-- tree block -->
+              <div class="toolbar-block tree-container">
+                <!-- <div class="row type-1">
+                  <span class="text">
                     <i class="far fa-hashtag"></i>
-                    <span>body</span>
-                  </div>
+                    <span>div</span>
+                  </span>
+                </div> -->
 
-                  <div class="elements">
-                    <!-- child element 1 -->
-                    <div class="element active">
-                      <div class="name">
-                        <i class="fas fa-caret-down"></i>
-                        <i class="far fa-link"></i>
-                        <span>a</span>
+                <!-- tree -->
+                <div class="elements-wrapper">
+                  <!-- start -->
+                  <div class="pl-none element" id="body-tree">
+                    <div class="name">
+                      <i class="fas fa-caret-down"></i>
+                      <i class="far fa-hashtag"></i>
+                      <span>body</span>
+                    </div>
+
+                    <div class="elements">
+                      <!-- child element 1 -->
+                      <div class="element active">
+                        <div class="name">
+                          <i class="fas fa-caret-down"></i>
+                          <i class="far fa-link"></i>
+                          <span>a</span>
+                        </div>
+                        <div class="elements">
+                          <div class="element">
+                            <div class="name">
+                              <i class="fas fa-caret-down"></i>
+                              <i class="far fa-image"></i>
+                              <span>img</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="elements">
-                        <div class="element">
-                          <div class="name">
-                            <i class="fas fa-caret-down"></i>
-                            <i class="far fa-image"></i>
-                            <span>img</span>
+                      <!-- child element 2 -->
+                      <div class="element">
+                        <div class="name">
+                          <i class="fas fa-caret-down"></i>
+                          <i class="far fa-link"></i>
+                          <span>a</span>
+                        </div>
+                        <div class="elements">
+                          <div class="element">
+                            <div class="name">
+                              <i class="fas fa-caret-right"></i>
+                              <i class="far fa-image"></i>
+                              <span>img</span>
+                            </div>
+                          </div>
+                          <div class="element">
+                            <div class="name">
+                              <i class="fas fa-caret-right"></i>
+                              <i class="far fa-text"></i>
+                              <span>p</span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <!-- child element 2 -->
-                    <div class="element">
-                      <div class="name">
-                        <i class="fas fa-caret-down"></i>
-                        <i class="far fa-link"></i>
-                        <span>a</span>
-                      </div>
-                      <div class="elements">
-                        <div class="element">
-                          <div class="name">
-                            <i class="fas fa-caret-right"></i>
-                            <i class="far fa-image"></i>
-                            <span>img</span>
-                          </div>
-                        </div>
-                        <div class="element">
-                          <div class="name">
-                            <i class="fas fa-caret-right"></i>
-                            <i class="far fa-text"></i>
-                            <span>p</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <!--  -->
+                    <!--  -->
+                  </div>
+                </div>
+                <!-- end -->
+              </div>
+
+              <!-- element action options -->
+              <div
+                class="toolbar-block always-bottom"
+                id="dom-tree-element-action"
+              >
+                <div class="inner">
+                  <i
+                    class="fad fa-arrow-alt-up"
+                    id="move-up"
+                    title="move element up"
+                  ></i>
+                  <i
+                    class="fad fa-arrow-alt-down"
+                    id="move-down"
+                    title="move element down"
+                  ></i>
+                  <i
+                    class="fad fa-trash"
+                    id="delete-item"
+                    title="delete element"
+                  ></i>
                 </div>
               </div>
-              <!-- end -->
             </div>
           </div>
 
@@ -135,21 +162,29 @@
           </div>
 
           <div class="right-toolbar toolbar">
-            <div class="toolbar-block">
+            <div class="toolbar-block" id="right-toolbar-block">
               <div class="tool-container-outer">
                 <span class="title">Element Properties</span>
                 <div class="tool-container">
                   <div class="row item-2">
                     <span>name</span>
-                    <input type="text" placeholder="abc" />
+                    <input id="name-field" type="text" placeholder="abc" />
                   </div>
                   <div class="row item-2">
                     <span>class</span>
-                    <input type="text" placeholder="abc-class" />
+                    <input
+                      type="text"
+                      id="class-field"
+                      placeholder="abc-class"
+                    />
                   </div>
                   <div class="row item-2">
                     <span>id</span>
-                    <input type="text" placeholder="abc-element" />
+                    <input
+                      type="text"
+                      id="id-field"
+                      placeholder="abc-element"
+                    />
                   </div>
                 </div>
               </div>
@@ -160,22 +195,22 @@
                 <div class="tool-container">
                   <div class="row item-3">
                     <span>width</span>
-                    <input type="text" placeholder="auto" />
-                    <select name="" id="">
-                      <option value="">px</option>
-                      <option value="">%</option>
-                      <option value="">vw</option>
-                      <option value="">vh</option>
+                    <input type="text" id="width-field" placeholder="auto" />
+                    <select name="" id="width-unit">
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="vw">vw</option>
+                      <option value="vh">vh</option>
                     </select>
                   </div>
                   <div class="row item-3">
                     <span>height</span>
-                    <input type="text" placeholder="auto" />
-                    <select name="" id="">
-                      <option value="">px</option>
-                      <option value="">%</option>
-                      <option value="">vw</option>
-                      <option value="">vh</option>
+                    <input id="height-field" type="text" placeholder="auto" />
+                    <select name="" id="height-unit">
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="vw">vw</option>
+                      <option value="vh">vh</option>
                     </select>
                   </div>
                 </div>
@@ -187,12 +222,12 @@
                 <div class="tool-container">
                   <div class="row item-2">
                     <span>position</span>
-                    <select name="" id="">
-                      <option value="">abslute</option>
-                      <option value="">relative</option>
-                      <option value="">fixed</option>
-                      <option value="">static</option>
-                      <option value="">sticky</option>
+                    <select name="" id="position-selector">
+                      <option value="absolute">absolute</option>
+                      <option value="relative">relative</option>
+                      <option value="fixed">fixed</option>
+                      <option value="static">static</option>
+                      <option value="sticky">sticky</option>
                     </select>
                   </div>
                 </div>
@@ -204,12 +239,13 @@
                 <div class="tool-container">
                   <div class="row item-2">
                     <span>Display</span>
-                    <select name="" id="">
-                      <option value="">block</option>
-                      <option value="">inline-block</option>
-                      <option value="">inline</option>
-                      <option value="">flex</option>
-                      <option value="">grid</option>
+                    <select name="" id="display-selector">
+                      <option value="none">none</option>
+                      <option value="block">block</option>
+                      <option value="inline-block">inline-block</option>
+                      <option value="inline">inline</option>
+                      <option value="flex">flex</option>
+                      <option value="grid">grid</option>
                     </select>
                   </div>
                 </div>
@@ -221,17 +257,25 @@
                 <div class="tool-container">
                   <div class="row item-2">
                     <span>color</span>
-                    <input type="text" placeholder="eg: #ffffff" />
+                    <input
+                      type="text"
+                      placeholder="eg: #ffffff"
+                      id="color-field"
+                    />
                   </div>
                   <div class="row item-2">
                     <span>background-color</span>
-                    <input type="text" placeholder="eg: #ffffff" />
+                    <input
+                      type="text"
+                      placeholder="eg: #ffffff"
+                      id="background-color-field"
+                    />
                   </div>
                 </div>
               </div>
               <!-- display end -->
 
-              <div class="tool-container-outer">
+              <div class="tool-container-outer hide">
                 <span class="title">border</span>
                 <div class="tool-container">
                   <div class="row item-3">
@@ -264,13 +308,14 @@
         </div>
       </div>
     </div>
-    <script src="./js/Hash.js"></script>
-    <script src="./js/cssElements.js"></script>
-    <script src="./js/DomObject.js"></script>
-    <script src="./js/utils.js"></script>
+    <script src="./js/utils/Hash.js"></script>
+    <script src="./js/objects/cssElements.js"></script>
+    <script src="./js/objects/DomObject.js"></script>
+    <script src="./js/utils/utils.js"></script>
     <script src="./js/ElementInserter.js"></script>
     <script src="./js/LeftToolbarTree.js"></script>
     <script src="./js/DesignScreen.js"></script>
+    <script src="./js//RightSideToolbar.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>

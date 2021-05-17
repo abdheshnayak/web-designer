@@ -47,7 +47,6 @@ body {
     height: 100%;
     background-color: $color-white;
     top: 0;
-
     overflow-y: auto;
 
     &.left-toolbar {
@@ -59,9 +58,45 @@ body {
       border-left: 1px solid #e5e5e5;
     }
 
+    .toolbar-inner {
+      position: relative;
+      min-height: 100%;
+      width: 100%;
+    }
     .toolbar-block {
       padding: 0.5rem;
       border-bottom: 1px solid #e5e5e5;
+
+      &.tree-container {
+        max-height: calc(100% - 12rem);
+        overflow: auto;
+      }
+
+      &.always-bottom {
+        background-color: white;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid #e5e5e5;
+        & > .inner {
+          width: 100%;
+          position: relative;
+          padding: 0;
+          margin-top: 0;
+          display: flex;
+          justify-content: flex-end;
+          & > i {
+            cursor: pointer;
+            padding: 0.5rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            &:hover {
+              color: $active-menu-background;
+              background-color: #f0f0f0;
+            }
+          }
+        }
+      }
 
       .tool-container-outer {
         overflow-x: auto;
@@ -261,7 +296,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
     .screen-size-bar {
+      border-bottom: 1px solid #e5e5e5;
     }
     .design-wrapper {
       background-color: $design-body-background;
@@ -287,6 +324,7 @@ body {
     .bottom-bar {
       background-color: $nav-color;
       color: white;
+      border-top: 1px solid #e5e5e5;
     }
   }
 

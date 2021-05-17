@@ -45,9 +45,43 @@
   right: 0;
   border-left: 1px solid #e5e5e5; }
 
+.main-inner .toolbar .toolbar-inner {
+  position: relative;
+  min-height: 100%;
+  width: 100%; }
+
 .main-inner .toolbar .toolbar-block {
   padding: 0.5rem;
   border-bottom: 1px solid #e5e5e5; }
+
+.main-inner .toolbar .toolbar-block.tree-container {
+  max-height: calc(100% - 12rem);
+  overflow: auto; }
+
+.main-inner .toolbar .toolbar-block.always-bottom {
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e5e5e5; }
+
+.main-inner .toolbar .toolbar-block.always-bottom > .inner {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  margin-top: 0;
+  display: flex;
+  justify-content: flex-end; }
+
+.main-inner .toolbar .toolbar-block.always-bottom > .inner > i {
+  cursor: pointer;
+  padding: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; }
+
+.main-inner .toolbar .toolbar-block.always-bottom > .inner > i:hover {
+  color: #18a0fb;
+  background-color: #f0f0f0; }
 
 .main-inner .toolbar .toolbar-block .tool-container-outer {
   overflow-x: auto;
@@ -220,7 +254,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: relative; }
+
+.main-inner .design-container .screen-size-bar {
+  border-bottom: 1px solid #e5e5e5; }
 
 .main-inner .design-container .design-wrapper {
   background-color: #e5e5e5;
@@ -237,7 +275,8 @@
 
 .main-inner .design-container .bottom-bar {
   background-color: #2c2c2c;
-  color: white; }
+  color: white;
+  border-top: 1px solid #e5e5e5; }
 
 .main-inner .cl-dim {
   color: #b3b3b3; }

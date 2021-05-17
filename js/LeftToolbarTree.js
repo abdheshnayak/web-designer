@@ -1,19 +1,9 @@
 const hashMap = Hash();
-// const clearActive = () => {
-//   var actives = document.querySelectorAll(".element.active");
 
-//   actives.forEach((element) => {
-//     if (element.classList.contains("active")) {
-//       hashMap.getVirtualElement(element).active = false;
-//     }
-//     // element.classList.remove("active");
-//   });
-// };
-
+// tree elements click handler event
 const treeElementClick = (e) => {
+  console.log("clicked");
   var tempElement = e.target.parentElement;
-  //   console.log(tempElement);
-  //   refreshDomTree();
 
   if (tempElement.classList.contains("element")) {
     hashMap.activeElement = tempElement;
@@ -24,21 +14,17 @@ const treeElementClick = (e) => {
   if (e.target.classList.contains("collapser")) {
     hashMap.getVirtualElement(hashMap.activeElement).collapsed =
       !hashMap.getVirtualElement(hashMap.activeElement).collapsed;
-
-    // refreshDomTree();
-    // console.log("collapse toggle");
-    // return;
   }
-
-  //   console.log(hashMap.getVirtualElement(hashMap.activeElement));
 
   hashMap.getVirtualElement(hashMap.activeElement).active = true;
 
   hashMap.activeElement.classList.add("active");
 
   refreshDomTree();
+  updateRightToolBar();
 };
 
+// getElementIcon
 const getElementIcon = (element) => {
   switch (element) {
     case "a":
@@ -56,6 +42,7 @@ const getElementIcon = (element) => {
   }
 };
 
+// get x axis and y axis position of element
 function getOffset(el) {
   var _x = 0;
   var _y = 0;
@@ -67,6 +54,7 @@ function getOffset(el) {
   return { top: _y, left: _x };
 }
 
+// on hove effect on tree element
 const treeElementHover = (e) => {
   var tempElement = e.target.parentElement;
 
@@ -76,12 +64,14 @@ const treeElementHover = (e) => {
   } else if (tempElement.parentElement.classList.contains("element")) {
     result = tempElement.parentElement;
   }
+  // console.log(result);
 
   var overlay = document.getElementById("overlay");
 
   var designElement = hashMap.getDesignElement(result);
 
   overlay.style.width = designElement.offsetWidth;
+
   overlay.style.height = designElement.offsetHeight;
   overlay.style.left = getOffset(designElement).left;
   overlay.style.top = getOffset(designElement).top;
@@ -89,11 +79,15 @@ const treeElementHover = (e) => {
   //   console.log(x, y);
   //   console.log(designElement);
 };
+
+// tree Element onleave overlay control
 const treeElementLeave = (e) => {
   var overlay = document.getElementById("overlay");
   overlay.style.width = 0;
   overlay.style.height = 0;
 };
+
+// It returns name element of tree and also add events on it
 function getElementName(name, element) {
   var nameOuter = document.createElement("div");
   nameOuter.classList.add("name");
@@ -123,9 +117,9 @@ function getElementName(name, element) {
   return nameOuter;
 }
 
+// recursive function to generate dom tree to show on left toolbar
 function updateTree(para, tree) {
   var TreeElements = tree.querySelector(".elements");
-  //   console.log(TreeElements);
 
   para.childrens.forEach((element) => {
     var elementDom = document.createElement("div");
@@ -144,25 +138,34 @@ function updateTree(para, tree) {
 
     elementDom.appendChild(elementName);
     elementDom.appendChild(ElementsObject);
-    // element.setTreeDom(elementDom);
 
     hashMap.addItem(element, elementDom);
-    console.log(hashMap);
+    // console.log(hashMap);
     TreeElements.appendChild(elementDom);
 
     updateTree(element, elementDom);
   });
 }
 
+// this is to refresh the dom tree again and again(like when any changes makes)
 const refreshDomTree = () => {
   hashMap.clearHash();
   var Tree = document.getElementById("body-tree");
-  //   Tree.addEventListener("click", treeElementClick);
+
+  Tree.querySelector(".name").addEventListener("click", treeElementClick);
+  Tree.querySelector(".name").addEventListener("mouseover", treeElementHover);
+  Tree.querySelector(".name").addEventListener("mouseleave", treeElementLeave);
+  hashMap.addItem(body, Tree);
+  hashMap.setDesignDom(body, document.getElementById("root"));
+
   Tree.querySelector(".elements").innerHTML = null;
-  body.setTreeDom(Tree);
+
   updateTree(body, Tree);
 
   refreshDesign();
-};
+  updateRightToolBar();
 
-// active Search
+  if (!body.active) {
+    Tree.classList.remove("active");
+  }
+};

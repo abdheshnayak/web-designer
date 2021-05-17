@@ -24,7 +24,7 @@ function Hash() {
     });
   };
   that.clearHash = () => {
-    console.log("called");
+    // console.log("called");
     that.clearActive();
     that.hash = [];
   };
@@ -47,7 +47,7 @@ function Hash() {
   that.setDesignDom = (element, designDom) => {
     that.hash.forEach((item, index) => {
       if (item.element == element) {
-        console.log("matched");
+        // console.log("matched");
         that.hash[index].setDesign(designDom);
         return;
       }
