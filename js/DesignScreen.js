@@ -23,32 +23,33 @@
 //   -webkit-transform-origin: 0 0;
 // }
 
-var zoomValue = 1;
+var zoomValue = 100;
 const wheelScrollHandler = (e) => {
   // console.log(e);
-  var smooth = 0.01;
-  console.log(zoomValue);
+  var smooth = 1;
+  // console.log(zoomValue);
   if (e.ctrlKey) {
     if (e.deltaY < 0) {
       zoomValue += smooth;
     } else {
       zoomValue -= smooth;
     }
-    if (zoomValue <= 0) {
-      zoomValue = 0.2;
+    if (zoomValue <= 10) {
+      zoomValue = 10;
+      e.preventDefault();
+      return;
     }
 
     document.querySelector(".design-outer").style =
       "-moz-transform: scale(" +
-      zoomValue +
+      (zoomValue / 100).toFixed(2) +
       ");-o-transform: scale(" +
-      zoomValue +
+      (zoomValue / 100).toFixed(2) +
       ");-webkit-transform: scale(" +
-      zoomValue +
+      (zoomValue / 100).toFixed(2) +
       ");";
 
-    document.getElementById("zoom-status").innerText =
-      Math.floor(zoomValue * 100) + "%";
+    document.getElementById("zoom-status").innerText = zoomValue + "%";
     e.preventDefault();
     return false;
   }

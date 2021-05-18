@@ -134,32 +134,31 @@ const buttonClickHandler = (e) => {
       moveUpDown(element, false);
       break;
     case "zoom-plus":
-      zoomValue += 0.2;
+      zoomValue += 10;
       document.querySelector(".design-outer").style =
         "-moz-transform: scale(" +
-        zoomValue +
+        (zoomValue / 100).toFixed(2) +
         ");-o-transform: scale(" +
-        zoomValue +
+        (zoomValue / 100).toFixed(2) +
         ");-webkit-transform: scale(" +
-        zoomValue +
+        (zoomValue / 100).toFixed(2) +
         ");";
-      document.getElementById("zoom-status").innerText =
-        Math.floor(zoomValue * 100) + "%";
+      document.getElementById("zoom-status").innerText = zoomValue + "%";
 
       break;
     case "zoom-minus":
-      zoomValue -= 0.2;
-      if (zoomValue < 0.1) {
-        zoomValue = 0.1;
+      zoomValue -= 10;
+      if (zoomValue < 10) {
+        zoomValue = 10;
       }
 
       document.querySelector(".design-outer").style =
         "-moz-transform: scale(" +
-        zoomValue +
+        (zoomValue / 100).toFixed(2) +
         ");-o-transform: scale(" +
-        zoomValue +
+        (zoomValue / 100).toFixed(2) +
         ");-webkit-transform: scale(" +
-        zoomValue +
+        (zoomValue / 100).toFixed(2) +
         ");";
 
       document.getElementById("zoom-status").innerText =
