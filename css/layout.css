@@ -140,6 +140,8 @@
   grid-template-columns: auto auto auto; }
 
 .main-inner .toolbar .toolbar-block .elements-list-block .element {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   text-align: center;
   display: inline-block;
@@ -179,6 +181,8 @@
   overflow-y: hidden; }
 
 .main-inner .toolbar .toolbar-block .elements-wrapper .element {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   padding: 0.25rem;
   padding-left: 1.35rem;
   padding-right: 0;
@@ -270,6 +274,8 @@
   display: flex; }
 
 .main-inner .design-container .screen-size-bar-inner > span {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   font-size: 0.75rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;

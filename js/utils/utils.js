@@ -1,6 +1,9 @@
 // *************************************************
 var body;
+const hashMap = Hash();
+
 const init = () => {
+  hashMap.styleScreen = "styles";
   var savedObject = localStorage.getItem("savedDesign") || null;
 
   if (savedObject) {

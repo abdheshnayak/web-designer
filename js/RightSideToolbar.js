@@ -15,28 +15,36 @@ const updateRightToolBar = () => {
   document.getElementById("name-field").value = element.name;
   document.getElementById("class-field").value = element.className;
   document.getElementById("id-field").value = element.id;
-  document.getElementById("position-selector").value = element.styles.position;
-  document.getElementById("display-selector").value = element.styles.display;
-  document.getElementById("color-field").value = element.styles.color || null;
-  document.getElementById("margin-field").value = element.styles.margin || null;
+  document.getElementById("position-selector").value =
+    element[hashMap.styleScreen].position;
+  document.getElementById("display-selector").value =
+    element[hashMap.styleScreen].display;
+  document.getElementById("color-field").value =
+    element[hashMap.styleScreen].color || null;
+  document.getElementById("margin-field").value =
+    element[hashMap.styleScreen].margin || null;
   document.getElementById("padding-field").value =
-    element.styles.padding || null;
+    element[hashMap.styleScreen].padding || null;
 
   document.getElementById("background-color-field").value =
-    element.styles["background-color"] || null;
+    element[hashMap.styleScreen]["background-color"] || null;
 
   document.getElementById("html-text-field").value = element.text || null;
 
-  if (element.styles.width) {
-    document.getElementById("width-field").value = element.styles.width.value;
-    document.getElementById("width-unit").value = element.styles.width.unit;
+  if (element[hashMap.styleScreen].width) {
+    document.getElementById("width-field").value =
+      element[hashMap.styleScreen].width.value;
+    document.getElementById("width-unit").value =
+      element[hashMap.styleScreen].width.unit;
   } else {
     document.getElementById("width-field").value = null;
     document.getElementById("width-unit").value = null;
   }
-  if (element.styles.height) {
-    document.getElementById("height-field").value = element.styles.height.value;
-    document.getElementById("height-unit").value = element.styles.height.unit;
+  if (element[hashMap.styleScreen].height) {
+    document.getElementById("height-field").value =
+      element[hashMap.styleScreen].height.value;
+    document.getElementById("height-unit").value =
+      element[hashMap.styleScreen].height.unit;
   } else {
     document.getElementById("height-field").value = null;
     document.getElementById("height-unit").value = null;
@@ -56,49 +64,57 @@ const inputFieldsHandler = (e) => {
       element.id = e.target.value;
       break;
     case "width-field":
-      if (!element.styles.width) {
-        element.addStyles({ width: new Width() });
+      if (!element[hashMap.styleScreen].width) {
+        element.addStyles({
+          styleScreen: hashMap.styleScreen,
+          styles: {
+            width: new Width(),
+          },
+        });
       }
-      element.styles.width.value = e.target.value.trim();
+      element[hashMap.styleScreen].width.value = e.target.value.trim();
       break;
     case "height-field":
-      if (!element.styles.height) {
-        element.addStyles({ height: new Height() });
+      if (!element[hashMap.styleScreen].height) {
+        element.addStyles({
+          styleScreen: hashMap.styleScreen,
+          styles: { height: new Height() },
+        });
       }
-      element.styles.height.value = e.target.value.trim();
+      element[hashMap.styleScreen].height.value = e.target.value.trim();
       break;
     case "color-field":
-      element.styles.color = e.target.value.trim();
+      element[hashMap.styleScreen].color = e.target.value.trim();
       break;
     case "background-color-field":
-      element.styles["background-color"] = e.target.value.trim();
+      element[hashMap.styleScreen]["background-color"] = e.target.value.trim();
       break;
     case "html-text-field":
       element.text = e.target.value;
       break;
     case "margin-field":
-      element.styles.margin = e.target.value.trim();
+      element[hashMap.styleScreen].margin = e.target.value.trim();
       break;
     case "padding-field":
-      element.styles.padding = e.target.value.trim();
+      element[hashMap.styleScreen].padding = e.target.value.trim();
       break;
     case "width-unit":
-      if (!element.styles.width) {
+      if (!element[hashMap.styleScreen].width) {
         element.addStyles({ width: new Width() });
       }
-      element.styles.width.unit = e.target.value;
+      element[hashMap.styleScreen].width.unit = e.target.value;
       break;
     case "height-unit":
-      if (!element.styles.height) {
+      if (!element[hashMap.styleScreen].height) {
         element.addStyles({ height: new Width() });
       }
-      element.styles.height.unit = e.target.value;
+      element[hashMap.styleScreen].height.unit = e.target.value;
       break;
     case "position-selector":
-      element.styles.position = e.target.value;
+      element[hashMap.styleScreen].position = e.target.value;
       break;
     case "display-selector":
-      element.styles.display = e.target.value;
+      element[hashMap.styleScreen].display = e.target.value;
       break;
     default:
       console.log("input field unhandled");
@@ -168,16 +184,25 @@ const buttonClickHandler = (e) => {
       resetSelectedScreenSize();
       document.querySelector(".design-outer").classList.add("desktop");
       e.target.classList.add("active");
+      hashMap.styleScreen = "styles";
+      refreshDomTree();
+
       break;
     case "tablet-screen":
       resetSelectedScreenSize();
       document.querySelector(".design-outer").classList.add("tablet");
       e.target.classList.add("active");
+      hashMap.styleScreen = "tabletStyles";
+      refreshDomTree();
+
       break;
     case "mobile-screen":
       resetSelectedScreenSize();
       document.querySelector(".design-outer").classList.add("mobile");
       e.target.classList.add("active");
+      hashMap.styleScreen = "mobileStyles";
+      refreshDomTree();
+
       break;
   }
   //   console.log(e);

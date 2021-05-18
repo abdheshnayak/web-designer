@@ -1,8 +1,6 @@
-const hashMap = Hash();
-
 // tree elements click handler event
 const treeElementClick = (e) => {
-  console.log("clicked");
+  // console.log("clicked");
   var tempElement = e.target.parentElement;
 
   if (tempElement.classList.contains("element")) {

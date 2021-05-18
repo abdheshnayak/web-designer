@@ -57,12 +57,16 @@ const wheelScrollHandler = (e) => {
 window.addEventListener("wheel", wheelScrollHandler, { passive: false });
 document.addEventListener("wheel", wheelScrollHandler, { passive: false });
 
-const getCssStyles = (elementOuter, string = "") => {
+const getCssStyles = (elementOuter, string = "", styleScreen) => {
   var tempString =
-    "." + elementOuter.className + "{" + elementOuter.getStyles() + "}";
+    "." +
+    elementOuter.className +
+    "{" +
+    elementOuter.getStyles({ styleScreen: styleScreen }) +
+    "}";
 
   elementOuter.childrens.forEach((element) => {
-    tempString += getCssStyles(element, string);
+    tempString += getCssStyles(element, string, styleScreen);
   });
   return tempString;
 };
@@ -97,7 +101,17 @@ const refreshDesign = () => {
 
   var StylesDom = document.createElement("style");
 
-  StylesDom.innerText = getCssStyles(body);
+  StylesDom.innerText = getCssStyles(body, "", "styles");
+
+  StylesDom.innerText +=
+    "@media screen and (max-width: 1024px) {" +
+    getCssStyles(body, "", "tabletStyles") +
+    "}";
+
+  StylesDom.innerText +=
+    "@media screen and (max-width: 415px) {" +
+    getCssStyles(body, "", "mobileStyles") +
+    "}";
 
   var x = document.getElementById("root");
   var iframe = x.contentWindow || x.contentDocument;

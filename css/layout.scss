@@ -169,6 +169,9 @@ body {
         display: grid;
         grid-template-columns: auto auto auto;
         .element {
+          user-select: none;
+          -webkit-tap-highlight-color: transparent;
+
           cursor: pointer;
           text-align: center;
           display: inline-block;
@@ -209,6 +212,9 @@ body {
         overflow-x: auto;
         overflow-y: hidden;
         .element {
+          user-select: none;
+          -webkit-tap-highlight-color: transparent;
+
           padding: 0.25rem;
           padding-left: 1.35rem;
           padding-right: 0;
@@ -308,6 +314,8 @@ body {
       overflow-y: auto;
       display: flex;
       & > span {
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
         font-size: 0.75rem;
         // padding: 0.1rem;
         padding-left: 0.5rem;

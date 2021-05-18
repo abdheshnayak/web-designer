@@ -6,8 +6,8 @@ function DomObject({
   attributes,
   childrens,
   styles,
-  mobileStyle,
-  tablet,
+  mobileStyles,
+  tabletStyles,
   active,
   collapsed,
   text,
@@ -23,8 +23,8 @@ function DomObject({
     },
     childrens: [],
     styles: styles || {},
-    mobileStyle: mobileStyle || {},
-    tablet: tablet || {},
+    mobileStyles: mobileStyles || {},
+    tabletStyles: tabletStyles || {},
     active: active || false,
     collapsed: collapsed || true,
     text: text || null,
@@ -35,13 +35,24 @@ function DomObject({
       that.childrens.push(new DomObject(element));
     });
 
-  if (that.styles.width) {
-    that.styles.width = new Width({ value: styles.width.value });
-    // console.log(styles);
-  }
-  if (that.styles.height) {
-    that.styles.height = new Height({ value: styles.height.value });
-  }
+  [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
+    console.log(style);
+    var key = Object.keys(style)[0];
+    if (that[key].width) {
+      that[key].width = new Width({
+        value: style[key].width.value,
+        unit: style[key].width.unit,
+      });
+      // console.log(styles);
+    }
+    if (that[key].height) {
+      that[key].height = new Height({
+        value: style[key].height.value,
+        unit: style[key].height.unit,
+      });
+    }
+  });
+
   // that.parse();
   // if(childrens.length)
 
@@ -96,9 +107,9 @@ function DomObject({
       that.childrens.push(children);
     });
   };
-  that.addStyles = that.changeStyles = (styles) => {
-    that.styles = {
-      ...that.styles,
+  that.addStyles = that.changeStyles = ({ styleScreen, styles }) => {
+    that[styleScreen] = {
+      ...that[styleScreen],
       ...styles,
     };
   };
@@ -107,44 +118,37 @@ function DomObject({
     return that.name;
   };
 
-  that.styles.getWidth = () => {
-    if (that.styles.width) return that.styles.width.getWidth();
-    else return "width: auto;";
-  };
-  that.styles.getHeight = () => {
-    if (that.styles.height) return that.styles.height.getHeight();
-    else return "Height: auto;";
-  };
-
-  that.getStyles = () => {
+  that.getStyles = ({ styleScreen = "styles" } = {}) => {
+    console.log(styleScreen);
     var styleString = "";
 
     // width
-    if (that.styles.width) {
-      styleString += that.styles.getWidth();
+    if (that[styleScreen].width) {
+      console.log(that[styleScreen].width);
+      styleString += that[styleScreen].width.getWidth();
     }
-    if (that.styles.height) {
-      styleString += that.styles.getHeight();
+    if (that[styleScreen].height) {
+      styleString += that[styleScreen].height.getHeight();
     }
-    if (that.styles.position) {
-      styleString += "position:" + that.styles.position + ";";
+    if (that[styleScreen].position) {
+      styleString += "position:" + that[styleScreen].position + ";";
     }
-    if (that.styles.color) {
-      styleString += "color:" + that.styles.color + ";";
+    if (that[styleScreen].color) {
+      styleString += "color:" + that[styleScreen].color + ";";
     }
-    if (that.styles.display) {
-      styleString += "display:" + that.styles.display + ";";
+    if (that[styleScreen].display) {
+      styleString += "display:" + that[styleScreen].display + ";";
     }
 
-    if (that.styles["background-color"]) {
+    if (that[styleScreen]["background-color"]) {
       styleString +=
-        "background-color:" + that.styles["background-color"] + ";";
+        "background-color:" + that[styleScreen]["background-color"] + ";";
     }
-    if (that.styles.margin) {
-      styleString += "margin:" + that.styles.margin + ";";
+    if (that[styleScreen].margin) {
+      styleString += "margin:" + that[styleScreen].margin + ";";
     }
-    if (that.styles.padding) {
-      styleString += "padding:" + that.styles.padding + ";";
+    if (that[styleScreen].padding) {
+      styleString += "padding:" + that[styleScreen].padding + ";";
     }
 
     return styleString;
