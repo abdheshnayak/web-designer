@@ -106,6 +106,20 @@ const inputFieldsHandler = (e) => {
   refreshDomTree();
 };
 
+const resetSelectedScreenSize = () => {
+  document.querySelector(".design-outer").classList.remove("desktop");
+  document.querySelector(".design-outer").classList.remove("tablet");
+  document.querySelector(".design-outer").classList.remove("mobile");
+
+  var screenButtons = document.querySelectorAll(
+    ".screen-size-bar-inner .active"
+  );
+
+  screenButtons.forEach((button) => {
+    button.classList.remove("active");
+  });
+};
+
 const buttonClickHandler = (e) => {
   var element = hashMap.getVirtualElement(hashMap.activeElement);
 
@@ -152,6 +166,21 @@ const buttonClickHandler = (e) => {
         Math.floor(zoomValue * 100) + "%";
 
       break;
+    case "desktop-screen":
+      resetSelectedScreenSize();
+      document.querySelector(".design-outer").classList.add("desktop");
+      e.target.classList.add("active");
+      break;
+    case "tablet-screen":
+      resetSelectedScreenSize();
+      document.querySelector(".design-outer").classList.add("tablet");
+      e.target.classList.add("active");
+      break;
+    case "mobile-screen":
+      resetSelectedScreenSize();
+      document.querySelector(".design-outer").classList.add("mobile");
+      e.target.classList.add("active");
+      break;
   }
   //   console.log(e);
 };
@@ -183,6 +212,9 @@ const rightSideToolbar = () => {
     "move-down",
     "zoom-plus",
     "zoom-minus",
+    "mobile-screen",
+    "desktop-screen",
+    "tablet-screen",
   ];
 
   elementActions.forEach((element) => {

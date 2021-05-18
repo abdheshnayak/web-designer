@@ -300,7 +300,42 @@ body {
     position: relative;
     .screen-size-bar {
       border-bottom: 1px solid #e5e5e5;
+      border-top: 1px solid #555;
+      background-color: #333;
     }
+
+    .screen-size-bar-inner {
+      overflow-y: auto;
+      display: flex;
+      & > span {
+        font-size: 0.75rem;
+        // padding: 0.1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        display: inline-block;
+        margin: 0.25rem;
+        border-radius: 0.1rem;
+        cursor: pointer;
+        border: 1px solid transparent;
+
+        background-color: #222;
+        color: white;
+
+        &.active {
+          background-color: #f0f0f0;
+          color: #333;
+        }
+
+        &:hover {
+          border: 1px solid $active-menu-background;
+        }
+        &:active {
+          background-color: $active-menu-background;
+          color: white;
+        }
+      }
+    }
+
     .design-wrapper {
       background-color: $design-body-background;
       height: 100%;
@@ -311,6 +346,18 @@ body {
       .design-outer {
         position: relative;
         overflow: hidden;
+        &.desktop {
+          width: 1920px;
+          height: 1080px;
+        }
+        &.tablet {
+          width: 1024px;
+          height: 1366px;
+        }
+        &.mobile {
+          width: 414px;
+          height: 736px;
+        }
       }
 
       .design-inner {
@@ -328,7 +375,7 @@ body {
       color: white;
       border-top: 1px solid #e5e5e5;
       & > .zoom-bar {
-        // padding: 0.5rem;
+        padding: 0.25rem;
         display: inline-flex;
         & > div {
           display: inline-flex;
@@ -343,7 +390,6 @@ body {
           border-radius: 0.25rem;
           cursor: pointer;
           padding: 0.5rem;
-          padding-bottom: 0.25rem;
           margin: 0.25rem;
           background-color: #333;
           &:hover {
