@@ -161,8 +161,7 @@ const buttonClickHandler = (e) => {
         (zoomValue / 100).toFixed(2) +
         ");";
 
-      document.getElementById("zoom-status").innerText =
-        Math.floor(zoomValue * 100) + "%";
+      document.getElementById("zoom-status").innerText = zoomValue + "%";
 
       break;
     case "desktop-screen":
