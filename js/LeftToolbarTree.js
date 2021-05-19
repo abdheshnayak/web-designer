@@ -64,14 +64,36 @@ const treeElementHover = (e) => {
   }
 
   var overlay = document.getElementById("overlay");
+  var overlayInner = overlay.querySelector("span");
 
   var designElement = hashMap.getDesignElement(result);
+  var allStyles = window.getComputedStyle(designElement);
 
-  overlay.style.width = designElement.offsetWidth;
+  console.log(getOffset(designElement).left);
 
-  overlay.style.height = designElement.offsetHeight;
-  overlay.style.left = getOffset(designElement).left;
-  overlay.style.top = getOffset(designElement).top;
+  overlayInner.style.width = designElement.offsetWidth;
+  overlayInner.style.height = designElement.offsetHeight;
+  // console.log(overlay.tagName);
+  if (designElement.tagName == "BODY") {
+    overlay.style.left = getOffset(designElement).left;
+    overlay.style.top = getOffset(designElement).top;
+  } else {
+    overlay.style.left =
+      getOffset(designElement).left - parseInt(allStyles.marginLeft);
+    overlay.style.top =
+      getOffset(designElement).top - parseInt(allStyles.marginTop);
+  }
+
+  console.log(allStyles.marginLeft);
+
+  // console.log(designElement.style);
+
+  var border = " solid " + "red";
+
+  overlay.style.paddingLeft = allStyles.marginLeft;
+  overlay.style.paddingTop = allStyles.marginTop;
+  overlay.style.paddingRight = allStyles.marginRight;
+  overlay.style.paddingBottom = allStyles.marginBottom;
 
   //   console.log(x, y);
   //   console.log(designElement);
@@ -80,8 +102,10 @@ const treeElementHover = (e) => {
 // tree Element onleave overlay control
 const treeElementLeave = (e) => {
   var overlay = document.getElementById("overlay");
-  overlay.style.width = 0;
-  overlay.style.height = 0;
+  overlay.style.padding = 0;
+  var overlayInner = overlay.querySelector("span");
+  overlayInner.style.height = 0;
+  overlayInner.style.width = 0;
 };
 
 // It returns name element of tree and also add events on it

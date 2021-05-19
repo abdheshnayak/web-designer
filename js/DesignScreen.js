@@ -58,12 +58,10 @@ window.addEventListener("wheel", wheelScrollHandler, { passive: false });
 document.addEventListener("wheel", wheelScrollHandler, { passive: false });
 
 const getCssStyles = (elementOuter, string = "", styleScreen) => {
-  var tempString =
-    "." +
-    elementOuter.className +
-    "{" +
-    elementOuter.getStyles({ styleScreen: styleScreen }) +
-    "}";
+  var stl = elementOuter.getStyles({ styleScreen: styleScreen });
+  if (stl.trim()) {
+    var tempString = "." + elementOuter.className + "{" + stl + "}";
+  } else tempString = "";
 
   elementOuter.childrens.forEach((element) => {
     tempString += getCssStyles(element, string, styleScreen);
@@ -114,6 +112,14 @@ const refreshDesign = () => {
     "}";
 
   var x = document.getElementById("root");
+
+  x.contentWindow.addEventListener("wheel", wheelScrollHandler, {
+    passive: false,
+  });
+  x.contentDocument.addEventListener("wheel", wheelScrollHandler, {
+    passive: false,
+  });
+
   var iframe = x.contentWindow || x.contentDocument;
   if (iframe.document) iframe = iframe.document;
 
@@ -123,7 +129,6 @@ const refreshDesign = () => {
   iframe.head.appendChild(StylesDom);
   updateDesign(body, iframe.body);
   iframe.body.classList.add(body.className);
-  iframe.addEventListener("wheel", wheelScrollHandler, { passive: false });
 
   // iframe.body.style = "width: 1920px";
   hashMap.setDesignDom(body, iframe.body);

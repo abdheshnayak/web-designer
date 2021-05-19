@@ -264,7 +264,7 @@ const rightSideToolbar = () => {
     console.log(iframe);
 
     var fileContents = iframe.firstChild.outerHTML;
-    var filename = "hello.html";
+    var filename = "wysiwyg-design.html";
     var filetype = "text/plain";
 
     var a = document.createElement("a");

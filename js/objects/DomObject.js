@@ -36,7 +36,7 @@ function DomObject({
     });
 
   [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
-    console.log(style);
+    // console.log(style);
     var key = Object.keys(style)[0];
     if (that[key].width) {
       that[key].width = new Width({
@@ -119,12 +119,12 @@ function DomObject({
   };
 
   that.getStyles = ({ styleScreen = "styles" } = {}) => {
-    console.log(styleScreen);
+    // console.log(styleScreen);
     var styleString = "";
 
     // width
     if (that[styleScreen].width) {
-      console.log(that[styleScreen].width);
+      // console.log(that[styleScreen].width);
       styleString += that[styleScreen].width.getWidth();
     }
     if (that[styleScreen].height) {

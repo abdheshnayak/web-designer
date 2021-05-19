@@ -73,11 +73,12 @@ body {
       }
 
       &.always-bottom {
-        background-color: white;
+        padding: 0;
+        background-color: #f0f0f0;
         position: absolute;
         bottom: 0;
-        // width: 100%;
-        width: calc(100% - 1rem);
+        width: 100%;
+        // width: calc(100% - 1rem);
         border-top: 1px solid #e5e5e5;
         & > .inner {
           width: 100%;
@@ -85,15 +86,17 @@ body {
           padding: 0;
           margin-top: 0;
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-evenly;
+          // justify-content: flex-end;
           & > i {
+            border-radius: 0.1rem;
             cursor: pointer;
             padding: 0.5rem;
             padding-left: 0.5rem;
             padding-right: 0.5rem;
             &:hover {
               color: $active-menu-background;
-              background-color: #f0f0f0;
+              background-color: #e0e0e0;
             }
           }
         }
@@ -383,7 +386,7 @@ body {
       color: white;
       border-top: 1px solid #e5e5e5;
       & > .zoom-bar {
-        padding: 0.25rem;
+        padding: 0.1rem;
         display: inline-flex;
         & > div {
           display: inline-flex;
@@ -397,9 +400,9 @@ body {
         & > i {
           border-radius: 0.25rem;
           cursor: pointer;
-          padding: 0.5rem;
+          padding: 0.25rem;
           margin: 0.25rem;
-          background-color: #333;
+          background-color: #777;
           &:hover {
             background-color: #18a0fb;
           }
@@ -414,7 +417,12 @@ body {
 }
 
 #overlay {
-  background-color: rgba($color: blue, $alpha: 0.25);
+  background-color: rgba($color: red, $alpha: 0.25);
   position: absolute;
   z-index: 9999;
+  overflow: hidden;
+  & > span {
+    display: inline-block;
+    background-color: rgba($color: blue, $alpha: 0.25);
+  }
 }
