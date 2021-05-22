@@ -2,6 +2,23 @@ function camelCaseToDash(myStr) {
   return myStr.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
+const createProperties = (element) => {
+  hashMap.BorderElement = new BorderElement({
+    id: "border-block",
+    borderStyle: element[hashMap.styleScreen].border,
+  });
+
+  hashMap.MarginElement = new MarginElement({
+    id: "margin-block",
+    marginStyle: element[hashMap.styleScreen].margin,
+  });
+
+  hashMap.PaddingElement = new PaddingElement({
+    id: "padding-block",
+    paddingStyle: element[hashMap.styleScreen].padding,
+  });
+};
+
 const updateRightToolBar = () => {
   // console.log(hashMap.activeElement);
   var element = hashMap.getVirtualElement(hashMap.activeElement);
@@ -9,85 +26,14 @@ const updateRightToolBar = () => {
     element = body;
   }
 
-  // if (!element[hashMap.styleScreen].border) {
-  //   element.addStyles({
-  //     styleScreen: hashMap.styleScreen,
-  //     styles: { border: new Border() },
-  //   });
-  // }
-  if (!hashMap.BorderElement) {
-    hashMap.BorderElement = new BorderElement({
-      id: "border-block",
-      borderStyle: element[hashMap.styleScreen].border,
-    });
+  if (!hashMap.firstLoad) {
+    hashMap.firstLoad = true;
+    createProperties(element);
   }
 
-  hashMap.BorderElement.updateElements(
-    element[hashMap.styleScreen].border,
-    hashMap.styleScreen
-  );
-
-  // if (!hashMap.border) {
-  //   hashMap.border = {};
-  //   hashMap.border.border = new DropDown({
-  //     el: document.getElementById("border-q"),
-  //     items: [
-  //       { name: "border", value: "all" },
-  //       { name: "left", value: "left" },
-  //       { name: "right", value: "right" },
-  //       { name: "top", value: "top" },
-  //       { name: "bottom", value: "bottom" },
-  //     ],
-  //     triggerFunc: handleDropwond,
-  //   });
-
-  //   hashMap.border.unit = new DropDown({
-  //     el: document.getElementById("border-unit"),
-  //     items: [
-  //       { name: "px", value: "px" },
-  //       { name: "%", value: "%" },
-  //       { name: "rem", value: "rem" },
-  //       { name: "em", value: "em" },
-  //       { name: "vh", value: "vg" },
-  //       { name: "vw", value: "vw" },
-  //     ],
-  //     selected: "px",
-  //     triggerFunc: handleDropwond,
-  //   });
-
-  //   hashMap.border.type = new DropDown({
-  //     el: document.getElementById("border-type"),
-  //     items: [
-  //       { name: "solid", value: "solid" },
-  //       { name: "dotted", value: "dotted" },
-  //       { name: "dashed", value: "dashed" },
-  //       { name: "double", value: "double" },
-  //       { name: "groove", value: "groove" },
-  //       { name: "ridge", value: "ridge" },
-  //       { name: "inset", value: "inset" },
-  //       { name: "outset", value: "outset" },
-  //       { name: "hidden", value: "hidden" },
-  //     ],
-  //     selected: "solid",
-  //     triggerFunc: handleDropwond,
-  //   });
-  // }
-
-  // x.adsfasfd;
-
-  // x.addEventListener("cuser", fuca);
-
-  // x.addEventListener("myevent",{lsdkjf})
-
-  // Object.keys(element.styles.newLogic).forEach((el) => {
-  //   console.log(camelCaseToDash(el), element.styles.newLogic[el]);
-  // });
-
-  // console.log(element.styles.newLogic);
-  // for(element.styles.newLogic)
-  // next
-
-  //   console.log(element);
+  hashMap.BorderElement.updateElements(element[hashMap.styleScreen].border);
+  hashMap.MarginElement.updateElements(element[hashMap.styleScreen].margin);
+  hashMap.PaddingElement.updateElements(element[hashMap.styleScreen].padding);
 
   if (!element || (element && element.name == "body")) {
     document.getElementById("right-toolbar-block").classList.add("hide");
@@ -107,10 +53,6 @@ const updateRightToolBar = () => {
     element[hashMap.styleScreen].display;
   document.getElementById("color-field").value =
     element[hashMap.styleScreen].color || null;
-  document.getElementById("margin-field").value =
-    element[hashMap.styleScreen].margin || null;
-  document.getElementById("padding-field").value =
-    element[hashMap.styleScreen].padding || null;
 
   document.getElementById("background-color-field").value =
     element[hashMap.styleScreen]["background-color"] || null;
@@ -324,8 +266,8 @@ const rightSideToolbar = () => {
     "color-field",
     "background-color-field",
     "html-text-field",
-    "margin-field",
-    "padding-field",
+    // "margin-field",
+    // "padding-field",
     // "border-field",
   ];
   const optionsFields = [

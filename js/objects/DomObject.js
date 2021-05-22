@@ -38,6 +38,7 @@ function DomObject({
   [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
     // console.log(style);
     var key = Object.keys(style)[0];
+    // Width
     if (that[key].width) {
       that[key].width = new Width({
         value: style[key].width.value,
@@ -45,18 +46,39 @@ function DomObject({
       });
       // console.log(styles);
     }
+    // Height
     if (that[key].height) {
       that[key].height = new Height({
         value: style[key].height.value,
         unit: style[key].height.unit,
       });
     }
+
+    // Border
     if (that[key].border) {
       that[key].border = new Border({
         border: style[key].border.border,
       });
     } else {
       that[key].border = new Border();
+    }
+
+    // Margin
+    if (that[key].margin) {
+      that[key].margin = new Margin({
+        margin: style[key].margin.margin,
+      });
+    } else {
+      that[key].margin = new Margin();
+    }
+
+    // padding
+    if (that[key].padding) {
+      that[key].padding = new Padding({
+        padding: style[key].padding.padding,
+      });
+    } else {
+      that[key].padding = new Padding();
     }
   });
 
@@ -151,15 +173,16 @@ function DomObject({
       styleString +=
         "background-color:" + that[styleScreen]["background-color"] + ";";
     }
-    if (that[styleScreen].margin) {
-      styleString += "margin:" + that[styleScreen].margin + ";";
-    }
-    if (that[styleScreen].padding) {
-      styleString += "padding:" + that[styleScreen].padding + ";";
-    }
+
+    // border
     if (that[styleScreen].border) {
       styleString += that[styleScreen].border.getBorderString();
     }
+    // Margin
+    if (that[styleScreen].margin) {
+      styleString += that[styleScreen].margin.getMarginString();
+    }
+
     return styleString;
   };
 

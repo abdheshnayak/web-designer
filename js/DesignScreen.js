@@ -102,7 +102,7 @@ const refreshDesign = () => {
   StylesDom.innerText = getCssStyles(body, "", "styles");
 
   StylesDom.innerText +=
-    "@media screen and (max-width: 1024px) {" +
+    "@media screen and (max-width: 1025px) {" +
     getCssStyles(body, "", "tabletStyles") +
     "}";
 

@@ -4,10 +4,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <!-- <link
+    <link
       rel="stylesheet"
       href="https://proicons.netlify.app/css/icons.min.css"
-    /> -->
+    />
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/layout.css" />
@@ -217,35 +217,38 @@
             <div class="toolbar-block" id="right-toolbar-block">
               <!-- wid height end -->
 
+              <!-- Margin start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Margin</span>
+                  <i class="far fa-plus" id="add-margin-button"></i>
+                </div>
+
+                <div class="tool-container" id="margin-block"></div>
+              </div>
+              <!-- Margin End -->
+
+              <!-- Margin start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Padding</span>
+                  <i class="far fa-plus" id="add-padding-button"></i>
+                </div>
+
+                <div class="tool-container" id="padding-block"></div>
+              </div>
+              <!-- Margin End -->
+
+              <!-- Border start -->
               <div class="tool-container-outer">
                 <div class="title-cont">
                   <span class="title">border</span>
                   <i class="far fa-plus" id="add-border-button"></i>
                 </div>
 
-                <div class="tool-container" id="border-block">
-                  <div class="border-block">
-                    <div class="border-q" id="border-q"></div>
-                    <div class="border-width">
-                      <span contenteditable="true">1</span>
-                    </div>
-                    <div class="border-unit" id="border-unit"></div>
-                    <div class="border-type" id="border-type"></div>
-                    <div class="border-color">
-                      <span
-                        contenteditable="true"
-                        style="display: flex; flex-wrap: nowrap"
-                      >
-                        black
-                      </span>
-                    </div>
-                    <div class="border-minus">
-                      <i class="far fa-minus"></i>
-                    </div>
-                  </div>
-                </div>
+                <div class="tool-container" id="border-block"></div>
               </div>
-              <!-- display end -->
+              <!-- Border End -->
 
               <div class="tool-container-outer">
                 <span class="title">Element Properties</span>
@@ -316,35 +319,6 @@
               </div>
               <!-- wid height end -->
 
-              <div class="tool-container-outer">
-                <span class="title">Margin & Padding</span>
-                <div class="tool-container">
-                  <div class="row item-3">
-                    <span>margin</span>
-                    <input
-                      type="text"
-                      placeholder="5px auto"
-                      id="margin-field"
-                    />
-                    <!-- <select name="" id="width-unit">
-                      <option value="px">px</option>
-                      <option value="%">%</option>
-                      <option value="vw">vw</option>
-                      <option value="vh">vh</option>
-                    </select> -->
-                  </div>
-                  <div class="row item-3">
-                    <span>padding</span>
-                    <input type="text" placeholder="5px" id="padding-field" />
-                    <!-- <select name="" id="height-unit">
-                      <option value="px">px</option>
-                      <option value="%">%</option>
-                      <option value="vw">vw</option>
-                      <option value="vh">vh</option>
-                    </select> -->
-                  </div>
-                </div>
-              </div>
               <!-- wid height end -->
 
               <div class="tool-container-outer">
@@ -411,10 +385,13 @@
     </div>
 
     <!-- source -->
+    <script src="./js/objects/cssElements.js"></script>
+    <script src="./js/objects/CssElements/Border.js"></script>
+    <script src="./js/objects/CssElements/Margin.js"></script>
+    <script src="./js/objects/CssElements/Padding.js"></script>
 
     <script src="./js/utils/customComponents/customComp.js"></script>
     <script src="./js/utils/Hash.js"></script>
-    <script src="./js/objects/cssElements.js"></script>
     <script src="./js/objects/DomObject.js"></script>
     <script src="./js/utils/utils.js"></script>
     <script src="./js/ElementInserter.js"></script>
