@@ -1,6 +1,9 @@
-function Border() {
+function Margin({ margin } = {}) {
+  var that = {};
+}
+function Border({ border } = {}) {
   var that = {
-    border: {
+    border: border || {
       left: {},
       right: {},
       top: {},
@@ -20,7 +23,7 @@ function Border() {
   that.getBorderString = () => {
     var borderString = "";
 
-    if (that.border.all.width) {
+    if (that.border.all.unit) {
       let { width, unit, style, color } = that.border.all;
       borderString =
         "border: " + width + unit + " " + style + " " + color + ";";
@@ -31,7 +34,7 @@ function Border() {
 
       let { width, unit, style, color } = that.border[key];
 
-      if (!width) continue;
+      if (!unit) continue;
 
       if (borderString) borderString += "\n";
 

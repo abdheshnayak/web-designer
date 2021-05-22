@@ -4,10 +4,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://proicons.netlify.app/css/icons.min.css"
-    />
+    /> -->
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/layout.css" />
@@ -215,6 +215,38 @@
 
           <div class="right-toolbar toolbar">
             <div class="toolbar-block" id="right-toolbar-block">
+              <!-- wid height end -->
+
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">border</span>
+                  <i class="far fa-plus" id="add-border-button"></i>
+                </div>
+
+                <div class="tool-container" id="border-block">
+                  <div class="border-block">
+                    <div class="border-q" id="border-q"></div>
+                    <div class="border-width">
+                      <span contenteditable="true">1</span>
+                    </div>
+                    <div class="border-unit" id="border-unit"></div>
+                    <div class="border-type" id="border-type"></div>
+                    <div class="border-color">
+                      <span
+                        contenteditable="true"
+                        style="display: flex; flex-wrap: nowrap"
+                      >
+                        black
+                      </span>
+                    </div>
+                    <div class="border-minus">
+                      <i class="far fa-minus"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- display end -->
+
               <div class="tool-container-outer">
                 <span class="title">Element Properties</span>
                 <div class="tool-container">
@@ -372,35 +404,6 @@
                 </div>
               </div>
               <!-- display end -->
-
-              <div class="tool-container-outer">
-                <span class="title">border</span>
-                <div class="tool-container">
-                  <div class="row item-3">
-                    <select name="" id="">
-                      <option value="">All</option>
-                      <option value="">left</option>
-                      <option value="">right</option>
-                      <option value="">top</option>
-                      <option value="">bottom</option>
-                    </select>
-                    <input type="number" placeholder="eg: 1" />
-                    <select name="" id="">
-                      <option value="">px</option>
-                      <option value="">%</option>
-                    </select>
-                  </div>
-                  <div class="row item-3">
-                    <span class="empty"></span>
-                    <select name="" id="">
-                      <option value="">solid</option>
-                      <option value="dashed"></option>
-                    </select>
-                    <input type="text" placeholder="color" />
-                  </div>
-                </div>
-              </div>
-              <!-- display end -->
             </div>
           </div>
         </div>
@@ -408,6 +411,8 @@
     </div>
 
     <!-- source -->
+
+    <script src="./js/utils/customComponents/customComp.js"></script>
     <script src="./js/utils/Hash.js"></script>
     <script src="./js/objects/cssElements.js"></script>
     <script src="./js/objects/DomObject.js"></script>
@@ -417,5 +422,6 @@
     <script src="./js/DesignScreen.js"></script>
     <script src="./js//RightSideToolbar.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/AddEvent.js"></script>
   </body>
 </html>

@@ -22,8 +22,12 @@ const handleToolbarElementClick = (e) => {
   var virtElement = hashMap.getVirtualElement(hashMap.activeElement);
 
   var child = new DomObject();
+  // child.addStyles({
+  //   styleScreen: hashMap.styleScreen,
+  //   styles: { newLogic: new Styles() },
+  // });
 
-  let randClass = generateClassName(6);
+  let randClass = generateClassName(8);
 
   child.init({ element: tag.toLowerCase(), className: randClass });
 

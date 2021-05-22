@@ -51,6 +51,13 @@ function DomObject({
         unit: style[key].height.unit,
       });
     }
+    if (that[key].border) {
+      that[key].border = new Border({
+        border: style[key].border.border,
+      });
+    } else {
+      that[key].border = new Border();
+    }
   });
 
   // that.parse();
@@ -150,7 +157,9 @@ function DomObject({
     if (that[styleScreen].padding) {
       styleString += "padding:" + that[styleScreen].padding + ";";
     }
-
+    if (that[styleScreen].border) {
+      styleString += that[styleScreen].border.getBorderString();
+    }
     return styleString;
   };
 

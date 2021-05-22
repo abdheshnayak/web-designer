@@ -1,5 +1,91 @@
+function camelCaseToDash(myStr) {
+  return myStr.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
 const updateRightToolBar = () => {
+  // console.log(hashMap.activeElement);
   var element = hashMap.getVirtualElement(hashMap.activeElement);
+  if (!hashMap.activeElement) {
+    element = body;
+  }
+
+  // if (!element[hashMap.styleScreen].border) {
+  //   element.addStyles({
+  //     styleScreen: hashMap.styleScreen,
+  //     styles: { border: new Border() },
+  //   });
+  // }
+  if (!hashMap.BorderElement) {
+    hashMap.BorderElement = new BorderElement({
+      id: "border-block",
+      borderStyle: element[hashMap.styleScreen].border,
+    });
+  }
+
+  hashMap.BorderElement.updateElements(
+    element[hashMap.styleScreen].border,
+    hashMap.styleScreen
+  );
+
+  // if (!hashMap.border) {
+  //   hashMap.border = {};
+  //   hashMap.border.border = new DropDown({
+  //     el: document.getElementById("border-q"),
+  //     items: [
+  //       { name: "border", value: "all" },
+  //       { name: "left", value: "left" },
+  //       { name: "right", value: "right" },
+  //       { name: "top", value: "top" },
+  //       { name: "bottom", value: "bottom" },
+  //     ],
+  //     triggerFunc: handleDropwond,
+  //   });
+
+  //   hashMap.border.unit = new DropDown({
+  //     el: document.getElementById("border-unit"),
+  //     items: [
+  //       { name: "px", value: "px" },
+  //       { name: "%", value: "%" },
+  //       { name: "rem", value: "rem" },
+  //       { name: "em", value: "em" },
+  //       { name: "vh", value: "vg" },
+  //       { name: "vw", value: "vw" },
+  //     ],
+  //     selected: "px",
+  //     triggerFunc: handleDropwond,
+  //   });
+
+  //   hashMap.border.type = new DropDown({
+  //     el: document.getElementById("border-type"),
+  //     items: [
+  //       { name: "solid", value: "solid" },
+  //       { name: "dotted", value: "dotted" },
+  //       { name: "dashed", value: "dashed" },
+  //       { name: "double", value: "double" },
+  //       { name: "groove", value: "groove" },
+  //       { name: "ridge", value: "ridge" },
+  //       { name: "inset", value: "inset" },
+  //       { name: "outset", value: "outset" },
+  //       { name: "hidden", value: "hidden" },
+  //     ],
+  //     selected: "solid",
+  //     triggerFunc: handleDropwond,
+  //   });
+  // }
+
+  // x.adsfasfd;
+
+  // x.addEventListener("cuser", fuca);
+
+  // x.addEventListener("myevent",{lsdkjf})
+
+  // Object.keys(element.styles.newLogic).forEach((el) => {
+  //   console.log(camelCaseToDash(el), element.styles.newLogic[el]);
+  // });
+
+  // console.log(element.styles.newLogic);
+  // for(element.styles.newLogic)
+  // next
 
   //   console.log(element);
 
@@ -116,6 +202,25 @@ const inputFieldsHandler = (e) => {
     case "display-selector":
       element[hashMap.styleScreen].display = e.target.value;
       break;
+    case "border-field":
+      var options = document.getElementById("borders-options");
+      options.innerHTML = "";
+      var option = document.createElement("option");
+      option.setAttribute("value", e.target.value + "px solid black");
+      options.appendChild(option);
+
+      option = document.createElement("option");
+      option.setAttribute("value", e.target.value + "em solid black");
+      options.appendChild(option);
+
+      option = document.createElement("option");
+      option.setAttribute("value", e.target.value + "% solid black");
+      options.appendChild(option);
+
+      // console.log(options);
+      console.log(e.target.value);
+      break;
+
     default:
       console.log("input field unhandled");
   }
@@ -202,7 +307,6 @@ const buttonClickHandler = (e) => {
       e.target.classList.add("active");
       hashMap.styleScreen = "mobileStyles";
       refreshDomTree();
-
       break;
   }
   //   console.log(e);
@@ -222,6 +326,7 @@ const rightSideToolbar = () => {
     "html-text-field",
     "margin-field",
     "padding-field",
+    // "border-field",
   ];
   const optionsFields = [
     "width-unit",

@@ -69,7 +69,7 @@ const treeElementHover = (e) => {
   var designElement = hashMap.getDesignElement(result);
   var allStyles = window.getComputedStyle(designElement);
 
-  console.log(getOffset(designElement).left);
+  // console.log(getOffset(designElement).left);
 
   overlayInner.style.width = designElement.offsetWidth;
   overlayInner.style.height = designElement.offsetHeight;
@@ -84,7 +84,7 @@ const treeElementHover = (e) => {
       getOffset(designElement).top - parseInt(allStyles.marginTop);
   }
 
-  console.log(allStyles.marginLeft);
+  // console.log(allStyles.marginLeft);
 
   // console.log(designElement.style);
 
