@@ -105,6 +105,7 @@ function BorderBlock({ id, bdObj, border, tp }) {
     console.log(id, value);
     switch (id.classList[0]) {
       case "border-q":
+        if (tp == value) break;
         bdObj[value] = { ...bdObj[tp] };
         bdObj[tp].unit = null;
         break;

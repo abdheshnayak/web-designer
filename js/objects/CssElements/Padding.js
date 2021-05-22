@@ -82,6 +82,7 @@ function PaddingBlock({ id, bdObj, padding, tp }) {
     console.log(id, value);
     switch (id.classList[0]) {
       case "padding-q":
+        if (tp == value) break;
         bdObj[value] = { ...bdObj[tp] };
         bdObj[tp].unit = null;
         break;
@@ -136,7 +137,6 @@ function PaddingElement({ id }) {
     const bd_l = ["all", "left", "right", "top", "bottom"];
     if (padding.padding)
       bd_l.forEach((bd) => {
-        console.log(padding);
         if (padding.padding[bd].unit)
           new PaddingBlock({
             id: id,

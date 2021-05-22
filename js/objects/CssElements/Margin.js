@@ -82,6 +82,7 @@ function MarginBlock({ id, bdObj, margin, tp }) {
     console.log(id, value);
     switch (id.classList[0]) {
       case "margin-q":
+        if (tp == value) break;
         bdObj[value] = { ...bdObj[tp] };
         bdObj[tp].unit = null;
         break;

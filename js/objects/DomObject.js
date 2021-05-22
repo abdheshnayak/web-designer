@@ -183,6 +183,11 @@ function DomObject({
       styleString += that[styleScreen].margin.getMarginString();
     }
 
+    // Padding
+    if (that[styleScreen].padding) {
+      styleString += that[styleScreen].padding.getPaddingString();
+    }
+
     return styleString;
   };
 
