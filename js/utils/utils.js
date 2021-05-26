@@ -34,6 +34,8 @@ const deleteElement = (element) => {
   if (parent) {
     parent.childrens.splice(parent.childrens.indexOf(element), 1);
   }
+  hashMap.activeElement = null;
+
   refreshDomTree();
 };
 

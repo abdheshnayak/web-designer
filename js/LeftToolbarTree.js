@@ -57,6 +57,9 @@ const reestOverlay = () => {
   var overlayInner = overlay.querySelector("span");
 
   var designElement = hashMap.getDesignElement(hashMap.activeElement);
+
+  if (!designElement) return;
+
   var allStyles = window.getComputedStyle(designElement);
 
   overlayInner.style.width = designElement.offsetWidth;

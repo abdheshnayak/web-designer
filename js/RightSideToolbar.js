@@ -58,9 +58,6 @@ const updateRightToolBar = () => {
   reestOverlay();
 
   var element = hashMap.getVirtualElement(hashMap.activeElement);
-  if (!hashMap.activeElement) {
-    element = body;
-  }
 
   document.getElementById("css-editor-textarea").value =
     element[hashMap.styleScreen].cssOverride || "";
