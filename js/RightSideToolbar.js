@@ -5,22 +5,43 @@ function camelCaseToDash(myStr) {
 const createProperties = (element) => {
   hashMap.BorderElement = new BorderElement({
     id: "border-block",
-    borderStyle: element[hashMap.styleScreen].border,
   });
 
   hashMap.MarginElement = new MarginElement({
     id: "margin-block",
-    marginStyle: element[hashMap.styleScreen].margin,
   });
 
   hashMap.PaddingElement = new PaddingElement({
     id: "padding-block",
-    paddingStyle: element[hashMap.styleScreen].padding,
+  });
+
+  hashMap.WidthHeightElement = new WidthHeightElement({
+    id: "WH-block",
+  });
+
+  hashMap.DisplayElement = new DisplayElement({
+    id: "display-block",
+  });
+
+  hashMap.PositionElement = new PositionElement({
+    id: "position-block",
+  });
+
+  hashMap.ColorElement = new ColorElement({
+    id: "color-block",
+  });
+  hashMap.BackgrundColorElement = new BackgrundColorElement({
+    id: "backgound_color-block",
+  });
+
+  hashMap.AbsoluteValueElement = new AbsoluteValueElement({
+    id: "absolute_value-block",
   });
 };
 
 const updateRightToolBar = () => {
-  // console.log(hashMap.activeElement);
+  reestOverlay();
+
   var element = hashMap.getVirtualElement(hashMap.activeElement);
   if (!hashMap.activeElement) {
     element = body;
@@ -31,9 +52,21 @@ const updateRightToolBar = () => {
     createProperties(element);
   }
 
-  hashMap.BorderElement.updateElements(element[hashMap.styleScreen].border);
-  hashMap.MarginElement.updateElements(element[hashMap.styleScreen].margin);
-  hashMap.PaddingElement.updateElements(element[hashMap.styleScreen].padding);
+  [
+    { key: "AbsoluteValueElement", property: "absolute_value" },
+    { key: "BorderElement", property: "border" },
+    { key: "MarginElement", property: "margin" },
+    { key: "PaddingElement", property: "padding" },
+    { key: "WidthHeightElement", property: "width_height" },
+    { key: "DisplayElement", property: "display" },
+    { key: "PositionElement", property: "position" },
+    { key: "BackgrundColorElement", property: "background_color" },
+    { key: "ColorElement", property: "color" },
+  ].forEach((item) => {
+    hashMap[item.key].updateElements(
+      element[hashMap.styleScreen][item.property]
+    );
+  });
 
   if (!element || (element && element.name == "body")) {
     document.getElementById("right-toolbar-block").classList.add("hide");
@@ -47,36 +80,8 @@ const updateRightToolBar = () => {
   document.getElementById("name-field").value = element.name;
   document.getElementById("class-field").value = element.className;
   document.getElementById("id-field").value = element.id;
-  document.getElementById("position-selector").value =
-    element[hashMap.styleScreen].position;
-  document.getElementById("display-selector").value =
-    element[hashMap.styleScreen].display;
-  document.getElementById("color-field").value =
-    element[hashMap.styleScreen].color || null;
-
-  document.getElementById("background-color-field").value =
-    element[hashMap.styleScreen]["background-color"] || null;
 
   document.getElementById("html-text-field").value = element.text || null;
-
-  if (element[hashMap.styleScreen].width) {
-    document.getElementById("width-field").value =
-      element[hashMap.styleScreen].width.value;
-    document.getElementById("width-unit").value =
-      element[hashMap.styleScreen].width.unit;
-  } else {
-    document.getElementById("width-field").value = null;
-    document.getElementById("width-unit").value = null;
-  }
-  if (element[hashMap.styleScreen].height) {
-    document.getElementById("height-field").value =
-      element[hashMap.styleScreen].height.value;
-    document.getElementById("height-unit").value =
-      element[hashMap.styleScreen].height.unit;
-  } else {
-    document.getElementById("height-field").value = null;
-    document.getElementById("height-unit").value = null;
-  }
 };
 
 const inputFieldsHandler = (e) => {
@@ -91,76 +96,9 @@ const inputFieldsHandler = (e) => {
     case "id-field":
       element.id = e.target.value;
       break;
-    case "width-field":
-      if (!element[hashMap.styleScreen].width) {
-        element.addStyles({
-          styleScreen: hashMap.styleScreen,
-          styles: {
-            width: new Width(),
-          },
-        });
-      }
-      element[hashMap.styleScreen].width.value = e.target.value.trim();
-      break;
-    case "height-field":
-      if (!element[hashMap.styleScreen].height) {
-        element.addStyles({
-          styleScreen: hashMap.styleScreen,
-          styles: { height: new Height() },
-        });
-      }
-      element[hashMap.styleScreen].height.value = e.target.value.trim();
-      break;
-    case "color-field":
-      element[hashMap.styleScreen].color = e.target.value.trim();
-      break;
-    case "background-color-field":
-      element[hashMap.styleScreen]["background-color"] = e.target.value.trim();
-      break;
+
     case "html-text-field":
       element.text = e.target.value;
-      break;
-    case "margin-field":
-      element[hashMap.styleScreen].margin = e.target.value.trim();
-      break;
-    case "padding-field":
-      element[hashMap.styleScreen].padding = e.target.value.trim();
-      break;
-    case "width-unit":
-      if (!element[hashMap.styleScreen].width) {
-        element.addStyles({ width: new Width() });
-      }
-      element[hashMap.styleScreen].width.unit = e.target.value;
-      break;
-    case "height-unit":
-      if (!element[hashMap.styleScreen].height) {
-        element.addStyles({ height: new Width() });
-      }
-      element[hashMap.styleScreen].height.unit = e.target.value;
-      break;
-    case "position-selector":
-      element[hashMap.styleScreen].position = e.target.value;
-      break;
-    case "display-selector":
-      element[hashMap.styleScreen].display = e.target.value;
-      break;
-    case "border-field":
-      var options = document.getElementById("borders-options");
-      options.innerHTML = "";
-      var option = document.createElement("option");
-      option.setAttribute("value", e.target.value + "px solid black");
-      options.appendChild(option);
-
-      option = document.createElement("option");
-      option.setAttribute("value", e.target.value + "em solid black");
-      options.appendChild(option);
-
-      option = document.createElement("option");
-      option.setAttribute("value", e.target.value + "% solid black");
-      options.appendChild(option);
-
-      // console.log(options);
-      console.log(e.target.value);
       break;
 
     default:
@@ -261,21 +199,10 @@ const rightSideToolbar = () => {
     "name-field",
     "class-field",
     "id-field",
-    "width-field",
-    "height-field",
-    "color-field",
-    "background-color-field",
+
     "html-text-field",
-    // "margin-field",
-    // "padding-field",
-    // "border-field",
   ];
-  const optionsFields = [
-    "width-unit",
-    "height-unit",
-    "position-selector",
-    "display-selector",
-  ];
+  const optionsFields = [];
   const elementActions = [
     "delete-item",
     "move-up",

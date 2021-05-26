@@ -29,52 +29,100 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
   refreshDomTree();
 });
 
-document.getElementById("add-margin-button").addEventListener("click", (e) => {
-  var el = hashMap.getVirtualElement(hashMap.activeElement);
-  console.log(el[hashMap.styleScreen].margin);
-  const bd_l = ["all", "left", "right", "top", "bottom"];
-  if (el[hashMap.styleScreen].margin.setMargin) {
-    const result = bd_l.filter((item) => {
-      if (!el[hashMap.styleScreen].margin.margin[item].unit) {
-        return true;
-      }
-    });
-    if (!result[0]) return;
+[
+  {
+    id: "add-background_color-button",
+    objClass: BackgrundColor,
+    defVal: "red",
+    property: "background_color",
+  },
+  {
+    id: "add-color-button",
+    objClass: Color,
+    defVal: "black",
+    property: "color",
+  },
+  {
+    id: "add-display-button",
+    objClass: Display,
+    defVal: "block",
+    property: "display",
+  },
+  {
+    id: "add-position-button",
+    objClass: Position,
+    defVal: "relative",
+    property: "position",
+  },
+].forEach((item) => {
+  console.log("hello");
+  document.getElementById(item.id).addEventListener("click", (e) => {
+    var el = hashMap.getVirtualElement(hashMap.activeElement);
+    console.log(el[hashMap.styleScreen]);
 
-    var bdr = el[hashMap.styleScreen].margin;
-
-    el[hashMap.styleScreen].margin.setMargin(result[0], 1, "px");
-  } else {
-    el.addStyles({
-      styleScreen: hashMap.styleScreen,
-      styles: { margin: new Margin() },
-    });
-    el[hashMap.styleScreen].margin.setMargin("all", 1, "px");
-  }
-  refreshDomTree();
+    if (el[hashMap.styleScreen][item.property][item.objClass]) {
+      if (el[hashMap.styleScreen][item.property][item.property]) return;
+      el[hashMap.styleScreen][item.property].setProperty("block");
+    } else {
+      el.addStyles({
+        styleScreen: hashMap.styleScreen,
+        styles: { [item.property]: new item.objClass() },
+      });
+      el[hashMap.styleScreen][item.property].setProperty(item.defVal);
+    }
+    refreshDomTree();
+  });
 });
 
-document.getElementById("add-padding-button").addEventListener("click", (e) => {
-  var el = hashMap.getVirtualElement(hashMap.activeElement);
-  console.log(el[hashMap.styleScreen].padding);
-  const bd_l = ["all", "left", "right", "top", "bottom"];
-  if (el[hashMap.styleScreen].padding.setPadding) {
-    const result = bd_l.filter((item) => {
-      if (!el[hashMap.styleScreen].padding.padding[item].unit) {
-        return true;
-      }
-    });
-    if (!result[0]) return;
+[
+  {
+    id: "add-absolute_value-button",
+    property_name: "absolute_value",
+    bd_l: ["left", "right", "top", "bottom"],
+  },
+  {
+    id: "add-margin-button",
+    property_name: "margin",
+    bd_l: ["all", "left", "right", "top", "bottom"],
+  },
+  {
+    id: "add-padding-button",
+    property_name: "padding",
+    bd_l: ["all", "left", "right", "top", "bottom"],
+  },
+  {
+    id: "add-width&height-button",
+    property_name: "width_height",
+    bd_l: ["width", "height"],
+  },
+].forEach((item) => {
+  document.getElementById(item.id).addEventListener("click", (e) => {
+    const property_name = item.property_name;
+    var el = hashMap.getVirtualElement(hashMap.activeElement);
 
-    var bdr = el[hashMap.styleScreen].padding;
+    const bd_l = item.bd_l;
+    if (el[hashMap.styleScreen][property_name].setProperty) {
+      const result = bd_l.filter((item) => {
+        if (!el[hashMap.styleScreen][property_name][property_name][item].unit) {
+          return true;
+        }
+      });
+      if (!result[0]) return;
 
-    el[hashMap.styleScreen].padding.setPadding(result[0], 1, "px");
-  } else {
-    el.addStyles({
-      styleScreen: hashMap.styleScreen,
-      styles: { padding: new Padding() },
-    });
-    el[hashMap.styleScreen].padding.setPadding("all", 1, "px");
-  }
-  refreshDomTree();
+      var bdr = el[hashMap.styleScreen][property_name];
+
+      el[hashMap.styleScreen][property_name].setProperty(result[0], 1, "px");
+    } else {
+      el.addStyles({
+        styleScreen: hashMap.styleScreen,
+        styles: {
+          [property_name]: new CssProperty({
+            [property_name]: property_name,
+          }),
+        },
+      });
+      el[hashMap.styleScreen][property_name].setProperty(bd_l[0], 1, "px");
+    }
+    refreshDomTree();
+  });
 });

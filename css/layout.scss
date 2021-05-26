@@ -533,7 +533,7 @@ body {
 }
 
 #overlay {
-  background-color: rgba($color: red, $alpha: 0.25);
+  background-color: rgba($color: red, $alpha: 0.1);
   position: absolute;
   z-index: 9999;
   overflow: hidden;

@@ -52,6 +52,32 @@ function getOffset(el) {
   return { top: _y, left: _x };
 }
 
+const reestOverlay = () => {
+  var overlay = document.getElementById("overlay");
+  var overlayInner = overlay.querySelector("span");
+
+  var designElement = hashMap.getDesignElement(hashMap.activeElement);
+  var allStyles = window.getComputedStyle(designElement);
+
+  overlayInner.style.width = designElement.offsetWidth;
+  overlayInner.style.height = designElement.offsetHeight;
+
+  if (designElement.tagName == "BODY") {
+    overlay.style.left = getOffset(designElement).left;
+    overlay.style.top = getOffset(designElement).top;
+  } else {
+    overlay.style.left =
+      getOffset(designElement).left - parseInt(allStyles.marginLeft);
+    overlay.style.top =
+      getOffset(designElement).top - parseInt(allStyles.marginTop);
+  }
+
+  overlay.style.paddingLeft = allStyles.marginLeft;
+  overlay.style.paddingTop = allStyles.marginTop;
+  overlay.style.paddingRight = allStyles.marginRight;
+  overlay.style.paddingBottom = allStyles.marginBottom;
+};
+
 // on hove effect on tree element
 const treeElementHover = (e) => {
   var tempElement = e.target.parentElement;

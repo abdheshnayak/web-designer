@@ -38,21 +38,6 @@ function DomObject({
   [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
     // console.log(style);
     var key = Object.keys(style)[0];
-    // Width
-    if (that[key].width) {
-      that[key].width = new Width({
-        value: style[key].width.value,
-        unit: style[key].width.unit,
-      });
-      // console.log(styles);
-    }
-    // Height
-    if (that[key].height) {
-      that[key].height = new Height({
-        value: style[key].height.value,
-        unit: style[key].height.unit,
-      });
-    }
 
     // Border
     if (that[key].border) {
@@ -63,23 +48,36 @@ function DomObject({
       that[key].border = new Border();
     }
 
-    // Margin
-    if (that[key].margin) {
-      that[key].margin = new Margin({
-        margin: style[key].margin.margin,
-      });
-    } else {
-      that[key].margin = new Margin();
-    }
+    [
+      { objClass: Display, property: "display" },
+      { objClass: Position, property: "position" },
+      { objClass: BackgrundColor, property: "background_color" },
+      { objClass: Color, property: "color" },
+    ].forEach((item) => {
+      if (that[key][item.property]) {
+        that[key][item.property] = new item.objClass({
+          [item.property]: style[key][item.property][item.property],
+        });
+      } else {
+        that[key][item.property] = new item.objClass();
+      }
+    });
 
-    // padding
-    if (that[key].padding) {
-      that[key].padding = new Padding({
-        padding: style[key].padding.padding,
-      });
-    } else {
-      that[key].padding = new Padding();
-    }
+    ["margin", "padding", "width_height", "absolute_value"].forEach(
+      (property_name) => {
+        if (that[key][property_name]) {
+          that[key][property_name] = new CssProperty({
+            property_name: property_name,
+            property: style[key][property_name][property_name],
+          });
+        } else {
+          that[key][property_name] = new CssProperty({
+            property_name: property_name,
+          });
+        }
+      }
+    );
+    //width & height
   });
 
   // that.parse();
@@ -151,42 +149,21 @@ function DomObject({
     // console.log(styleScreen);
     var styleString = "";
 
-    // width
-    if (that[styleScreen].width) {
-      // console.log(that[styleScreen].width);
-      styleString += that[styleScreen].width.getWidth();
-    }
-    if (that[styleScreen].height) {
-      styleString += that[styleScreen].height.getHeight();
-    }
-    if (that[styleScreen].position) {
-      styleString += "position:" + that[styleScreen].position + ";";
-    }
-    if (that[styleScreen].color) {
-      styleString += "color:" + that[styleScreen].color + ";";
-    }
-    if (that[styleScreen].display) {
-      styleString += "display:" + that[styleScreen].display + ";";
-    }
-
-    if (that[styleScreen]["background-color"]) {
-      styleString +=
-        "background-color:" + that[styleScreen]["background-color"] + ";";
-    }
-
-    // border
-    if (that[styleScreen].border) {
-      styleString += that[styleScreen].border.getBorderString();
-    }
-    // Margin
-    if (that[styleScreen].margin) {
-      styleString += that[styleScreen].margin.getMarginString();
-    }
-
-    // Padding
-    if (that[styleScreen].padding) {
-      styleString += that[styleScreen].padding.getPaddingString();
-    }
+    [
+      "border",
+      "position",
+      "color",
+      "background_color",
+      "display",
+      "margin",
+      "padding",
+      "width_height",
+      "absolute_value",
+    ].forEach((property_name) => {
+      if (that[styleScreen][property_name]) {
+        styleString += that[styleScreen][property_name].getProperty();
+      }
+    });
 
     return styleString;
   };

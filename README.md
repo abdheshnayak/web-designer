@@ -1,1 +1,1 @@
-# WYSIWYG-web-editor
+# WYSIWYG-web-designer

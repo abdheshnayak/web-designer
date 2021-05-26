@@ -217,39 +217,6 @@
             <div class="toolbar-block" id="right-toolbar-block">
               <!-- wid height end -->
 
-              <!-- Margin start -->
-              <div class="tool-container-outer">
-                <div class="title-cont">
-                  <span class="title">Margin</span>
-                  <i class="far fa-plus" id="add-margin-button"></i>
-                </div>
-
-                <div class="tool-container" id="margin-block"></div>
-              </div>
-              <!-- Margin End -->
-
-              <!-- Margin start -->
-              <div class="tool-container-outer">
-                <div class="title-cont">
-                  <span class="title">Padding</span>
-                  <i class="far fa-plus" id="add-padding-button"></i>
-                </div>
-
-                <div class="tool-container" id="padding-block"></div>
-              </div>
-              <!-- Margin End -->
-
-              <!-- Border start -->
-              <div class="tool-container-outer">
-                <div class="title-cont">
-                  <span class="title">border</span>
-                  <i class="far fa-plus" id="add-border-button"></i>
-                </div>
-
-                <div class="tool-container" id="border-block"></div>
-              </div>
-              <!-- Border End -->
-
               <div class="tool-container-outer">
                 <span class="title">Element Properties</span>
                 <div class="tool-container">
@@ -292,92 +259,104 @@
               </div>
               <!-- wid height end -->
 
+              <!-- Width & Height start -->
               <div class="tool-container-outer">
-                <span class="title">Width & Height</span>
-                <div class="tool-container">
-                  <div class="row item-3">
-                    <span>width</span>
-                    <input type="text" id="width-field" placeholder="auto" />
-                    <select name="" id="width-unit">
-                      <option value="px">px</option>
-                      <option value="%">%</option>
-                      <option value="vw">vw</option>
-                      <option value="vh">vh</option>
-                    </select>
-                  </div>
-                  <div class="row item-3">
-                    <span>height</span>
-                    <input id="height-field" type="text" placeholder="auto" />
-                    <select name="" id="height-unit">
-                      <option value="px">px</option>
-                      <option value="%">%</option>
-                      <option value="vw">vw</option>
-                      <option value="vh">vh</option>
-                    </select>
-                  </div>
+                <div class="title-cont">
+                  <span class="title">Width & Height</span>
+                  <i class="far fa-plus" id="add-width&height-button"></i>
                 </div>
+
+                <div class="tool-container" id="WH-block"></div>
               </div>
-              <!-- wid height end -->
+              <!-- Width & Height End -->
 
-              <!-- wid height end -->
-
+              <!-- Width & Height start -->
               <div class="tool-container-outer">
-                <span class="title">Position</span>
-                <div class="tool-container">
-                  <div class="row item-2">
-                    <span>position</span>
-                    <select name="" id="position-selector">
-                      <option value="absolute">absolute</option>
-                      <option value="relative">relative</option>
-                      <option value="fixed">fixed</option>
-                      <option value="static">static</option>
-                      <option value="sticky">sticky</option>
-                    </select>
-                  </div>
+                <div class="title-cont">
+                  <span class="title">Absolute Values</span>
+                  <i class="far fa-plus" id="add-absolute_value-button"></i>
                 </div>
-              </div>
-              <!-- position end -->
 
-              <div class="tool-container-outer">
-                <span class="title">Display</span>
-                <div class="tool-container">
-                  <div class="row item-2">
-                    <span>Display</span>
-                    <select name="" id="display-selector">
-                      <option value="none">none</option>
-                      <option value="block">block</option>
-                      <option value="inline-block">inline-block</option>
-                      <option value="inline">inline</option>
-                      <option value="flex">flex</option>
-                      <option value="grid">grid</option>
-                    </select>
-                  </div>
-                </div>
+                <div class="tool-container" id="absolute_value-block"></div>
               </div>
-              <!-- display end -->
+              <!-- Width & Height End -->
 
+              <!-- Margin start -->
               <div class="tool-container-outer">
-                <span class="title">color</span>
-                <div class="tool-container">
-                  <div class="row item-2">
-                    <span>color</span>
-                    <input
-                      type="text"
-                      placeholder="eg: #ffffff"
-                      id="color-field"
-                    />
-                  </div>
-                  <div class="row item-2">
-                    <span>background-color</span>
-                    <input
-                      type="text"
-                      placeholder="eg: #ffffff"
-                      id="background-color-field"
-                    />
-                  </div>
+                <div class="title-cont">
+                  <span class="title">Margin</span>
+                  <i class="far fa-plus" id="add-margin-button"></i>
                 </div>
+
+                <div class="tool-container" id="margin-block"></div>
               </div>
-              <!-- display end -->
+              <!-- Margin End -->
+
+              <!-- Padding start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Padding</span>
+                  <i class="far fa-plus" id="add-padding-button"></i>
+                </div>
+
+                <div class="tool-container" id="padding-block"></div>
+              </div>
+              <!-- Padding End -->
+
+              <!-- display start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Display</span>
+                  <i class="far fa-plus" id="add-display-button"></i>
+                </div>
+
+                <div class="tool-container" id="display-block"></div>
+              </div>
+              <!-- display End -->
+
+              <!-- Position start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Position</span>
+                  <i class="far fa-plus" id="add-position-button"></i>
+                </div>
+
+                <div class="tool-container" id="position-block"></div>
+              </div>
+              <!-- position End -->
+
+              <!-- Color start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Color</span>
+                  <i class="far fa-plus" id="add-color-button"></i>
+                </div>
+
+                <div class="tool-container" id="color-block"></div>
+              </div>
+              <!-- Color End -->
+
+              <!-- display start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Background Color</span>
+                  <i class="far fa-plus" id="add-background_color-button"></i>
+                </div>
+
+                <div class="tool-container" id="backgound_color-block"></div>
+              </div>
+              <!-- display End -->
+
+              <!-- Border start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">border</span>
+                  <i class="far fa-plus" id="add-border-button"></i>
+                </div>
+
+                <div class="tool-container" id="border-block"></div>
+              </div>
+              <!-- Border End -->
             </div>
           </div>
         </div>
@@ -386,6 +365,13 @@
 
     <!-- source -->
     <script src="./js/objects/cssElements.js"></script>
+    <script src="./js/objects/CssElements/AbsoluteVlaue.js"></script>
+    <script src="./js/objects/CssElements/BackgroundColor.js"></script>
+    <script src="./js/objects/CssElements/Color.js"></script>
+    <script src="./js/objects/CssElements/Position.js"></script>
+    <script src="/js/objects/CssElements/Display.js"></script>
+    <script src="./js/objects/CssElements/CommonCssProperty.js"></script>
+    <script src="./js/objects/CssElements/WidthHeight.js"></script>
     <script src="./js/objects/CssElements/Border.js"></script>
     <script src="./js/objects/CssElements/Margin.js"></script>
     <script src="./js/objects/CssElements/Padding.js"></script>

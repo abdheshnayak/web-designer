@@ -1,28 +1,3 @@
-// const clickHandle = (e) => {
-//   console.log(e.target.innerText);
-//   element = hashMap.getVirtualElementFromDesign(e.target);
-//   element.text = e.target.nodeValue;
-// };
-
-// const hoverHandler = (e) => {
-//   if (e.target.tagName == "DIV") return;
-//   e.target.setAttribute("contenteditable", "true");
-// };
-
-// const mouseLeaveHandler = (e) => {
-//   e.target.setAttribute("contenteditable", "false");
-// };
-
-// .design-outer {
-//   zoom: 0.75;
-//   -moz-transform: scale(0.5);
-//   -moz-transform-origin: 0 0;
-//   -o-transform: scale(0.5);
-//   -o-transform-origin: 0 0;
-//   -webkit-transform: scale(0.5);
-//   -webkit-transform-origin: 0 0;
-// }
-
 var zoomValue = 100;
 const wheelScrollHandler = (e) => {
   // console.log(e);
@@ -54,9 +29,11 @@ const wheelScrollHandler = (e) => {
     return false;
   }
 };
+
 window.addEventListener("wheel", wheelScrollHandler, { passive: false });
 document.addEventListener("wheel", wheelScrollHandler, { passive: false });
 
+// generate css for document
 const getCssStyles = (elementOuter, string = "", styleScreen) => {
   var stl = elementOuter.getStyles({ styleScreen: styleScreen });
   if (stl.trim()) {

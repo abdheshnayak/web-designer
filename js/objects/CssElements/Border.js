@@ -17,7 +17,7 @@ function Border({ border } = {}) {
   that.getBorderObject = () => {
     return that.border;
   };
-  that.getBorderString = () => {
+  that.getBorderString = that.getProperty = () => {
     var borderString = "";
 
     if (that.border.all.unit) {

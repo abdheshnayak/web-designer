@@ -132,7 +132,6 @@ function PaddingElement({ id }) {
 
   that.updateElements = (padding) => {
     document.getElementById(id).innerHTML = "";
-    console.log(padding);
 
     const bd_l = ["all", "left", "right", "top", "bottom"];
     if (padding.padding)
