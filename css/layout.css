@@ -60,14 +60,18 @@
   overflow: auto; }
 
 .main-inner .toolbar .toolbar-block.output-css-container {
-  min-height: 10rem;
+  height: 10rem;
   background-color: white;
   overflow: auto;
   padding: 0.5rem; }
 
 .main-inner .toolbar .toolbar-block.output-css-container > code {
+  line-height: 1.5rem;
+  font-weight: bold;
+  font-size: 0.75rem;
   color: #333;
-  font-size: 0.75rem; }
+  width: 1000%;
+  display: block; }
 
 .main-inner .toolbar .toolbar-block.always-bottom {
   padding: 0;
@@ -101,6 +105,54 @@
   margin-bottom: 1rem;
   border-bottom: 1px solid #e5e5e5;
   color: #333; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-info {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding-bottom: 0.25rem;
+  color: #888; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-textarea-outer {
+  padding: 0.5rem;
+  overflow: auto;
+  box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25); }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-textarea-outer > textarea {
+  background-color: #111;
+  color: white;
+  width: 1000%;
+  outline: none;
+  border: none; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-textarea-outer > textarea:hover {
+  background-color: #333;
+  color: greenyellow; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-button-wrapper {
+  display: flex;
+  justify-content: flex-end; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-button-wrapper > span {
+  background-color: #f0f0f0;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-button-wrapper > span.active {
+  background-color: #333;
+  color: #f0f0f0; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-button-wrapper > span.active:hover {
+  background-color: #444; }
+
+.main-inner .toolbar .toolbar-block .tool-container-outer .css-editor-button-wrapper > span:hover {
+  border: 1px solid #18a0fb; }
 
 .main-inner .toolbar .toolbar-block .tool-container-outer .title-cont {
   display: flex;

@@ -47,12 +47,23 @@ const updateRightToolBar = () => {
     document.querySelector(".right-toolbar").classList.remove("hide");
   }
 
+  if (hashMap.editingType == "css") {
+    document.getElementById("code-editor-block").classList.remove("hide");
+    document.getElementById("css-edit-button").classList.add("active");
+  } else {
+    document.getElementById("code-editor-block").classList.add("hide");
+    document.getElementById("css-edit-button").classList.remove("active");
+  }
+
   reestOverlay();
 
   var element = hashMap.getVirtualElement(hashMap.activeElement);
   if (!hashMap.activeElement) {
     element = body;
   }
+
+  document.getElementById("css-editor-textarea").value =
+    element[hashMap.styleScreen].cssOverride || "";
 
   document.querySelector(".css-code-output").innerText =
     "." + element.className + "{\n" + element.getStyles() + "\n}";

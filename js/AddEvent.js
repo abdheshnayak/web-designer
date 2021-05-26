@@ -126,3 +126,25 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
     refreshDomTree();
   });
 });
+
+document.getElementById("css-edit-button").addEventListener("click", (e) => {
+  console.log("hello");
+  if (hashMap.editingType == "css") {
+    localStorage.setItem("editingType", "notcss");
+    hashMap.editingType = localStorage.getItem("editingType") || "css";
+  } else {
+    localStorage.setItem("editingType", "css");
+    hashMap.editingType = localStorage.getItem("editingType") || "css";
+  }
+  refreshDomTree();
+});
+
+document
+  .getElementById("css-editor-textarea")
+  .addEventListener("input", (e) => {
+    var element = hashMap.getVirtualElement(hashMap.activeElement);
+
+    element[hashMap.styleScreen].cssOverride = e.target.value;
+
+    refreshDomTree();
+  });

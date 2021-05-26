@@ -5,6 +5,7 @@ const hashMap = Hash();
 const init = () => {
   hashMap.styleScreen = "styles";
   var savedObject = localStorage.getItem("savedDesign") || null;
+  hashMap.editingType = localStorage.getItem("editingType") || "css";
 
   if (savedObject) {
     savedObject = JSON.parse(savedObject);
