@@ -62,12 +62,19 @@ const updateRightToolBar = () => {
   document.getElementById("css-editor-textarea").value =
     element[hashMap.styleScreen].cssOverride || "";
 
-  document.querySelector(".css-code-output").innerText =
+  varCssCode =
     "." +
     element.className +
     "{\n" +
     element.getStyles({ styleScreen: hashMap.styleScreen }) +
     "\n}";
+
+  // replaceAll('dog', 'monkey')
+
+  document.querySelector(".css-code-output").innerText = varCssCode
+    .replaceAll("\n", "")
+    .replaceAll(";", ";\n")
+    .replaceAll("{", "{\n");
 
   if (!hashMap.firstLoad) {
     hashMap.firstLoad = true;
