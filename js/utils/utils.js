@@ -69,3 +69,8 @@ const moveUpDown = (element, upOrDown) => {
 const findElementWithName = (element, name) => {};
 
 const isNameReserved = (name) => {};
+
+String.prototype.isAlphaNumeric = function () {
+  var regExp = /^[A-Za-z]+$/;
+  return this.match(regExp);
+};
