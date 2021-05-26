@@ -66,7 +66,11 @@ const updateRightToolBar = () => {
     element[hashMap.styleScreen].cssOverride || "";
 
   document.querySelector(".css-code-output").innerText =
-    "." + element.className + "{\n" + element.getStyles() + "\n}";
+    "." +
+    element.className +
+    "{\n" +
+    element.getStyles({ styleScreen: hashMap.styleScreen }) +
+    "\n}";
 
   if (!hashMap.firstLoad) {
     hashMap.firstLoad = true;
