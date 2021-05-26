@@ -54,6 +54,9 @@ const updateRightToolBar = () => {
     element = body;
   }
 
+  document.querySelector(".css-code-output").innerText =
+    "." + element.className + "{\n" + element.getStyles() + "\n}";
+
   if (!hashMap.firstLoad) {
     hashMap.firstLoad = true;
     createProperties(element);

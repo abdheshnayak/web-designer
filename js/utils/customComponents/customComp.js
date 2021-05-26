@@ -83,15 +83,4 @@ function DropDown({ el, items, selected, triggerFunc } = {}) {
   };
 
   that.showingString.innerText = that.getValueName(that.selected);
-
-  // that.addOptions();
-  //   <span>left</span>
-  //   <div class="border-q-dropdown hide">
-  //     <div>
-  //       <div>
-  //         <i class="far fa-check"></i>
-  //       </div>
-  //       <span>all</span>
-  //     </div>
-  //     </div>
 }

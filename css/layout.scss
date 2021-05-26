@@ -69,10 +69,20 @@ body {
       border-bottom: 1px solid #e5e5e5;
 
       &.tree-container {
-        max-height: calc(100% - 12rem);
+        height: calc(100% - 20rem);
         overflow: auto;
       }
 
+      &.output-css-container {
+        min-height: 10rem;
+        background-color: white;
+        overflow: auto;
+        padding: 0.5rem;
+        & > code {
+          color: #333;
+          font-size: 0.75rem;
+        }
+      }
       &.always-bottom {
         padding: 0;
         background-color: #f0f0f0;
