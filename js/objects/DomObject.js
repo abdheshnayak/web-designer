@@ -165,7 +165,7 @@ function DomObject({
       }
     });
 
-    styleString += "\n" + that[styleScreen].cssOverride;
+    styleString += "\n" + (that[styleScreen].cssOverride || "");
 
     return styleString;
   };
