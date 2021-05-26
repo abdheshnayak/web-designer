@@ -40,6 +40,13 @@ const createProperties = (element) => {
 };
 
 const updateRightToolBar = () => {
+  if (!hashMap.activeElement) {
+    document.querySelector(".right-toolbar").classList.add("hide");
+    return;
+  } else {
+    document.querySelector(".right-toolbar").classList.remove("hide");
+  }
+
   reestOverlay();
 
   var element = hashMap.getVirtualElement(hashMap.activeElement);
