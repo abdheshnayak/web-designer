@@ -6,7 +6,7 @@ function WidthHeight({ width_height } = {}) {
     },
   };
 
-  that.setWidthHeight = (prop, value, unit) => {
+  that.setProperty = (prop, value, unit) => {
     that.width_height[prop].value = value;
     that.width_height[prop].unit = unit;
   };
@@ -15,7 +15,7 @@ function WidthHeight({ width_height } = {}) {
     return value + unit;
   };
 
-  that.getWidthHeight = () => {
+  that.getProperty = () => {
     var width_height_string = "";
 
     for (var key in that.width_height) {

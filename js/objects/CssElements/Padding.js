@@ -9,7 +9,7 @@ function Padding({ padding } = {}) {
     },
   };
 
-  that.setPadding = (prop, value, unit) => {
+  that.setProperty = (prop, value, unit) => {
     that.padding[prop].value = value;
     that.padding[prop].unit = unit;
   };
@@ -19,7 +19,7 @@ function Padding({ padding } = {}) {
     else return value + unit;
   };
 
-  that.getPaddingString = () => {
+  that.getProperty = () => {
     var paddingString = "";
     if (that.padding.all.unit) {
       var { value, unit } = that.padding.all;

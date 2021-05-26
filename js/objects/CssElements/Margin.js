@@ -9,7 +9,7 @@ function Margin({ margin } = {}) {
     },
   };
 
-  that.setMargin = (prop, value, unit) => {
+  that.setProperty = (prop, value, unit) => {
     that.margin[prop].value = value;
     that.margin[prop].unit = unit;
   };
@@ -19,7 +19,7 @@ function Margin({ margin } = {}) {
     else return value + unit;
   };
 
-  that.getMarginString = () => {
+  that.getProperty = () => {
     var marginString = "";
     if (that.margin.all.unit) {
       var { value, unit } = that.margin.all;

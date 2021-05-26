@@ -36,7 +36,6 @@ function DomObject({
     });
 
   [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
-    // console.log(style);
     var key = Object.keys(style)[0];
 
     // Border
@@ -63,20 +62,43 @@ function DomObject({
       }
     });
 
-    ["margin", "padding", "width_height", "absolute_value"].forEach(
-      (property_name) => {
-        if (that[key][property_name]) {
-          that[key][property_name] = new CssProperty({
-            property_name: property_name,
-            property: style[key][property_name][property_name],
-          });
-        } else {
-          that[key][property_name] = new CssProperty({
-            property_name: property_name,
-          });
-        }
-      }
-    );
+    // width & height
+
+    if (that[key].width_height) {
+      that[key].width_height = new WidthHeight({
+        width_height: style[key].width_height.width_height,
+      });
+    } else {
+      that[key].width_height = new WidthHeight();
+    }
+
+    // margin
+    if (that[key].margin) {
+      that[key].margin = new Margin({
+        margin: style[key].margin.margin,
+      });
+    } else {
+      that[key].margin = new Margin();
+    }
+
+    // Padding
+    if (that[key].padding) {
+      that[key].padding = new Padding({
+        padding: style[key].padding.padding,
+      });
+    } else {
+      that[key].padding = new Padding();
+    }
+
+    // Absolute Value
+    if (that[key].absolute_value) {
+      that[key].absolute_value = new AbsoluteValue({
+        absolute_value: style[key].absolute_value.absolute_value,
+      });
+    } else {
+      that[key].absolute_value = new AbsoluteValue();
+    }
+
     //width & height
   });
 

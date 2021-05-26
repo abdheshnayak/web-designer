@@ -21,7 +21,7 @@ const handleToolbarElementClick = (e) => {
 
   var virtElement = hashMap.getVirtualElement(hashMap.activeElement);
 
-  var child = new DomObject();
+  var child = new DomObject({});
   // child.addStyles({
   //   styleScreen: hashMap.styleScreen,
   //   styles: { newLogic: new Styles() },

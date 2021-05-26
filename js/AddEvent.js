@@ -55,7 +55,6 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
     property: "position",
   },
 ].forEach((item) => {
-  console.log("hello");
   document.getElementById(item.id).addEventListener("click", (e) => {
     var el = hashMap.getVirtualElement(hashMap.activeElement);
     console.log(el[hashMap.styleScreen]);
@@ -79,21 +78,25 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
     id: "add-absolute_value-button",
     property_name: "absolute_value",
     bd_l: ["left", "right", "top", "bottom"],
+    objClass: AbsoluteValue,
   },
   {
     id: "add-margin-button",
     property_name: "margin",
     bd_l: ["all", "left", "right", "top", "bottom"],
+    objClass: Margin,
   },
   {
     id: "add-padding-button",
     property_name: "padding",
     bd_l: ["all", "left", "right", "top", "bottom"],
+    objClass: Padding,
   },
   {
     id: "add-width&height-button",
     property_name: "width_height",
     bd_l: ["width", "height"],
+    objClass: WidthHeight,
   },
 ].forEach((item) => {
   document.getElementById(item.id).addEventListener("click", (e) => {
@@ -116,7 +119,7 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
       el.addStyles({
         styleScreen: hashMap.styleScreen,
         styles: {
-          [property_name]: new CssProperty({
+          [property_name]: new item.objClass({
             [property_name]: property_name,
           }),
         },
@@ -128,7 +131,6 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
 });
 
 document.getElementById("css-edit-button").addEventListener("click", (e) => {
-  console.log("hello");
   if (hashMap.editingType == "css") {
     localStorage.setItem("editingType", "notcss");
     hashMap.editingType = localStorage.getItem("editingType") || "css";

@@ -9,7 +9,7 @@ function AbsoluteValue({ absolute_value } = {}) {
     },
   };
 
-  that.setAbsoluteValue = (prop, value, unit) => {
+  that.setProperty = (prop, value, unit) => {
     that.absolute_value[prop].value = value;
     that.absolute_value[prop].unit = unit;
   };
@@ -19,7 +19,7 @@ function AbsoluteValue({ absolute_value } = {}) {
     else return value + unit;
   };
 
-  that.getAbsoluteValueString = () => {
+  that.getProperty = () => {
     var absolute_valueString = "";
 
     for (var key in that.absolute_value) {
