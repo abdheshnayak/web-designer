@@ -5,6 +5,27 @@
   transition: all 0.1s ease-in-out;
   font: normal 400 16px/20px Inter, sans-serif; }
 
+body {
+  overflow-x: auto; }
+
+.main {
+  min-width: 800px; }
+
+.abort-mobile-device {
+  display: none; }
+
+@media screen and (max-width: 650px) {
+  .abort-mobile-device {
+    display: block; } }
+
+.abort-mobile-device > span {
+  display: block;
+  text-align: center;
+  color: red;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: bold; }
+
 .hide {
   display: none !important; }
 

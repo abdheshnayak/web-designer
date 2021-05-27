@@ -17,10 +17,7 @@ function DomObject({
     id: id || "",
     className: className || "",
     element: element || "",
-    attributes: attributes || {
-      title: "",
-      data: "",
-    },
+    attributes: attributes || {},
     childrens: [],
     styles: styles || {},
     mobileStyles: mobileStyles || {},
@@ -34,6 +31,15 @@ function DomObject({
     childrens.forEach((element) => {
       that.childrens.push(new DomObject(element));
     });
+
+  // margin
+  if (that.attributes.attributes) {
+    that.attributes = new Attributes({
+      attributes: that.attributes.attributes,
+    });
+  } else {
+    that.attributes = new Attributes();
+  }
 
   [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
     var key = Object.keys(style)[0];
@@ -101,9 +107,6 @@ function DomObject({
 
     //width & height
   });
-
-  // that.parse();
-  // if(childrens.length)
 
   that.setCollapsed = (collapsed) => {
     that.collapsed = collapsed;

@@ -1,6 +1,6 @@
 document.getElementById("add-border-button").addEventListener("click", (e) => {
   var el = hashMap.getVirtualElement(hashMap.activeElement);
-  console.log(el[hashMap.styleScreen].border);
+
   const bd_l = ["all", "left", "right", "top", "bottom"];
   if (el[hashMap.styleScreen].border.setBorder) {
     const result = bd_l.filter((item) => {
@@ -10,8 +10,6 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
     });
     if (!result[0]) return;
 
-    var bdr = el[hashMap.styleScreen].border;
-    console.log(bdr);
     el[hashMap.styleScreen].border.setBorder(
       result[0],
       1,
@@ -28,6 +26,30 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
   }
   refreshDomTree();
 });
+
+document
+  .getElementById("add-attributes-button")
+  .addEventListener("click", (e) => {
+    var el = hashMap.getVirtualElement(hashMap.activeElement);
+
+    const bd_l = ["title", "src", "href", "type"];
+    if (el.attributes.setAttributes) {
+      const result = bd_l.filter((item) => {
+        console.log(el.attributes.attributes[item].value);
+        if (el.attributes.attributes[item].value == (undefined || null)) {
+          return true;
+        }
+      });
+
+      if (!result[0]) return;
+
+      el.attributes.setAttributes(result[0], "");
+    } else {
+      el.attributes = new Attributes();
+      el.attributes.setAttributes("title", "");
+    }
+    refreshDomTree();
+  });
 
 [
   {
@@ -57,7 +79,6 @@ document.getElementById("add-border-button").addEventListener("click", (e) => {
 ].forEach((item) => {
   document.getElementById(item.id).addEventListener("click", (e) => {
     var el = hashMap.getVirtualElement(hashMap.activeElement);
-    console.log(el[hashMap.styleScreen]);
 
     if (el[hashMap.styleScreen][item.property][item.objClass]) {
       if (el[hashMap.styleScreen][item.property][item.property]) return;
@@ -150,3 +171,8 @@ document
 
     refreshDomTree();
   });
+
+document.getElementById("delete-design").addEventListener("click", (e) => {
+  localStorage.clear();
+  window.location.reload();
+});

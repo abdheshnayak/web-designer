@@ -35,6 +35,9 @@ const getElementIcon = (element) => {
       return "fa-text";
     case "span":
       return "fa-text";
+    case "input":
+    case "textarea":
+      return "fa-terminal";
     default:
       return "fa-question-square";
   }
@@ -136,6 +139,8 @@ const treeElementLeave = (e) => {
   overlayInner.style.height = 0;
   overlayInner.style.width = 0;
 };
+
+document.getElementById("root").addEventListener("mouseover", treeElementLeave);
 
 // It returns name element of tree and also add events on it
 function getElementName(name, element) {

@@ -15,6 +15,9 @@
     <title>Web Designer</title>
   </head>
   <body>
+    <div class="abort-mobile-device">
+      <span>Please Open in Desktop/laptop device for better Experience</span>
+    </div>
     <div class="main">
       <div class="main-inner">
         <!-- Navebar(header) start -->
@@ -39,6 +42,12 @@
             <span>Download</span>
           </div>
           <!-- download button end -->
+
+          <!-- reset button -->
+          <div class="nav-button" id="delete-design">
+            <i class="far fa-trash"></i>
+            <span>Delete Design</span>
+          </div>
         </div>
         <!-- navbar end -->
 
@@ -102,6 +111,17 @@
                   <div class="element">
                     <i style="font-weight: bold">&lt;hr/&gt;</i>
                     <span style="display: none">hr</span>
+                  </div>
+
+                  <!-- input element-->
+                  <div class="element">
+                    <i class="far fa-terminal"> </i>
+                    <span>input</span>
+                  </div>
+
+                  <!-- input element-->
+                  <div class="element">
+                    <span>textarea</span>
                   </div>
                 </div>
               </div>
@@ -307,6 +327,17 @@
               </div>
               <!-- INNER TEXT Contents End -->
 
+              <!-- HTML Attributes start -->
+              <div class="tool-container-outer">
+                <div class="title-cont">
+                  <span class="title">Attributes</span>
+                  <i class="far fa-plus" id="add-attributes-button"></i>
+                </div>
+
+                <div class="tool-container" id="attributes-block"></div>
+              </div>
+              <!-- Width & Height End -->
+
               <!-- Width & Height start -->
               <div class="tool-container-outer">
                 <div class="title-cont">
@@ -412,7 +443,7 @@
     </div>
 
     <!-- source -->
-    <script src="./js/objects/CssElements/Attributes.js"></script>
+    <script src="./js/objects/Attributes.js"></script>
 
     <!-- css properties -->
     <script src="./js/objects/CssElements/AbsoluteVlaue.js"></script>

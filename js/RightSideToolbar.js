@@ -37,6 +37,10 @@ const createProperties = (element) => {
   hashMap.AbsoluteValueElement = new AbsoluteValueElement({
     id: "absolute_value-block",
   });
+
+  hashMap.AttributesElement = new AttributesElement({
+    id: "attributes-block",
+  });
 };
 
 const updateRightToolBar = () => {
@@ -96,6 +100,8 @@ const updateRightToolBar = () => {
       element[hashMap.styleScreen][item.property]
     );
   });
+
+  hashMap.AttributesElement.updateElements(element.attributes);
 
   if (!element || (element && element.name == "body")) {
     document.getElementById("right-toolbar-block").classList.add("hide");

@@ -54,6 +54,12 @@ function updateDesign(para, designRoot) {
     }
     // elementDom.style = element.getStyles();
     elementDom.innerText = element.text || "";
+
+    element.attributes.getAttributes().forEach((attr) => {
+      elementDom.setAttribute(attr.attribute, attr.value);
+      console.log(attr);
+    });
+
     // elementDom.setAttribute("contenteditable", "true");
 
     // elementDom.addEventListener("mouseover", hoverHandler);
