@@ -1,0 +1,68 @@
+/* Custom Dropdown Created By Abdhesh Nayak*/
+.custom-dropdown {
+  left: -0.5rem;
+  top: -0.5rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  text-align: left;
+  border-radius: 0.5rem;
+  background-color: #2c2c2c;
+  z-index: 999;
+  overflow: hidden; }
+  .custom-dropdown > div {
+    user-select: none;
+    padding: 0.1rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+    display: grid;
+    color: white;
+    display: grid;
+    grid-template-columns: 1.5rem auto; }
+    .custom-dropdown > div > div {
+      visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+    .custom-dropdown > div.active > div {
+      visibility: visible; }
+    .custom-dropdown > div:hover {
+      background-color: #18a0fb; }
+
+.dynamic-block {
+  display: flex;
+  justify-content: space-between;
+  color: #444;
+  margin: 0.25rem; }
+  .dynamic-block > div {
+    position: relative;
+    min-width: 1rem;
+    text-align: center;
+    padding: 0.25rem;
+    border-radius: 0.15rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    position: relative; }
+    .dynamic-block > div.text > span {
+      display: inline-block;
+      outline: none;
+      min-width: 2rem; }
+    .dynamic-block > div.block-minus {
+      display: inline-flex;
+      justify-content: center;
+      flex-direction: column; }
+      .dynamic-block > div.block-minus .fa-minus {
+        color: #444;
+        padding-top: 0.25rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem; }
+    .dynamic-block > div:hover {
+      border: 1px solid #b3b3b3; }
+  .dynamic-block * {
+    font-size: 0.75rem; }
+  .dynamic-block .block-q {
+    display: flex;
+    flex-wrap: nowrap; }
+    .dynamic-block .block-q:after {
+      content: ":";
+      margin-left: 0.25rem; }
