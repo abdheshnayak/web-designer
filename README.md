@@ -1,6 +1,6 @@
 ## WYSIWYG Web Designer
 
-![WYSIWYG Web Designer]("./screenshot.png")
+![WYSIWYG Web Designer](/screenshot.png)
 
 #### What is WYSIWYG Web Designer ?
 
