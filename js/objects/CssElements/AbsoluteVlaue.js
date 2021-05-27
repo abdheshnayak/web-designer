@@ -120,7 +120,6 @@ function AbsoluteValueBlock({ id, bdObj, absolute_value, tp }) {
   });
 
   document.getElementById(id).appendChild(blk);
-  // console.log(id, absolute_value);
 }
 
 function AbsoluteValueElement({ id }) {

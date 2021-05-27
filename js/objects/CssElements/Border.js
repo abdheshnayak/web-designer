@@ -165,7 +165,6 @@ function BorderBlock({ id, bdObj, border, tp }) {
   });
 
   document.getElementById(id).appendChild(blk);
-  // console.log(id, border);
 }
 
 function BorderElement({ id, borderStyle }) {

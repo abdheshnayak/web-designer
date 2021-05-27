@@ -78,7 +78,6 @@ function PaddingBlock({ id, bdObj, padding, tp }) {
   var that = this;
 
   that.handleDropwond = ({ id, value }) => {
-    // bdObj[value] =
     console.log(id, value);
     switch (id.classList[0]) {
       case "padding-q":

@@ -61,7 +61,6 @@ function DisplayBlock({ id, display, tp }) {
   });
 
   document.getElementById(id).appendChild(blk);
-  // console.log(id, display);
 }
 
 function DisplayElement({ id }) {

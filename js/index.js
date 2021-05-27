@@ -1,5 +1,5 @@
-// const body = new DomObject();
-
+// from utils.js
 init();
 
+// from lefttoolbartree.js
 refreshDomTree();

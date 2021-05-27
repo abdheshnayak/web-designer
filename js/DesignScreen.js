@@ -1,8 +1,7 @@
 var zoomValue = 100;
 const wheelScrollHandler = (e) => {
-  // console.log(e);
   var smooth = 1;
-  // console.log(zoomValue);
+
   if (e.ctrlKey) {
     if (e.deltaY < 0) {
       zoomValue += smooth;
@@ -52,19 +51,12 @@ function updateDesign(para, designRoot) {
     if (element.className) {
       elementDom.classList.add(element.className);
     }
-    // elementDom.style = element.getStyles();
+
     elementDom.innerText = element.text || "";
 
     element.attributes.getAttributes().forEach((attr) => {
       elementDom.setAttribute(attr.attribute, attr.value);
-      console.log(attr);
     });
-
-    // elementDom.setAttribute("contenteditable", "true");
-
-    // elementDom.addEventListener("mouseover", hoverHandler);
-    // elementDom.addEventListener("input", clickHandle);
-    // elementDom.addEventListener("mouseleave", mouseLeaveHandler);
 
     designRoot.appendChild(elementDom);
 
@@ -113,8 +105,5 @@ const refreshDesign = () => {
   updateDesign(body, iframe.body);
   iframe.body.classList.add(body.className);
 
-  // iframe.body.style = "width: 1920px";
   hashMap.setDesignDom(body, iframe.body);
-
-  // iframe.body.appendChild(designRoot);
 };

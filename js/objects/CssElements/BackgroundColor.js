@@ -18,7 +18,7 @@ function BackgrundColor({ background_color } = {}) {
   return that;
 }
 
-function BackgrundColorBlock({ id, background_color, tp }) {
+function BackgrundColorBlock({ id, background_color }) {
   const blk = document.createElement("div");
   blk.classList.add("dynamic-block");
   blk.innerHTML = `<div class="block-q" >BackgrundColor</div>
