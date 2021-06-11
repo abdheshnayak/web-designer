@@ -1,14 +1,14 @@
-## WYSIWYG Web Designer
+## Web Designer
 
-![WYSIWYG Web Designer](/screenshot.png)
+![Web Designer](/screenshot.png)
 
-#### What is WYSIWYG Web Designer ?
+#### What is Web Designer ?
 
-WYSIWYG Web Designer is an open-source tool that can be used to design awesome websites with pure HTML and CSS either writing CSS code or by selecting properties or from the toolbar.
+Web Designer is an open-source tool that can be used to design awesome websites with pure HTML and CSS either writing CSS code or by selecting properties or from the toolbar.
 
-#### Why use WYSIWYG Web Designer Tool?
+#### Why use Web Designer Tool?
 
-Designing the website with HTML, CSS is much difficult task for beginners because they don't know about many properties of CSS, so using the WYSIWYG web designer tool will help to select the right properties from the toolbar directly, and also it will be easy to manage codes for different sizes and can be seen live output on the design screen can be zoom-in zoom-out and there are so many features available.
+Designing the website with HTML, CSS is much difficult task for beginners because they don't know about many properties of CSS, so using the web designer tool will help to select the right properties from the toolbar directly, and also it will be easy to manage codes for different sizes and can be seen live output on the design screen can be zoom-in zoom-out and there are so many features available.
 
 #### How can I implement the design in my code?
 
