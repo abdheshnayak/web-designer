@@ -28,18 +28,10 @@ function TreeItem(props) {
               active_id: item._id,
             };
           });
-
-          //   console.log(item);
         }}
         onMouseEnter={(e) => {
           glob_context.sethashmap((s) => {
             return { ...s, overlay_id: item._id };
-          });
-          //   console.log(item);
-        }}
-        onMouseLeave={(e) => {
-          glob_context.sethashmap((s) => {
-            return { ...s, overlay_id: null };
           });
           //   console.log(item);
         }}

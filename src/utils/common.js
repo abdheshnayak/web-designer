@@ -1,5 +1,5 @@
 import DomObject from "../objects/DomObject";
-import Hash from "./Hash";
+
 import { array_move, getItemIndex, getParent } from "./methods";
 
 export const getBody = (from_local) => {
@@ -155,7 +155,7 @@ export const getVirtualElement = (id) => {
 export const getIdByVirtualElement = (element) => {
   var keyList = Object.keys(virtualHash);
   for (var i = 0; i < keyList.length; i++) {
-    if (virtualHash[keyList[i]] == element) {
+    if (virtualHash[keyList[i]] === element) {
       return keyList[i];
     }
   }
@@ -164,7 +164,7 @@ export const getIdByVirtualElement = (element) => {
 export const getIdByDesign = (element) => {
   var keyList = Object.keys(designHash);
   for (var i = 0; i < keyList.length; i++) {
-    if (designHash[keyList[i]] == element) {
+    if (designHash[keyList[i]] === element) {
       return keyList[i];
     }
   }

@@ -8,10 +8,9 @@ $design-body-background: #e5e5e5;
 $active-menu-background: #18a0fb;
 
 .main-inner {
-  height: auto;
-  display: grid;
-  grid-template-rows: auto calc(100vh - 50px);
-  grid-template-columns: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 // Navbar css
@@ -20,6 +19,23 @@ $active-menu-background: #18a0fb;
   color: white;
   display: flex;
   justify-content: space-between;
+}
+
+.body-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.body {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.css-editor {
+  min-height: 20rem;
+  background-color: #222;
 }
 
 .nav-button {
@@ -47,12 +63,6 @@ $active-menu-background: #18a0fb;
     color: white;
   }
 }
-
-.body {
-  height: 100%;
-  //   height: calc(100vh - 50px);
-  position: relative;
-}
 .toolbar {
   position: absolute;
   width: 15rem;
@@ -64,7 +74,12 @@ $active-menu-background: #18a0fb;
   &.left-toolbar {
     left: 0;
     border-right: 1px solid #e5e5e5;
+    & > .toolbar-inner {
+      display: flex;
+      flex-direction: column;
+    }
   }
+
   &.right-toolbar {
     width: 18rem;
     right: 0;
@@ -82,14 +97,21 @@ $active-menu-background: #18a0fb;
   padding: 0.5rem;
   border-bottom: 1px solid #e5e5e5;
 
+  &.element-container {
+    min-height: 10rem;
+    overflow-y: auto;
+  }
+
   &.tree-container {
-    height: calc(100% - 20rem);
+    // height: calc(100% - 20rem);
+    flex-grow: 1;
     overflow: auto;
   }
 
   &.output-css-container {
     height: 10rem;
-    background-color: white;
+    min-height: 10rem;
+    background-color: #222;
     overflow: auto;
     padding: 0.5rem;
     & > code {
@@ -524,7 +546,7 @@ $active-menu-background: #18a0fb;
   z-index: 9999;
   overflow: hidden;
   & > span {
-    display: inline-block;
+    display: block;
     background-color: rgba($color: blue, $alpha: 0.1);
   }
 }

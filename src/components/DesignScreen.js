@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import uuid from "react-uuid";
 import { GlobPreference } from "../App";
 import {
+  getBody,
   getCssStyles,
   getDesign,
   getOffset,
+  setDesignElement,
   updateDesign,
 } from "../utils/common";
 
@@ -43,6 +46,8 @@ function DesignScreen() {
     var iframe = x.contentWindow || x.contentDocument;
     if (iframe.document) iframe = iframe.document;
 
+    setDesignElement(getBody()._id, iframe.body);
+
     iframe.body.innerText = null;
     iframe.head.innerText = null;
     iframe.head.appendChild(viewport);
@@ -57,16 +62,19 @@ function DesignScreen() {
 
   useEffect(() => {
     if (!context.hashmap.overlay_id) {
-      setoverlay_style({ padding: 0 });
-      setinner_overlay_style({ left: 0, top: 0 });
+      setoverlay_style((s) => {
+        return {
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingTop: 0,
+          paddingBottom: 0,
+        };
+      });
+      setinner_overlay_style({ left: "0px", top: "0px" });
       return;
     }
 
-    var tempElement = getDesign(context.hashmap.overlay_id);
-
-    console.log(tempElement);
-
-    var designElement = tempElement;
+    var designElement = getDesign(context.hashmap.overlay_id);
 
     var allStyles = window.getComputedStyle(designElement);
 
@@ -77,7 +85,7 @@ function DesignScreen() {
       height: designElement.offsetHeight,
     });
     // console.log(overlay.tagName);
-    if (designElement.tagName == "BODY") {
+    if (designElement.tagName === "BODY") {
       setoverlay_style((s) => {
         return {
           ...s,
@@ -108,7 +116,6 @@ function DesignScreen() {
         paddingBottom: allStyles.marginBottom,
       };
     });
-    console.log(allStyles.marginBottom);
   }, [context.hashmap.overlay_id]);
 
   return (
@@ -123,6 +130,7 @@ function DesignScreen() {
           ].map((item, index) => {
             return (
               <span
+                key={uuid()}
                 className={
                   context.hashmap.screen_class === item.screen ? "active" : ""
                 }

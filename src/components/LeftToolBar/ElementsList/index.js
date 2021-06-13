@@ -1,5 +1,4 @@
 import React from "react";
-import { getBody } from "../../../utils/common";
 import ListItem from "./ListItem";
 
 function ElementsList() {

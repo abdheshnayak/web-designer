@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DesignScreen from "../components/DesignScreen";
 import LeftToolBar from "../components/LeftToolBar";
 import RightToolBar from "../components/RightToolBar";
@@ -47,16 +47,20 @@ function Designer() {
           {/* <!-- navbar end --> */}
 
           {/* <!-- main body start --> */}
-          <div className="body">
-            {/* <!-- left toolbar start --> */}
+          <div className="body-wrapper">
+            <div className="body">
+              {/* <!-- left toolbar start --> */}
 
-            <LeftToolBar />
+              <LeftToolBar />
 
-            <DesignScreen />
+              <DesignScreen />
 
-            {/* <!-- Override Css Block Start--> */}
-            <RightToolBar />
+              {/* <!-- Override Css Block Start--> */}
+              <RightToolBar />
+            </div>
           </div>
+
+          <div className="css-editor"></div>
         </div>
       </div>
     </>

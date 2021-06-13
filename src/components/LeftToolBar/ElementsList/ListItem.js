@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { GlobPreference } from "../../../App";
-import { getVirtualElement, insertElement } from "../../../utils/common";
+import { insertElement } from "../../../utils/common";
 
 function ListItem(props) {
   const context = useContext(GlobPreference);

@@ -1,7 +1,10 @@
 import "./reset.scss";
 import "./main.scss";
 import Designer from "./routes/Designer";
-import { createContext, Fragment, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+// import "ace-builds/src-noconflict/mode-css";
+// import "ace-builds/src-noconflict/theme-github";
 
 export const GlobPreference = createContext();
 

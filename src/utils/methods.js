@@ -9,7 +9,7 @@ export const getItemIndex = (list, child_id) => {
 
 export const getParent = (parent, searchElement) => {
   if (parent.childrens.length > 0) {
-    if (getItemIndex(parent, searchElement) != -1) {
+    if (getItemIndex(parent, searchElement) !== -1) {
       return parent;
     }
     for (var i in parent.childrens) {
