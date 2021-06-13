@@ -2,11 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.1s ease-in-out;
-  font: normal 400 16px/20px Inter, sans-serif;
+  // font: normal 400 16px/20px Inter, sans-serif;
+  // transition: all 0.1s ease-in-out;
 }
 body {
   overflow-x: auto;
+}
+
+.body-wrapper,
+.navbar {
+  font: normal 400 16px/20px Inter, sans-serif;
 }
 
 .main {

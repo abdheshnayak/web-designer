@@ -5,9 +5,11 @@ import { GlobPreference } from "../../../App";
 
 function TreeItem(props) {
   const { item } = props;
-  const [is_collapsed, set_is_collapsed] = useState(false);
+
+  const [collapsed, setcollapsed] = useState(false);
 
   const glob_context = useContext(GlobPreference);
+
   useEffect(() => {
     setVirtualElement(item._id, item);
   }, [item]);
@@ -41,21 +43,16 @@ function TreeItem(props) {
             "fas " +
             (item.childrens.length === 0
               ? "fa-genderless"
-              : is_collapsed
+              : collapsed
               ? "fa-caret-right"
               : "fa-caret-down")
           }
-          onClick={(e) => {
-            set_is_collapsed(!is_collapsed);
-          }}
+          onClick={(e) => setcollapsed(!collapsed)}
         ></i>
         <i className={"far " + getElementIcon(item.element)}></i>
         <span>{item.name || item.element}</span>
       </div>
-
-      <div className={"elements " + (is_collapsed ? "hide" : "")}>
-        <TreeItems childrens={item.childrens} />
-      </div>
+      {!collapsed && <TreeItems childrens={item.childrens} />}
     </div>
   );
 }

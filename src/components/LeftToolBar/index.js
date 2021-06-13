@@ -74,7 +74,7 @@ function LeftToolBar() {
         {/* <!-- tree block end --> */}
 
         {/* <!-- Live Output of Generated Css --> */}
-        <div className="toolbar-block output-css-container">
+        <div className="toolbar-block output-css-container hide">
           <code className="css-code-output"></code>
         </div>
 

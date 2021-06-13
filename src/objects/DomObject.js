@@ -1,4 +1,5 @@
 import uuid from "react-uuid";
+import { generateClassName } from "../utils/methods";
 
 function DomObject({
   name,
@@ -17,7 +18,7 @@ function DomObject({
   var that = {
     name: name || "",
     id: id || "",
-    className: className || "",
+    className: className || generateClassName(8),
     element: element || "",
     attributes: attributes || {},
     childrens: [],
@@ -116,6 +117,7 @@ function DomObject({
   that.setActive = (active) => {
     that.active = active;
   };
+
   that.init = ({ name, element, className } = {}) => {
     that.className = className || that.className;
     that.name = name || that.name;

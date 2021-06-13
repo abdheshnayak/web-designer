@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobPreference } from "../App";
+import CssEditor from "../components/CssEditor";
 import DesignScreen from "../components/DesignScreen";
 import LeftToolBar from "../components/LeftToolBar";
 import RightToolBar from "../components/RightToolBar";
@@ -60,7 +62,7 @@ function Designer() {
             </div>
           </div>
 
-          <div className="css-editor"></div>
+          <CssEditor />
         </div>
       </div>
     </>

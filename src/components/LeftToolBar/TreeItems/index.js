@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import uuid from "react-uuid";
 import TreeItem from "./TreeItem";
 
@@ -9,7 +9,7 @@ function TreeItems(props) {
     <>
       <div className="elements">
         {childrens.map((item, index) => {
-          return <TreeItem item={item} key={uuid()} />;
+          return <TreeItem item={item} />;
         })}
       </div>
     </>

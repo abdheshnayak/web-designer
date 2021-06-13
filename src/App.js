@@ -11,6 +11,8 @@ export const GlobPreference = createContext();
 function App() {
   const [hashmap, sethashmap] = useState({});
   const [refresh, setrefresh] = useState(true);
+  const [is_css_editor_on, set_is_css_editor_on] = useState(true);
+
   useEffect(() => {
     sethashmap((s) => {
       return {
@@ -22,7 +24,14 @@ function App() {
 
   return (
     <GlobPreference.Provider
-      value={{ hashmap, sethashmap, refresh, setrefresh }}
+      value={{
+        hashmap,
+        sethashmap,
+        refresh,
+        setrefresh,
+        is_css_editor_on,
+        set_is_css_editor_on,
+      }}
     >
       <Designer />
     </GlobPreference.Provider>

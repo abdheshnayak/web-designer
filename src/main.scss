@@ -64,8 +64,7 @@ $active-menu-background: #18a0fb;
   }
 }
 .toolbar {
-  position: absolute;
-  width: 15rem;
+  min-width: 15rem;
   height: 100%;
   background-color: $color-white;
   top: 0;
@@ -84,6 +83,7 @@ $active-menu-background: #18a0fb;
     width: 18rem;
     right: 0;
     border-left: 1px solid #e5e5e5;
+    display: none;
   }
 
   .toolbar-inner {
@@ -421,22 +421,25 @@ $active-menu-background: #18a0fb;
     }
   }
 }
-
+.design-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
 .design-container {
   height: 100%;
   width: 100%;
-  padding-right: 3rem;
-  max-width: calc(100% - 30rem);
-  margin: 0 auto;
-  position: relative;
+  flex-grow: 1;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+
   .screen-size-bar {
     border-bottom: 1px solid #e5e5e5;
     border-top: 1px solid #555;
     background-color: #333;
+    display: flex;
+    justify-content: space-between;
   }
 
   .screen-size-bar-inner {
@@ -511,6 +514,8 @@ $active-menu-background: #18a0fb;
   background-color: $nav-color;
   color: white;
   border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: flex-end;
   & > .zoom-bar {
     padding: 0.1rem;
     display: inline-flex;
@@ -520,15 +525,21 @@ $active-menu-background: #18a0fb;
       justify-content: center;
       padding-left: 0.5rem;
       & > span {
-        font-size: 0.75rem;
+        font-size: 1rem;
+        font-weight: bold;
+        min-width: 3rem;
+        text-align: center;
+        user-select: none;
       }
     }
     & > i {
+      display: block;
       border-radius: 0.25rem;
       cursor: pointer;
       padding: 0.25rem;
       margin: 0.25rem;
       background-color: #777;
+      padding-bottom: 0.1rem;
       &:hover {
         background-color: #18a0fb;
       }
