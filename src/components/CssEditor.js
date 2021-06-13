@@ -105,9 +105,9 @@ function CssEditor() {
     <>
       {is_css_editor_on === "single" && (
         <AceEditor
+          className="css-editor-bottom"
           style={{ borderTop: "0.15rem solid #18a0fb" }}
           ref={editor_ref}
-          height="20rem"
           width="100%"
           fontSize="1.25rem"
           mode="css"

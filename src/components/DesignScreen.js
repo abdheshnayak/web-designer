@@ -151,13 +151,26 @@ function DesignScreen() {
 
           <div className="screen-size-bar-inner">
             <span
-              onClick={(e) => set_is_css_editor_on("single")}
+              onClick={(e) => {
+                if (is_css_editor_on === "single") {
+                  set_is_css_editor_on("no");
+                } else {
+                  set_is_css_editor_on("single");
+                }
+                console.log(is_css_editor_on);
+              }}
               className={is_css_editor_on == "single" ? "active" : ""}
             >
               Css Editor
             </span>
             <span
-              onClick={(e) => set_is_css_editor_on("all")}
+              onClick={(e) => {
+                if (is_css_editor_on === "all") {
+                  set_is_css_editor_on("no");
+                } else {
+                  set_is_css_editor_on("all");
+                }
+              }}
               className={is_css_editor_on == "all" ? "active" : ""}
             >
               View Css

@@ -13,6 +13,22 @@ $active-menu-background: #18a0fb;
   height: 100vh;
 }
 
+.css-editor-bottom {
+  @keyframes load-editor {
+    0% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: load-editor 0.5s ease-in-out;
+
+  position: relative;
+  height: 15rem !important;
+}
+
 .output-wrapper {
   width: 100vw;
   height: 100vh;
