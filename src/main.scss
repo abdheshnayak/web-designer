@@ -17,20 +17,24 @@ $active-menu-background: #18a0fb;
   width: 100vw;
   height: 100vh;
   min-width: 900px;
-  // opacity: 0.95;
   position: fixed;
   z-index: 99;
   padding: 5rem;
   background: transparent;
   cursor: pointer;
 
-  // & > .windzow-bottom {
-  //   background: $active-menu-background;
-  //   display: flex;
-  //   padding: 0.25rem;
-  // }
+  @keyframes load {
+    0% {
+      right: 100vw;
+    }
+    100% {
+      right: 0;
+    }
+  }
 
-  filter: drop-shadow(0px 0px 10rem $active-menu-background);
+  animation: load 0.5s ease-in-out;
+
+  filter: drop-shadow(0px 0px 1rem black);
 
   & > .window-title {
     max-width: 1024px;
