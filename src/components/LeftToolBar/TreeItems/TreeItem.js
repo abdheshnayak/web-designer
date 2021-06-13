@@ -18,7 +18,8 @@ function TreeItem(props) {
     <div
       className={
         "element" +
-        (glob_context.hashmap.active_id === item._id ? " active" : "")
+        (glob_context.hashmap.active_id === item._id ? " active" : "") +
+        (glob_context.hashmap.tree_hover_id === item._id ? " hover" : "")
       }
     >
       <div

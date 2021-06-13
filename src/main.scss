@@ -436,11 +436,19 @@ $active-menu-background: #18a0fb;
         height: 100%;
       }
     }
+    &.hover {
+      & > .name {
+        border: 1px solid $color-white-dim;
+        background-color: #f0f0f0;
+      }
+    }
+
     &.active {
       & > .name {
         border: 1px solid $active-menu-background;
       }
     }
+
     &::before {
       left: 1rem;
       content: "";
@@ -566,6 +574,7 @@ $active-menu-background: #18a0fb;
     position: relative;
     overflow: hidden;
     margin: 1rem;
+
     &.desktop {
       width: 1920px;
       height: 1080px;

@@ -87,18 +87,22 @@ export const updateDesign = (para, designRoot, sethashmap) => {
     // });
 
     elementDom.addEventListener("click", (e) => {
-      getIdByDesign(e.target);
       sethashmap((s) => {
         return { ...s, active_id: getIdByDesign(e.target) };
       });
     });
 
-    // elementDom.addEventListener("mouseover", (e) => {
-    //   getIdByDesign(e.target);
-    //   sethashmap((s) => {
-    //     return { ...s, overlay_id: getIdByDesign(e.target) };
-    //   });
-    // });
+    elementDom.addEventListener("mouseover", (e) => {
+      sethashmap((s) => {
+        return { ...s, tree_hover_id: getIdByDesign(e.target) };
+      });
+    });
+
+    elementDom.addEventListener("mouseleave", (e) => {
+      sethashmap((s) => {
+        return { ...s, tree_hover_id: null };
+      });
+    });
 
     designRoot.appendChild(elementDom);
 
