@@ -9,9 +9,15 @@ import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { CssHighlightRules } from "ace-builds/src-noconflict/mode-css";
-import { getBody, getVirtualElement, setBody } from "../utils/common";
+import {
+  getBody,
+  getCssStyles,
+  getVirtualElement,
+  setBody,
+} from "../utils/common";
+import beautify from "cssbeautify";
 
-function CssEditor() {
+function FullCssEditor() {
   const context = useContext(GlobPreference);
   const {
     is_css_editor_on,
@@ -71,25 +77,14 @@ function CssEditor() {
       tablet: "tabletStyles",
     };
 
-    var id = hashmap.active_id;
-
-    var element = getVirtualElement(id);
-
-    if (!element) return;
-
-    setclass_name(element.className);
-
-    element[screen_dict[context.hashmap.screen_class]].cssOverride =
-      element[screen_dict[context.hashmap.screen_class]].cssOverride || "";
-
-    setBody(getBody());
-
-    getBody(true);
-
     // console.log(element[screen_dict[context.hashmap.screen_class]].cssOverride);
 
-    setcss_code(element[screen_dict[context.hashmap.screen_class]].cssOverride);
-  }, [context.hashmap["active_id"], context.hashmap["screen_class"]]);
+    setcss_code(
+      beautify(
+        getCssStyles(getBody(), "", screen_dict[hashmap["screen_class"]])
+      )
+    );
+  }, [context.hashmap["screen_class"], is_css_editor_on]);
 
   const [read_mode, setread_mode] = useState(false);
 
@@ -104,7 +99,7 @@ function CssEditor() {
 
   return (
     <>
-      {is_css_editor_on === "single" && (
+      {is_css_editor_on === "all" && (
         <AceEditor
           style={{ borderTop: "0.15rem solid #18a0fb" }}
           ref={editor_ref}
@@ -118,9 +113,9 @@ function CssEditor() {
           editorProps={{ $blockScrolling: true }}
           //   enableBasicAutocompletion={true}
           enableLiveAutocompletion={true}
-          value={"." + class_name + "{\n" + css_code + "\n}"}
+          value={css_code}
           enableSnippets={true}
-          readOnly={!context.hashmap.active_id || read_mode}
+          readOnly={true}
           onCursorChange={onCursorChange}
         />
       )}
@@ -128,4 +123,4 @@ function CssEditor() {
   );
 }
 
-export default CssEditor;
+export default FullCssEditor;

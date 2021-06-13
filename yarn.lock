@@ -3837,6 +3837,11 @@
     "source-map" "^0.6.1"
     "source-map-resolve" "^0.6.0"
 
+"cssbeautify@^0.3.1":
+  "integrity" "sha1-Et0fc0A1wub6ymfcvc73TkKBE5c="
+  "resolved" "https://registry.npmjs.org/cssbeautify/-/cssbeautify-0.3.1.tgz"
+  "version" "0.3.1"
+
 "cssdb@^4.4.0":
   "integrity" "sha512-LsTAR1JPEM9TpGhl/0p3nQecC2LJ0kD8X5YARu1hk/9I1gril5vDtMZyNxcEpxxDj34YNck/ucjuoUd66K03oQ=="
   "resolved" "https://registry.npmjs.org/cssdb/-/cssdb-4.4.0.tgz"

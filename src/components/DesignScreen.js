@@ -10,6 +10,8 @@ import {
   updateDesign,
 } from "../utils/common";
 
+import css from "css";
+
 function DesignScreen() {
   const context = useContext(GlobPreference);
   const [zoomValue, setzoomValue] = useState(100);
@@ -149,10 +151,16 @@ function DesignScreen() {
 
           <div className="screen-size-bar-inner">
             <span
-              onClick={(e) => set_is_css_editor_on(!is_css_editor_on)}
-              className={is_css_editor_on ? "active" : ""}
+              onClick={(e) => set_is_css_editor_on("single")}
+              className={is_css_editor_on == "single" ? "active" : ""}
             >
               Css Editor
+            </span>
+            <span
+              onClick={(e) => set_is_css_editor_on("all")}
+              className={is_css_editor_on == "all" ? "active" : ""}
+            >
+              View Css
             </span>
           </div>
         </div>

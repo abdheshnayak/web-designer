@@ -11,7 +11,7 @@ export const GlobPreference = createContext();
 function App() {
   const [hashmap, sethashmap] = useState({});
   const [refresh, setrefresh] = useState(true);
-  const [is_css_editor_on, set_is_css_editor_on] = useState(true);
+  const [is_css_editor_on, set_is_css_editor_on] = useState("single");
 
   useEffect(() => {
     sethashmap((s) => {
