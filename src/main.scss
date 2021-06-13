@@ -16,6 +16,7 @@ $active-menu-background: #18a0fb;
 .output-wrapper {
   width: 100vw;
   height: 100vh;
+  min-width: 900px;
   // opacity: 0.95;
   position: fixed;
   z-index: 99;
