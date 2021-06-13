@@ -77,3 +77,5 @@ function Hash() {
   };
   return that;
 }
+
+module.exports = Hash;

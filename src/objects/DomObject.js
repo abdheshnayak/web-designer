@@ -1,3 +1,5 @@
+import uuid from "react-uuid";
+
 function DomObject({
   name,
   id,
@@ -8,9 +10,9 @@ function DomObject({
   styles,
   mobileStyles,
   tabletStyles,
-  active,
   collapsed,
   text,
+  _id,
 } = {}) {
   var that = {
     name: name || "",
@@ -22,9 +24,9 @@ function DomObject({
     styles: styles || {},
     mobileStyles: mobileStyles || {},
     tabletStyles: tabletStyles || {},
-    active: active || false,
     collapsed: collapsed || true,
     text: text || null,
+    _id: _id || uuid(),
   };
 
   if (childrens)
@@ -32,81 +34,81 @@ function DomObject({
       that.childrens.push(new DomObject(element));
     });
 
-  // margin
-  if (that.attributes.attributes) {
-    that.attributes = new Attributes({
-      attributes: that.attributes.attributes,
-    });
-  } else {
-    that.attributes = new Attributes();
-  }
+  // // margin
+  // if (that.attributes.attributes) {
+  //   that.attributes = new Attributes({
+  //     attributes: that.attributes.attributes,
+  //   });
+  // } else {
+  //   that.attributes = new Attributes();
+  // }
 
-  [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
-    var key = Object.keys(style)[0];
+  // [{ styles }, { mobileStyles }, { tabletStyles }].forEach((style) => {
+  //   var key = Object.keys(style)[0];
 
-    // Border
-    if (that[key].border) {
-      that[key].border = new Border({
-        border: style[key].border.border,
-      });
-    } else {
-      that[key].border = new Border();
-    }
+  //   // Border
+  //   if (that[key].border) {
+  //     that[key].border = new Border({
+  //       border: style[key].border.border,
+  //     });
+  //   } else {
+  //     that[key].border = new Border();
+  //   }
 
-    [
-      { objClass: Display, property: "display" },
-      { objClass: Position, property: "position" },
-      { objClass: BackgrundColor, property: "background_color" },
-      { objClass: Color, property: "color" },
-    ].forEach((item) => {
-      if (that[key][item.property]) {
-        that[key][item.property] = new item.objClass({
-          [item.property]: style[key][item.property][item.property],
-        });
-      } else {
-        that[key][item.property] = new item.objClass();
-      }
-    });
+  //   [
+  //     { objClass: Display, property: "display" },
+  //     { objClass: Position, property: "position" },
+  //     { objClass: BackgrundColor, property: "background_color" },
+  //     { objClass: Color, property: "color" },
+  //   ].forEach((item) => {
+  //     if (that[key][item.property]) {
+  //       that[key][item.property] = new item.objClass({
+  //         [item.property]: style[key][item.property][item.property],
+  //       });
+  //     } else {
+  //       that[key][item.property] = new item.objClass();
+  //     }
+  //   });
 
-    // width & height
+  //   // width & height
 
-    if (that[key].width_height) {
-      that[key].width_height = new WidthHeight({
-        width_height: style[key].width_height.width_height,
-      });
-    } else {
-      that[key].width_height = new WidthHeight();
-    }
+  //   if (that[key].width_height) {
+  //     that[key].width_height = new WidthHeight({
+  //       width_height: style[key].width_height.width_height,
+  //     });
+  //   } else {
+  //     that[key].width_height = new WidthHeight();
+  //   }
 
-    // margin
-    if (that[key].margin) {
-      that[key].margin = new Margin({
-        margin: style[key].margin.margin,
-      });
-    } else {
-      that[key].margin = new Margin();
-    }
+  //   // margin
+  //   if (that[key].margin) {
+  //     that[key].margin = new Margin({
+  //       margin: style[key].margin.margin,
+  //     });
+  //   } else {
+  //     that[key].margin = new Margin();
+  //   }
 
-    // Padding
-    if (that[key].padding) {
-      that[key].padding = new Padding({
-        padding: style[key].padding.padding,
-      });
-    } else {
-      that[key].padding = new Padding();
-    }
+  //   // Padding
+  //   if (that[key].padding) {
+  //     that[key].padding = new Padding({
+  //       padding: style[key].padding.padding,
+  //     });
+  //   } else {
+  //     that[key].padding = new Padding();
+  //   }
 
-    // Absolute Value
-    if (that[key].absolute_value) {
-      that[key].absolute_value = new AbsoluteValue({
-        absolute_value: style[key].absolute_value.absolute_value,
-      });
-    } else {
-      that[key].absolute_value = new AbsoluteValue();
-    }
+  //   // Absolute Value
+  //   if (that[key].absolute_value) {
+  //     that[key].absolute_value = new AbsoluteValue({
+  //       absolute_value: style[key].absolute_value.absolute_value,
+  //     });
+  //   } else {
+  //     that[key].absolute_value = new AbsoluteValue();
+  //   }
 
-    //width & height
-  });
+  //   //width & height
+  // });
 
   that.setCollapsed = (collapsed) => {
     that.collapsed = collapsed;
@@ -197,3 +199,5 @@ function DomObject({
 
   return that;
 }
+
+export default DomObject;
