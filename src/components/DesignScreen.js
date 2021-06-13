@@ -13,7 +13,8 @@ import {
 function DesignScreen() {
   const context = useContext(GlobPreference);
   const [zoomValue, setzoomValue] = useState(100);
-  const { is_css_editor_on, set_is_css_editor_on } = context;
+  const { is_css_editor_on, set_is_css_editor_on, setrefresh, refresh } =
+    context;
 
   useEffect(() => {
     window.body.className = window.body.className || "designRoot";

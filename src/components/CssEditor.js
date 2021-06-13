@@ -21,9 +21,8 @@ function CssEditor() {
     refresh,
   } = context;
 
-  var classname = "hello";
-
   const [css_code, setcss_code] = useState("");
+  const [class_name, setclass_name] = useState("");
 
   const onChange = (newValue) => {
     if (!context.hashmap.active_id) {
@@ -54,8 +53,6 @@ function CssEditor() {
 
     if (!element) return;
 
-    console.log(element.getStyles());
-
     element[screen_dict[context.hashmap.screen_class]].cssOverride = newtext;
 
     setBody(getBody());
@@ -84,6 +81,8 @@ function CssEditor() {
 
     if (!element) return;
 
+    setclass_name(element.className);
+
     element[screen_dict[context.hashmap.screen_class]].cssOverride =
       element[screen_dict[context.hashmap.screen_class]].cssOverride || "";
 
@@ -91,29 +90,33 @@ function CssEditor() {
 
     getBody(true);
 
-    console.log(element[screen_dict[context.hashmap.screen_class]].cssOverride);
+    // console.log(element[screen_dict[context.hashmap.screen_class]].cssOverride);
 
     setcss_code(element[screen_dict[context.hashmap.screen_class]].cssOverride);
-  }, [context.hashmap["active_id"]]);
+  }, [context.hashmap["active_id"], context.hashmap["screen_class"]]);
 
   return (
-    <AceEditor
-      ref={editor_ref}
-      className={is_css_editor_on ? "" : "hide"}
-      height="20rem"
-      width="100%"
-      fontSize="1.25rem"
-      mode="css"
-      theme="monokai"
-      onChange={onChange}
-      name="UNIQUE_ID_OF_DIV"
-      editorProps={{ $blockScrolling: true }}
-      //   enableBasicAutocompletion={true}
-      enableLiveAutocompletion={true}
-      value={"." + classname + "{\n" + css_code + "\n}"}
-      enableSnippets={true}
-      readOnly={!context.hashmap.active_id}
-    />
+    <>
+      {is_css_editor_on && (
+        <AceEditor
+          style={{ borderTop: "0.15rem solid #18a0fb" }}
+          ref={editor_ref}
+          height="20rem"
+          width="100%"
+          fontSize="1.25rem"
+          mode="css"
+          theme="monokai"
+          onChange={onChange}
+          name="UNIQUE_ID_OF_DIV"
+          editorProps={{ $blockScrolling: true }}
+          //   enableBasicAutocompletion={true}
+          enableLiveAutocompletion={true}
+          value={"." + class_name + "{\n" + css_code + "\n}"}
+          enableSnippets={true}
+          readOnly={!context.hashmap.active_id}
+        />
+      )}
+    </>
   );
 }
 
