@@ -1,6 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GlobPreference } from "../App";
-import { getCssStyles, updateDesign } from "../utils/common";
+import {
+  getCssStyles,
+  getDesign,
+  getOffset,
+  updateDesign,
+} from "../utils/common";
 
 function DesignScreen() {
   const context = useContext(GlobPreference);
@@ -47,6 +52,64 @@ function DesignScreen() {
   }, [context.refresh]);
 
   //   hashMap.setDesignDom(body, iframe.body);
+  const [overlay_style, setoverlay_style] = useState({});
+  const [inner_overlay_style, setinner_overlay_style] = useState({});
+
+  useEffect(() => {
+    if (!context.hashmap.overlay_id) {
+      setoverlay_style({ padding: 0 });
+      setinner_overlay_style({ left: 0, top: 0 });
+      return;
+    }
+
+    var tempElement = getDesign(context.hashmap.overlay_id);
+
+    console.log(tempElement);
+
+    var designElement = tempElement;
+
+    var allStyles = window.getComputedStyle(designElement);
+
+    // console.log(getOffset(designElement).left);
+
+    setinner_overlay_style({
+      width: designElement.offsetWidth,
+      height: designElement.offsetHeight,
+    });
+    // console.log(overlay.tagName);
+    if (designElement.tagName == "BODY") {
+      setoverlay_style((s) => {
+        return {
+          ...s,
+          left: getOffset(designElement).left,
+          top: getOffset(designElement).top,
+        };
+      });
+    } else {
+      setoverlay_style((s) => {
+        return {
+          ...s,
+          left: getOffset(designElement).left - parseInt(allStyles.marginLeft),
+          top: getOffset(designElement).top - parseInt(allStyles.marginTop),
+        };
+      });
+    }
+
+    // console.log(allStyles.marginLeft);
+
+    // console.log(designElement.style);
+
+    setoverlay_style((s) => {
+      return {
+        ...s,
+        paddingLeft: allStyles.marginLeft,
+        paddingTop: allStyles.marginTop,
+        paddingRight: allStyles.marginRight,
+        paddingBottom: allStyles.marginBottom,
+      };
+    });
+    console.log(allStyles.marginBottom);
+  }, [context.hashmap.overlay_id]);
 
   return (
     <div className="design-container">
@@ -86,8 +149,8 @@ function DesignScreen() {
           style={{ transform: "scale(" + (zoomValue / 100).toFixed(2) + ")" }}
         >
           {/* <!-- overlay that show elements on design screen --> */}
-          <div id="overlay" style={{}}>
-            <span></span>
+          <div id="overlay" style={overlay_style}>
+            <span style={inner_overlay_style}></span>
           </div>
 
           {/* <!-- iframe that shows live-design --> */}

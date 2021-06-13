@@ -28,9 +28,19 @@ function TreeItem(props) {
               active_id: item._id,
             };
           });
+
           //   console.log(item);
         }}
         onMouseEnter={(e) => {
+          glob_context.sethashmap((s) => {
+            return { ...s, overlay_id: item._id };
+          });
+          //   console.log(item);
+        }}
+        onMouseLeave={(e) => {
+          glob_context.sethashmap((s) => {
+            return { ...s, overlay_id: null };
+          });
           //   console.log(item);
         }}
       >
@@ -50,11 +60,10 @@ function TreeItem(props) {
         <i className={"far " + getElementIcon(item.element)}></i>
         <span>{item.name || item.element}</span>
       </div>
-      {!is_collapsed && (
-        <div className="elements">
-          <TreeItems childrens={item.childrens} />
-        </div>
-      )}
+
+      <div className={"elements " + (is_collapsed ? "hide" : "")}>
+        <TreeItems childrens={item.childrens} />
+      </div>
     </div>
   );
 }

@@ -93,12 +93,12 @@ export const updateDesign = (para, designRoot, sethashmap) => {
       });
     });
 
-    elementDom.addEventListener("mouseover", (e) => {
-      getIdByDesign(e.target);
-      sethashmap((s) => {
-        return { ...s, overlay_id: getIdByDesign(e.target) };
-      });
-    });
+    // elementDom.addEventListener("mouseover", (e) => {
+    //   getIdByDesign(e.target);
+    //   sethashmap((s) => {
+    //     return { ...s, overlay_id: getIdByDesign(e.target) };
+    //   });
+    // });
 
     designRoot.appendChild(elementDom);
 
@@ -168,4 +168,14 @@ export const getIdByDesign = (element) => {
       return keyList[i];
     }
   }
+};
+export const getOffset = (el) => {
+  var _x = 0;
+  var _y = 0;
+  while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+    _x += el.offsetLeft - el.scrollLeft;
+    _y += el.offsetTop - el.scrollTop;
+    el = el.offsetParent;
+  }
+  return { top: _y, left: _x };
 };
