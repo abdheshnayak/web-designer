@@ -8,7 +8,6 @@ import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
-import { CssHighlightRules } from "ace-builds/src-noconflict/mode-css";
 import { getBody, getVirtualElement, setBody } from "../utils/common";
 
 function CssEditor() {
