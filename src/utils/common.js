@@ -100,17 +100,17 @@ export const updateDesign = (para, designRoot, sethashmap) => {
       });
     });
 
-    elementDom.addEventListener("mouseover", (e) => {
+    elementDom.addEventListener("mouseenter", (e) => {
       sethashmap((s) => {
         return { ...s, tree_hover_id: getIdByDesign(e.target) };
       });
     });
 
-    elementDom.addEventListener("mouseleave", (e) => {
-      sethashmap((s) => {
-        return { ...s, tree_hover_id: null };
-      });
-    });
+    // elementDom.addEventListener("mouseleave", (e) => {
+    //   sethashmap((s) => {
+    //     return { ...s, tree_hover_id: null };
+    //   });
+    // });
 
     designRoot.appendChild(elementDom);
 
