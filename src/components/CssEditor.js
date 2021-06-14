@@ -12,20 +12,14 @@ import { getBody, getVirtualElement, setBody } from "../utils/common";
 
 function CssEditor() {
   const context = useContext(GlobPreference);
-  const {
-    is_css_editor_on,
-    set_is_css_editor_on,
-    hashmap,
-    setrefresh,
-    refresh,
-  } = context;
+  const { hashmap, sethashmap } = context;
 
   const [css_code, setcss_code] = useState("");
   const [class_name, setclass_name] = useState("");
 
   const onChange = (newValue) => {
-    if (!context.hashmap.active_id) {
-      console.log(context.hashmap.active_id);
+    if (!hashmap.active_id) {
+      console.log(hashmap.active_id);
 
       setcss_code(" ");
       console.log(css_code);
@@ -52,13 +46,15 @@ function CssEditor() {
 
     if (!element) return;
 
-    element[screen_dict[context.hashmap.screen_class]].cssOverride = newtext;
+    element[screen_dict[hashmap.screen_class]].cssOverride = newtext;
 
     setBody(getBody());
 
     setcss_code(newtext);
 
-    setrefresh(!refresh);
+    sethashmap((s) => {
+      return { ...s, refresh: !hashmap.refresh };
+    });
   };
 
   const editor_ref = useRef();
@@ -76,19 +72,29 @@ function CssEditor() {
 
     if (!element) return;
 
-    setclass_name(element.className);
+    setclass_name(element.class_name);
 
-    element[screen_dict[context.hashmap.screen_class]].cssOverride =
-      element[screen_dict[context.hashmap.screen_class]].cssOverride || "";
+    element[screen_dict[hashmap.screen_class]].cssOverride =
+      element[screen_dict[hashmap.screen_class]].cssOverride || "";
 
     setBody(getBody());
 
     getBody(true);
 
-    // console.log(element[screen_dict[context.hashmap.screen_class]].cssOverride);
+    // console.log(element[screen_dict[hashmap.screen_class]].cssOverride);
 
-    setcss_code(element[screen_dict[context.hashmap.screen_class]].cssOverride);
-  }, [context.hashmap["active_id"], context.hashmap["screen_class"]]);
+    setcss_code(element[screen_dict[hashmap.screen_class]].cssOverride);
+  }, [hashmap["active_id"], hashmap["screen_class"]]);
+
+  useEffect(() => {
+    var id = hashmap.active_id;
+
+    var element = getVirtualElement(id);
+
+    if (!element) return;
+
+    setclass_name(element.class_name);
+  }, [hashmap.refresh]);
 
   const [read_mode, setread_mode] = useState(false);
 
@@ -98,14 +104,16 @@ function CssEditor() {
     } else {
       setread_mode(false);
     }
-    console.log(e.cursor.row);
   };
 
   return (
     <>
-      {is_css_editor_on === "single" && (
+      {hashmap.is_css_editor_on === "single" && hashmap.active_id && (
         <AceEditor
-          className="css-editor-bottom"
+          className={
+            "css-editor-bottom" +
+            (hashmap.is_css_editor_to_right ? " right" : "")
+          }
           style={{ borderTop: "0.15rem solid #18a0fb" }}
           ref={editor_ref}
           width="100%"
@@ -119,7 +127,7 @@ function CssEditor() {
           enableLiveAutocompletion={true}
           value={"." + class_name + "{\n" + css_code + "\n}"}
           enableSnippets={true}
-          readOnly={!context.hashmap.active_id || read_mode}
+          readOnly={!hashmap.active_id || read_mode}
           onCursorChange={onCursorChange}
         />
       )}

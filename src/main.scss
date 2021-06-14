@@ -27,12 +27,17 @@ $active-menu-background: #18a0fb;
 
   position: relative;
   height: 15rem !important;
+
+  &.right {
+    height: auto !important;
+    min-width: 20rem;
+    width: 25rem !important;
+  }
 }
 
 .output-wrapper {
   width: 100vw;
   height: 100vh;
-  min-width: 900px;
   position: fixed;
   z-index: 99;
   padding: 5rem;
@@ -161,7 +166,6 @@ $active-menu-background: #18a0fb;
     width: 18rem;
     right: 0;
     border-left: 1px solid #e5e5e5;
-    display: none;
   }
 
   .toolbar-inner {
@@ -519,6 +523,7 @@ $active-menu-background: #18a0fb;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 385px;
 
   .screen-size-bar {
     border-bottom: 1px solid #e5e5e5;
@@ -531,6 +536,11 @@ $active-menu-background: #18a0fb;
   .screen-size-bar-inner {
     overflow-y: auto;
     display: flex;
+
+    &.bottom {
+      display: block;
+      align-self: center;
+    }
     & > span {
       user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -602,7 +612,8 @@ $active-menu-background: #18a0fb;
   color: white;
   border-top: 1px solid #e5e5e5;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+
   & > .zoom-bar {
     padding: 0.1rem;
     display: inline-flex;

@@ -24,6 +24,9 @@ function Designer() {
   const [is_output_window_open, setis_output_window_open] = useState(false);
   const [ouput_code, setouput_code] = useState("");
 
+  const context = useContext(GlobPreference);
+  const { hashmap } = context;
+
   return (
     <>
       <div className="abort-mobile-device">
@@ -93,7 +96,7 @@ function Designer() {
 
                 setouput_code(
                   beautify(
-                    beautify(mydom.outerHTML, {
+                    beautify("<!DOCTYPE html>" + mydom.outerHTML, {
                       format: "css",
                     }),
                     { format: "html" }
@@ -109,7 +112,14 @@ function Designer() {
             {/* <!-- download button end --> */}
 
             {/* <!-- reset button --> */}
-            <div className="nav-button" id="delete-design">
+            <div
+              className="nav-button"
+              onClick={(e) => {
+                localStorage.clear();
+                getBody(true);
+                window.location.pathname = "/";
+              }}
+            >
               <i className="far fa-trash"></i>
               <span>Delete Design</span>
             </div>
@@ -121,17 +131,29 @@ function Designer() {
             <div className="body">
               {/* <!-- left toolbar start --> */}
 
-              <LeftToolBar />
+              {!hashmap.is_tree_editor_on && <LeftToolBar />}
 
               <DesignScreen />
 
               {/* <!-- Override Css Block Start--> */}
-              <RightToolBar />
+              {hashmap.active_id && !hashmap.is_properties_editor_on && (
+                <RightToolBar />
+              )}
+              {hashmap.is_css_editor_to_right && (
+                <>
+                  <CssEditor />
+                  <FullCssEditor />
+                </>
+              )}
             </div>
           </div>
-
-          <CssEditor />
-          <FullCssEditor />
+          {!hashmap.is_css_editor_to_right && (
+            <>
+              {" "}
+              <CssEditor />
+              <FullCssEditor />
+            </>
+          )}
         </div>
       </div>
     </>

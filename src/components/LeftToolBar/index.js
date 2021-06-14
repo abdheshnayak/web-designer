@@ -12,6 +12,8 @@ import TreeItem from "./TreeItems";
 function LeftToolBar() {
   const glob_context = useContext(GlobPreference);
 
+  const { hashmap, sethashmap } = glob_context;
+
   useEffect(() => {
     setVirtualElement(getBody()._id, getBody());
   }, [getBody()]);
@@ -43,6 +45,9 @@ function LeftToolBar() {
                 "pl-none element" +
                 (glob_context.hashmap.active_id === getBody()._id
                   ? " active"
+                  : "") +
+                (glob_context.hashmap.tree_hover_id === getBody()._id
+                  ? " hover"
                   : "")
               }
               id="body-tree"
@@ -90,7 +95,10 @@ function LeftToolBar() {
               title="move element up"
               onClick={(e) => {
                 moveUpDown(glob_context.hashmap.active_id, true);
-                glob_context.setrefresh(!glob_context.refresh);
+
+                sethashmap((s) => {
+                  return { ...s, refresh: !hashmap.refresh };
+                });
               }}
             ></i>
             <i
@@ -99,7 +107,10 @@ function LeftToolBar() {
               title="move element down"
               onClick={(e) => {
                 moveUpDown(glob_context.hashmap.active_id, false);
-                glob_context.setrefresh(!glob_context.refresh);
+
+                sethashmap((s) => {
+                  return { ...s, refresh: !hashmap.refresh };
+                });
               }}
             ></i>
             <i
@@ -108,7 +119,9 @@ function LeftToolBar() {
               title="delete element"
               onClick={(e) => {
                 deleteElement(glob_context.hashmap.active_id);
-                glob_context.setrefresh(!glob_context.refresh);
+                sethashmap((s) => {
+                  return { ...s, refresh: !hashmap.refresh };
+                });
               }}
             ></i>
           </div>

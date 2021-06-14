@@ -14,8 +14,10 @@ body {
   font: normal 400 16px/20px Inter, sans-serif;
 }
 
-.main {
-  min-width: 900px;
+.abort-mobile-device,
+.main,
+.output-wrapper {
+  min-width: 1024px;
 }
 
 .abort-mobile-device {

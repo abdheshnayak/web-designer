@@ -5,6 +5,7 @@ import {
   getBody,
   getCssStyles,
   getDesign,
+  getIdByDesign,
   getOffset,
   setDesignElement,
   updateDesign,
@@ -15,8 +16,7 @@ import css from "css";
 function DesignScreen() {
   const context = useContext(GlobPreference);
   const [zoomValue, setzoomValue] = useState(100);
-  const { is_css_editor_on, set_is_css_editor_on, setrefresh, refresh } =
-    context;
+  const { hashmap, sethashmap } = context;
 
   useEffect(() => {
     window.body.className = window.body.className || "designRoot";
@@ -52,13 +52,30 @@ function DesignScreen() {
 
     setDesignElement(getBody()._id, iframe.body);
 
+    iframe.body.addEventListener("click", (e) => {
+      sethashmap((s) => {
+        return { ...s, active_id: getIdByDesign(e.target) };
+      });
+    });
+
+    iframe.body.addEventListener("mouseover", (e) => {
+      sethashmap((s) => {
+        return { ...s, tree_hover_id: getIdByDesign(e.target) };
+      });
+    });
+    iframe.body.addEventListener("mouseleave", (e) => {
+      sethashmap((s) => {
+        return { ...s, tree_hover_id: null };
+      });
+    });
+
     iframe.body.innerText = null;
     iframe.head.innerText = null;
     iframe.head.appendChild(viewport);
     iframe.head.appendChild(StylesDom);
     updateDesign(window.body, iframe.body, context.sethashmap);
     iframe.body.classList.add(window.body.className);
-  }, [context.refresh]);
+  }, [hashmap.refresh]);
 
   //   hashMap.setDesignDom(body, iframe.body);
   const [overlay_style, setoverlay_style] = useState({});
@@ -152,28 +169,30 @@ function DesignScreen() {
           <div className="screen-size-bar-inner">
             <span
               onClick={(e) => {
-                if (is_css_editor_on === "single") {
-                  set_is_css_editor_on("no");
-                } else {
-                  set_is_css_editor_on("single");
-                }
-                console.log(is_css_editor_on);
+                sethashmap((s) => {
+                  return {
+                    ...s,
+                    is_tree_editor_on: !hashmap.is_tree_editor_on,
+                  };
+                });
               }}
-              className={is_css_editor_on == "single" ? "active" : ""}
+              className={!hashmap.is_tree_editor_on ? "active" : ""}
             >
-              Css Editor
+              Tree
             </span>
+
             <span
               onClick={(e) => {
-                if (is_css_editor_on === "all") {
-                  set_is_css_editor_on("no");
-                } else {
-                  set_is_css_editor_on("all");
-                }
+                sethashmap((s) => {
+                  return {
+                    ...s,
+                    is_properties_editor_on: !hashmap.is_properties_editor_on,
+                  };
+                });
               }}
-              className={is_css_editor_on == "all" ? "active" : ""}
+              className={!hashmap.is_properties_editor_on ? "active" : ""}
             >
-              View Css
+              Properties
             </span>
           </div>
         </div>
@@ -200,6 +219,61 @@ function DesignScreen() {
           </div>
         </div>
         <div className="bottom-bar">
+          <div className="screen-size-bar-inner bottom">
+            <span
+              onClick={(e) => {
+                if (hashmap.is_css_editor_on === "single") {
+                  sethashmap((s) => {
+                    return { ...s, is_css_editor_on: "no" };
+                  });
+                } else {
+                  sethashmap((s) => {
+                    return { ...s, is_css_editor_on: "single" };
+                  });
+                }
+              }}
+              className={hashmap.is_css_editor_on == "single" ? "active" : ""}
+            >
+              Css Editor
+            </span>
+            <span
+              onClick={(e) => {
+                if (hashmap.is_css_editor_on === "all") {
+                  sethashmap((s) => {
+                    return { ...s, is_css_editor_on: "no" };
+                  });
+                } else {
+                  sethashmap((s) => {
+                    return { ...s, is_css_editor_on: "all" };
+                  });
+                }
+              }}
+              className={hashmap.is_css_editor_on == "all" ? "active" : ""}
+            >
+              View Css
+            </span>
+            <span
+              onClick={(e) => {
+                sethashmap((s) => {
+                  return {
+                    ...s,
+                    is_css_editor_to_right: !hashmap.is_css_editor_to_right,
+                  };
+                });
+              }}
+            >
+              {hashmap.is_css_editor_to_right ? (
+                <>
+                  To Bottom <i className="fad fa-arrow-down"></i>
+                </>
+              ) : (
+                <>
+                  To Right <i className="fad fa-arrow-right"></i>
+                </>
+              )}
+            </span>
+          </div>
+
           <div className="zoom-bar">
             <i
               className="fas fa-plus"

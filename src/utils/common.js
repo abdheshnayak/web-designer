@@ -1,6 +1,11 @@
-import DomObject from "../objects/DomObject";
+import DomObject from "./DomObject";
 
-import { array_move, getItemIndex, getParent } from "./methods";
+import {
+  array_move,
+  generateClassName,
+  getItemIndex,
+  getParent,
+} from "./methods";
 
 export const getBody = (from_local) => {
   if (!from_local && window.body) return window.body;
@@ -61,7 +66,7 @@ export const moveUpDown = (element, upOrDown) => {
 export const getCssStyles = (elementOuter, string = "", styleScreen) => {
   var stl = elementOuter.getStyles({ styleScreen: styleScreen });
   if (stl.trim()) {
-    var tempString = "." + elementOuter.className + "{" + stl + "}";
+    var tempString = "." + elementOuter.class_name + "{" + stl + "}";
   } else tempString = "";
 
   elementOuter.childrens.forEach((element) => {
@@ -73,11 +78,11 @@ export const getCssStyles = (elementOuter, string = "", styleScreen) => {
 export const updateDesign = (para, designRoot, sethashmap) => {
   para.childrens.forEach((element) => {
     var elementDom = document.createElement(element.element);
-    if (element.className) {
-      elementDom.classList.add(element.className);
-    }
-    if (!element.text) {
-      element.text = "hello";
+    if (element.class_name) {
+      elementDom.classList.add(element.class_name);
+    } else {
+      element.class_name = generateClassName(8);
+      elementDom.classList.add(element.class_name);
     }
 
     elementDom.innerText = element.text || "";

@@ -1,40 +1,107 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { GlobPreference } from "../App";
+import { getBody, getVirtualElement, setBody } from "../utils/common";
 
 function RightToolBar() {
+  const context = useContext(GlobPreference);
+  const { hashmap, sethashmap } = context;
+
+  const [fields_text, setfields_text] = useState({
+    html_text: "",
+    name_field: "",
+    class_field: "",
+    id_field: "",
+  });
+
+  useEffect(() => {
+    if (!hashmap.active_id) return;
+
+    var element = getVirtualElement(hashmap.active_id);
+
+    setfields_text((s) => {
+      return {
+        ...s,
+        html_text: element.text || "",
+        name_field: element.name || "",
+        class_field: element.class_name || "",
+        id_field: element.id || "",
+      };
+    });
+  }, [hashmap.active_id]);
+
+  const onTextFieldChange = (e) => {
+    if (!hashmap.active_id) return;
+
+    var { name, value } = e.target;
+
+    value = value.replaceAll(" ", "-");
+
+    var element = getVirtualElement(hashmap.active_id);
+
+    switch (name) {
+      case "html_text":
+        element.text = value;
+        break;
+      case "name_field":
+        element.name = value;
+        break;
+      case "class_field":
+        element.class_name = value;
+        break;
+      case "id_field":
+        element.id = value;
+        break;
+    }
+
+    setBody(getBody());
+
+    // getBody(true);
+
+    sethashmap((s) => {
+      return { ...s, refresh: !hashmap.refresh };
+    });
+
+    setfields_text((s) => {
+      return { ...s, [name]: value };
+    });
+  };
+
   return (
     <div className="right-toolbar toolbar">
       <div className="toolbar-block" id="right-toolbar-block">
-        <div className="tool-container-outer">
-          <div className="css-editor-button-wrapper">
-            <span className="css-editor-button active" id="css-edit-button">
-              Css Editor
-            </span>
-          </div>
-        </div>
-
-        <div className="tool-container-outer" id="code-editor-block">
-          <div className="css-info">This will override current css</div>
-          <div className="css-editor-textarea-outer">
-            <div id="css-editor-textarea" className="css-editor-textarea"></div>
-          </div>
-        </div>
-        {/* <!-- Override Css Block end--> */}
-
         {/* <!-- Elements Properties Start --> */}
         <div className="tool-container-outer">
           <span className="title">Element Properties</span>
           <div className="tool-container">
             <div className="row item-2">
               <span>name</span>
-              <input id="name-field" type="text" placeholder="abc" />
+              <input
+                name="name_field"
+                type="text"
+                placeholder="abc"
+                value={fields_text.name_field}
+                onChange={onTextFieldChange}
+              />
             </div>
             <div className="row item-2">
               <span>class</span>
-              <input type="text" id="class-field" placeholder="abc-class" />
+              <input
+                type="text"
+                name="class_field"
+                placeholder="class-name"
+                value={fields_text.class_field}
+                onChange={onTextFieldChange}
+              />
             </div>
             <div className="row item-2">
               <span>id</span>
-              <input type="text" id="id-field" placeholder="abc-element" />
+              <input
+                type="text"
+                name="id_field"
+                value={fields_text.id_field}
+                onChange={onTextFieldChange}
+                placeholder="abc-element"
+              />
             </div>
           </div>
         </div>
@@ -45,8 +112,14 @@ function RightToolBar() {
           <span className="title">HTML</span>
           <div className="tool-container">
             <div className="row item-2">
-              <span>Text</span>
-              <input type="text" id="html-text-field" placeholder="auto" />
+              <textarea
+                name="html_text"
+                cols="30"
+                rows="10"
+                placeholder="HTML text"
+                value={fields_text.html_text}
+                onChange={onTextFieldChange}
+              ></textarea>
             </div>
           </div>
         </div>
@@ -62,105 +135,6 @@ function RightToolBar() {
           <div className="tool-container" id="attributes-block"></div>
         </div>
         {/* <!-- Width & Height End --> */}
-
-        {/* <!-- Width & Height start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Width & Height</span>
-            <i className="far fa-plus" id="add-width&height-button"></i>
-          </div>
-
-          <div className="tool-container" id="WH-block"></div>
-        </div>
-        {/* <!-- Width & Height End --> */}
-
-        {/* <!-- Absolute Value start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Absolute Values</span>
-            <i className="far fa-plus" id="add-absolute_value-button"></i>
-          </div>
-
-          <div className="tool-container" id="absolute_value-block"></div>
-        </div>
-        {/* <!-- Absolute Value End --> */}
-
-        {/* <!-- Margin start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Margin</span>
-            <i className="far fa-plus" id="add-margin-button"></i>
-          </div>
-
-          <div className="tool-container" id="margin-block"></div>
-        </div>
-        {/* <!-- Margin End --> */}
-
-        {/* <!-- Padding start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Padding</span>
-            <i className="far fa-plus" id="add-padding-button"></i>
-          </div>
-
-          <div className="tool-container" id="padding-block"></div>
-        </div>
-        {/* <!-- Padding End --> */}
-
-        {/* <!-- display start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Display</span>
-            <i className="far fa-plus" id="add-display-button"></i>
-          </div>
-
-          <div className="tool-container" id="display-block"></div>
-        </div>
-        {/* <!-- display End --> */}
-
-        {/* <!-- Position start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Position</span>
-            <i className="far fa-plus" id="add-position-button"></i>
-          </div>
-
-          <div className="tool-container" id="position-block"></div>
-        </div>
-        {/* <!-- position End --> */}
-
-        {/* <!-- Color start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Color</span>
-            <i className="far fa-plus" id="add-color-button"></i>
-          </div>
-
-          <div className="tool-container" id="color-block"></div>
-        </div>
-        {/* <!-- Color End --> */}
-
-        {/* <!-- Background-Color start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">Background Color</span>
-            <i className="far fa-plus" id="add-background_color-button"></i>
-          </div>
-
-          <div className="tool-container" id="backgound_color-block"></div>
-        </div>
-        {/* <!-- Background-Color End --> */}
-
-        {/* <!-- Border start --> */}
-        <div className="tool-container-outer">
-          <div className="title-cont">
-            <span className="title">border</span>
-            <i className="far fa-plus" id="add-border-button"></i>
-          </div>
-
-          <div className="tool-container" id="border-block"></div>
-        </div>
-        {/* <!-- Border End --> */}
       </div>
     </div>
   );

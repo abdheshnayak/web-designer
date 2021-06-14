@@ -9,9 +9,7 @@ import { createContext, useEffect, useState } from "react";
 export const GlobPreference = createContext();
 
 function App() {
-  const [hashmap, sethashmap] = useState({});
-  const [refresh, setrefresh] = useState(true);
-  const [is_css_editor_on, set_is_css_editor_on] = useState("single");
+  const [hashmap, sethashmap] = useState({ is_css_editor_on: "single" });
 
   useEffect(() => {
     sethashmap((s) => {
@@ -27,10 +25,6 @@ function App() {
       value={{
         hashmap,
         sethashmap,
-        refresh,
-        setrefresh,
-        is_css_editor_on,
-        set_is_css_editor_on,
       }}
     >
       <Designer />

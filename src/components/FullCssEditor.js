@@ -19,13 +19,7 @@ import beautify from "cssbeautify";
 
 function FullCssEditor() {
   const context = useContext(GlobPreference);
-  const {
-    is_css_editor_on,
-    set_is_css_editor_on,
-    hashmap,
-    setrefresh,
-    refresh,
-  } = context;
+  const { hashmap, sethashmap } = context;
 
   const [css_code, setcss_code] = useState("");
   const [class_name, setclass_name] = useState("");
@@ -65,7 +59,9 @@ function FullCssEditor() {
 
     setcss_code(newtext);
 
-    setrefresh(!refresh);
+    sethashmap((s) => {
+      return { ...s, refresh: !hashmap.refresh };
+    });
   };
 
   const editor_ref = useRef();
@@ -84,7 +80,7 @@ function FullCssEditor() {
         getCssStyles(getBody(), "", screen_dict[hashmap["screen_class"]])
       )
     );
-  }, [context.hashmap["screen_class"], is_css_editor_on]);
+  }, [context.hashmap["screen_class"], hashmap.is_css_editor_on]);
 
   const [read_mode, setread_mode] = useState(false);
 
@@ -94,17 +90,19 @@ function FullCssEditor() {
     } else {
       setread_mode(false);
     }
-    console.log(e.cursor.row);
+    // console.log(e.cursor.row);
   };
 
   return (
     <>
-      {is_css_editor_on === "all" && (
+      {hashmap.is_css_editor_on === "all" && (
         <AceEditor
-          className="css-editor-bottom"
+          className={
+            "css-editor-bottom" +
+            (hashmap.is_css_editor_to_right ? " right" : "")
+          }
           style={{ borderTop: "0.15rem solid #18a0fb" }}
           ref={editor_ref}
-          height="20rem"
           width="100%"
           fontSize="1.25rem"
           mode="css"
