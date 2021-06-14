@@ -12,6 +12,7 @@ import {
 } from "../utils/common";
 
 import css from "css";
+import { generateClassName } from "../utils/methods";
 
 function DesignScreen() {
   const context = useContext(GlobPreference);
@@ -19,24 +20,29 @@ function DesignScreen() {
   const { hashmap, sethashmap } = context;
 
   useEffect(() => {
-    window.body.className = window.body.className || "designRoot";
+    window.body.class_name = window.body.class_name || "designRoot";
+
     var viewport = document.createElement("meta");
     viewport.setAttribute("name", "viewport");
     viewport.setAttribute("content", "width=device-width");
 
     var StylesDom = document.createElement("style");
 
-    StylesDom.innerText = getCssStyles(window.body, "", "styles");
+    var style_string = "";
 
-    StylesDom.innerText +=
+    style_string = getCssStyles(window.body, "", "styles");
+
+    style_string +=
       "@media screen and (max-width: 1025px) {" +
       getCssStyles(window.body, "", "tabletStyles") +
       "}";
 
-    StylesDom.innerText +=
+    style_string +=
       "@media screen and (max-width: 415px) {" +
       getCssStyles(window.body, "", "mobileStyles") +
       "}";
+
+    StylesDom.innerText = style_string.replaceAll("\n", " ");
 
     var x = document.getElementById("designRoot");
 
@@ -74,7 +80,8 @@ function DesignScreen() {
     iframe.head.appendChild(viewport);
     iframe.head.appendChild(StylesDom);
     updateDesign(window.body, iframe.body, context.sethashmap);
-    iframe.body.classList.add(window.body.className);
+    iframe.body.classList = "";
+    iframe.body.classList.add(window.body.class_name);
   }, [hashmap.refresh]);
 
   //   hashMap.setDesignDom(body, iframe.body);
