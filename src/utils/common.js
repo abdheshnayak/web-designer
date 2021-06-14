@@ -84,6 +84,9 @@ export const updateDesign = (para, designRoot, sethashmap) => {
       element.class_name = generateClassName(8);
       elementDom.classList.add(element.class_name);
     }
+    if (element.id) {
+      elementDom.id = element.id;
+    }
 
     elementDom.innerText = element.text || "";
 

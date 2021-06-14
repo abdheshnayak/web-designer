@@ -34,7 +34,7 @@ function RightToolBar() {
 
     var { name, value } = e.target;
 
-    value = value.replaceAll(" ", "-");
+    if (name !== "html_text") value = value.replaceAll(" ", "-");
 
     var element = getVirtualElement(hashmap.active_id);
 

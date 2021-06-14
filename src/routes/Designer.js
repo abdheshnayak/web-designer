@@ -15,6 +15,7 @@ import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
+import HtmlEditor from "../components/HtmlEditor";
 
 function Designer() {
   //   useEffect(() => {
@@ -143,6 +144,7 @@ function Designer() {
                 <>
                   <CssEditor />
                   <FullCssEditor />
+                  <HtmlEditor />
                 </>
               )}
             </div>
@@ -152,6 +154,7 @@ function Designer() {
               {" "}
               <CssEditor />
               <FullCssEditor />
+              <HtmlEditor />
             </>
           )}
         </div>

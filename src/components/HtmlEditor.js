@@ -4,7 +4,7 @@ import AceEditor from "react-ace";
 
 import "ace-builds";
 import "ace-builds/webpack-resolver";
-import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 import {
@@ -15,19 +15,18 @@ import {
 } from "../utils/common";
 import beautify from "beautify";
 
-function FullCssEditor() {
+function HtmlEditor() {
   const context = useContext(GlobPreference);
   const { hashmap, sethashmap } = context;
 
-  const [css_code, setcss_code] = useState("");
-  const [class_name, setclass_name] = useState("");
+  const [html_code, sethtml_code] = useState("");
 
   const onChange = (newValue) => {
     if (!hashmap.active_id) {
       console.log(hashmap.active_id);
 
-      setcss_code(" ");
-      console.log(css_code);
+      sethtml_code(" ");
+      console.log(html_code);
       return true;
     }
 
@@ -55,7 +54,7 @@ function FullCssEditor() {
 
     setBody(getBody());
 
-    setcss_code(newtext);
+    sethtml_code(newtext);
 
     sethashmap((s) => {
       return { ...s, refresh: !hashmap.refresh };
@@ -65,21 +64,19 @@ function FullCssEditor() {
   const editor_ref = useRef();
 
   useEffect(() => {
-    var screen_dict = {
-      desktop: "styles",
-      mobile: "mobileStyles",
-      tablet: "tabletStyles",
-    };
+    var x = document.getElementById("designRoot");
 
-    // console.log(element[screen_dict[hashmap.screen_class]].cssOverride);
+    var iframe = x.contentWindow || x.contentDocument;
+    if (iframe.document) iframe = iframe.document;
 
-    setcss_code(
-      beautify(
-        getCssStyles(getBody(), "", screen_dict[hashmap["screen_class"]]),
-        { format: "css" }
-      )
+    var fakeBody = iframe.body.cloneNode(true);
+
+    sethtml_code(
+      beautify(fakeBody.outerHTML, {
+        format: "html",
+      })
     );
-  }, [hashmap["screen_class"], hashmap.is_css_editor_on]);
+  }, [hashmap["screen_class"], hashmap.is_css_editor_on, hashmap.refresh]);
 
   const [read_mode, setread_mode] = useState(false);
 
@@ -94,7 +91,7 @@ function FullCssEditor() {
 
   return (
     <>
-      {hashmap.is_css_editor_on === "all" && (
+      {hashmap.is_css_editor_on === "html" && (
         <AceEditor
           className={
             "css-editor-bottom" +
@@ -104,14 +101,14 @@ function FullCssEditor() {
           ref={editor_ref}
           width="100%"
           fontSize="1.25rem"
-          mode="css"
+          mode="html"
           theme="monokai"
           onChange={onChange}
           name="UNIQUE_ID_OF_DIV"
           editorProps={{ $blockScrolling: true }}
           //   enableBasicAutocompletion={true}
           enableLiveAutocompletion={true}
-          value={css_code}
+          value={html_code}
           enableSnippets={true}
           readOnly={true}
           onCursorChange={onCursorChange}
@@ -121,4 +118,4 @@ function FullCssEditor() {
   );
 }
 
-export default FullCssEditor;
+export default HtmlEditor;

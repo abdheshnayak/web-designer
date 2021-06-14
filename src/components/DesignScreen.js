@@ -252,6 +252,24 @@ function DesignScreen() {
             >
               View Css
             </span>
+
+            <span
+              onClick={(e) => {
+                if (hashmap.is_css_editor_on === "html") {
+                  sethashmap((s) => {
+                    return { ...s, is_css_editor_on: "no" };
+                  });
+                } else {
+                  sethashmap((s) => {
+                    return { ...s, is_css_editor_on: "html" };
+                  });
+                }
+              }}
+              className={hashmap.is_css_editor_on == "html" ? "active" : ""}
+            >
+              Html Inspect
+            </span>
+
             <span
               onClick={(e) => {
                 sethashmap((s) => {
