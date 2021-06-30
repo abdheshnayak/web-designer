@@ -78,6 +78,21 @@ function DesignScreen() {
     updateDesign(window.body, iframe.body, context.sethashmap);
     iframe.body.classList = "";
     iframe.body.classList.add(window.body.class_name);
+
+    // save to server
+    axios({
+      url: "https://api.anayak.com.np/design/save",
+      method: "post",
+      data: { design: getJsonString(), id: getDesignServerId() },
+    })
+      .then((res) => {
+        if (!getDesignServerId()) {
+          saveDesignServerId(res.data.id);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [hashmap.refresh]);
 
   //   hashMap.setDesignDom(body, iframe.body);
