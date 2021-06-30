@@ -2,14 +2,20 @@ import "./reset.scss";
 import "./main.scss";
 import Designer from "./routes/Designer";
 import { createContext, useEffect, useState } from "react";
-
-// import "ace-builds/src-noconflict/mode-css";
-// import "ace-builds/src-noconflict/theme-github";
+import { getSavedActive, saveActive } from "./utils/common";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import BrowseFullPage from "./routes/BrowseFullPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const GlobPreference = createContext();
 
 function App() {
   const [hashmap, sethashmap] = useState({ is_css_editor_on: "single" });
+
+  useEffect(() => {
+    saveActive(hashmap.active_id);
+  }, [hashmap.active_id]);
 
   useEffect(() => {
     sethashmap((s) => {
@@ -27,7 +33,17 @@ function App() {
         sethashmap,
       }}
     >
-      <Designer />
+      <ToastContainer />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Designer />
+          </Route>
+          <Route path="/view/:id" component={BrowseFullPage} />
+
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     </GlobPreference.Provider>
   );
 }

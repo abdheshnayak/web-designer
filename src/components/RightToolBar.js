@@ -18,6 +18,8 @@ function RightToolBar() {
 
     var element = getVirtualElement(hashmap.active_id);
 
+    if (!element) return;
+
     setfields_text((s) => {
       return {
         ...s,

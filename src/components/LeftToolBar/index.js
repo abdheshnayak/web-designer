@@ -5,6 +5,7 @@ import {
   moveUpDown,
   deleteElement,
   setVirtualElement,
+  getSavedActive,
 } from "../../utils/common";
 import ElementsList from "./ElementsList";
 import TreeItem from "./TreeItems";
@@ -16,6 +17,12 @@ function LeftToolBar() {
 
   useEffect(() => {
     setVirtualElement(getBody()._id, getBody());
+
+    if (getBody()._id === getSavedActive()) {
+      sethashmap((s) => {
+        return { ...s, active_id: getSavedActive() };
+      });
+    }
   }, [getBody()]);
 
   return (

@@ -5,7 +5,13 @@ import DesignScreen from "../components/DesignScreen";
 import FullCssEditor from "../components/FullCssEditor";
 import LeftToolBar from "../components/LeftToolBar";
 import RightToolBar from "../components/RightToolBar";
-import { getBody, getCssStyles } from "../utils/common";
+import {
+  getBody,
+  getCssStyles,
+  getDesignServerId,
+  getJsonString,
+  saveDesignServerId,
+} from "../utils/common";
 
 import beautify from "beautify";
 
@@ -16,6 +22,8 @@ import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 import HtmlEditor from "../components/HtmlEditor";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function Designer() {
   //   useEffect(() => {
@@ -27,6 +35,26 @@ function Designer() {
 
   const context = useContext(GlobPreference);
   const { hashmap } = context;
+
+  const saveToServer = () => {
+    axios({
+      url: "https://api.anayak.com.np/design/save",
+      method: "post",
+      data: { design: getJsonString(), id: getDesignServerId() },
+    })
+      .then((res) => {
+        // console.log(res.data);
+        if (!getDesignServerId()) {
+          saveDesignServerId(res.data.id);
+        }
+
+        window.open("/view/" + "lrzou", "_blank");
+      })
+      .catch((err) => {
+        toast.error("Something Went Wrong");
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -69,14 +97,11 @@ function Designer() {
           {/* <!-- Navebar(header) start --> */}
           <div className="navbar">
             {/* <!-- menu button --> */}
-            <div className="nav-button hide">
+            <div className="nav-button">
               <i className="far fa-bars"></i>
               <span>Menu</span>
             </div>
             {/* <!-- menu button end --> */}
-
-            {/* <!-- Designer Name(brand) --> */}
-            <div className="nav-button disabled">Web Designer</div>
 
             {/* <!-- Code Download button --> */}
             <div
@@ -114,7 +139,7 @@ function Designer() {
 
             {/* <!-- reset button --> */}
             <div
-              className="nav-button"
+              className="nav-button hide"
               onClick={(e) => {
                 localStorage.clear();
                 getBody(true);
@@ -124,6 +149,12 @@ function Designer() {
               <i className="far fa-trash"></i>
               <span>Delete Design</span>
             </div>
+            {/* <!-- Designer Name(brand) --> */}
+            <div className="nav-button" onClick={saveToServer}>
+              Share Link
+            </div>
+
+            <div className="nav-button disabled">Web Designer</div>
           </div>
           {/* <!-- navbar end --> */}
 

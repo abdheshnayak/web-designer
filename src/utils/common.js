@@ -26,6 +26,10 @@ export const setBody = (body) => {
   localStorage.setItem("savedDesign", JSON.stringify(body));
 };
 
+export const getJsonString = () => {
+  return JSON.stringify(getBody());
+};
+
 export const getElementIcon = (element) => {
   switch (element) {
     case "a":
@@ -190,4 +194,35 @@ export const getOffset = (el) => {
     el = el.offsetParent;
   }
   return { top: _y, left: _x };
+};
+
+export const saveActive = (active_id) => {
+  localStorage.setItem("active_id", active_id);
+};
+
+export const getSavedActive = () => {
+  return localStorage.getItem("active_id");
+};
+
+export const saveDesignServerId = (server_id_of_design) => {
+  localStorage.setItem("design_server_id", server_id_of_design);
+};
+
+export const getDesignServerId = () => {
+  return localStorage.getItem("design_server_id");
+};
+
+export const JsonStringToBody = (json_string) => {
+  var savedObject = json_string;
+
+  var result;
+
+  if (savedObject) {
+    savedObject = JSON.parse(savedObject);
+    result = new DomObject(savedObject);
+  } else {
+    result = new DomObject();
+  }
+
+  return result;
 };

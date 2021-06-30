@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import uuid from "react-uuid";
 import { GlobPreference } from "../App";
 import {
   getBody,
@@ -10,9 +9,6 @@ import {
   setDesignElement,
   updateDesign,
 } from "../utils/common";
-
-import css from "css";
-import { generateClassName } from "../utils/methods";
 
 function DesignScreen() {
   const context = useContext(GlobPreference);
