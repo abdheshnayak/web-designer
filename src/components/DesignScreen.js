@@ -1,11 +1,15 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobPreference } from "../App";
 import {
   getBody,
   getCssStyles,
   getDesign,
+  getDesignServerId,
   getIdByDesign,
+  getJsonString,
   getOffset,
+  saveDesignServerId,
   setDesignElement,
   updateDesign,
 } from "../utils/common";
@@ -80,6 +84,7 @@ function DesignScreen() {
     iframe.body.classList.add(window.body.class_name);
 
     // save to server
+
     axios({
       url: "https://api.anayak.com.np/design/save",
       method: "post",
