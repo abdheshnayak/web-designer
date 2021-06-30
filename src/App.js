@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import BrowseFullPage from "./routes/BrowseFullPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AllDesignes from "./routes/AllDesignes";
 
 export const GlobPreference = createContext();
 
@@ -40,6 +41,9 @@ function App() {
             <Designer />
           </Route>
           <Route path="/view/:id" component={BrowseFullPage} />
+          <Route path="/all-designs">
+            <AllDesignes />
+          </Route>
 
           <Redirect to="/" />
         </Switch>
