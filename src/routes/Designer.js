@@ -48,7 +48,7 @@ function Designer() {
           saveDesignServerId(res.data.id);
         }
 
-        window.open("/view/" + "lrzou", "_blank");
+        window.open("/view/" + res.data.id, "_blank");
       })
       .catch((err) => {
         toast.error("Something Went Wrong");
