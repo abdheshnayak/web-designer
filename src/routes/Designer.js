@@ -35,6 +35,7 @@ function Designer() {
 
   const context = useContext(GlobPreference);
   const { hashmap } = context;
+  const [menu_active, setmenu_active] = useState(false);
 
   const saveToServer = () => {
     axios({
@@ -97,62 +98,101 @@ function Designer() {
           {/* <!-- Navebar(header) start --> */}
           <div className="navbar">
             {/* <!-- menu button --> */}
-            <div className="nav-button">
-              <i className="far fa-bars"></i>
+            <div
+              className={"nav-button" + (menu_active ? " active" : "")}
+              onClick={(e) => {
+                if (
+                  e.target.classList.contains("nav-button") ||
+                  e.target.parentElement.classList.contains("nav-button")
+                )
+                  setmenu_active(!menu_active);
+              }}
+            >
+              <i
+                className={
+                  "far " + (!menu_active ? " fa-bars" : " fa-window-close")
+                }
+              ></i>
               <span>Menu</span>
+              <div className={"menu-item" + (menu_active ? "" : " hide")}>
+                {/* code button */}
+                <div
+                  className="menu-item-button"
+                  onClick={(e) => {
+                    var mydom = document.createElement("html");
+                    // mydom.innerHTML = "";
+
+                    var x = document.getElementById("designRoot");
+
+                    var iframe = x.contentWindow || x.contentDocument;
+                    if (iframe.document) iframe = iframe.document;
+
+                    mydom.appendChild(iframe.head.cloneNode(true));
+                    mydom.appendChild(iframe.body.cloneNode(true));
+
+                    setouput_code(
+                      beautify(
+                        beautify("<!DOCTYPE html>" + mydom.outerHTML, {
+                          format: "css",
+                        }),
+                        { format: "html" }
+                      )
+                    );
+
+                    setis_output_window_open(true);
+
+                    setmenu_active(!menu_active);
+                  }}
+                >
+                  <i className="fad fa-code"></i>
+                  <span>Code</span>
+                </div>
+
+                {/* <!-- Designer Name(brand) --> */}
+                <div
+                  className="menu-item-button"
+                  onClick={(e) => {
+                    saveToServer();
+                    setmenu_active(!menu_active);
+                  }}
+                >
+                  <i className="far fa-share-alt"></i>
+                  <span> Share Link</span>{" "}
+                </div>
+
+                <div
+                  className="menu-item-button"
+                  onClick={(e) => {
+                    window.open(
+                      "https://wd.anayak.com.np/all-designs",
+                      "_blank"
+                    );
+                  }}
+                >
+                  <i className="far fa-ballot"></i>
+                  <span>All Designs</span>
+                </div>
+
+                <hr />
+                {/* Delete Design */}
+                <div
+                  className="menu-item-button"
+                  onClick={(e) => {
+                    setmenu_active(!menu_active);
+                    localStorage.clear();
+                    getBody(true);
+
+                    window.location.pathname = "/";
+                  }}
+                >
+                  <i className="far fa-trash"></i>
+                  <span>Delete Design</span>
+                </div>
+              </div>
             </div>
             {/* <!-- menu button end --> */}
 
-            {/* <!-- Code Download button --> */}
-            <div
-              className="nav-button"
-              id="download-button"
-              title="download current design"
-              onClick={(e) => {
-                var mydom = document.createElement("html");
-                // mydom.innerHTML = "";
-
-                var x = document.getElementById("designRoot");
-
-                var iframe = x.contentWindow || x.contentDocument;
-                if (iframe.document) iframe = iframe.document;
-
-                mydom.appendChild(iframe.head.cloneNode(true));
-                mydom.appendChild(iframe.body.cloneNode(true));
-
-                setouput_code(
-                  beautify(
-                    beautify("<!DOCTYPE html>" + mydom.outerHTML, {
-                      format: "css",
-                    }),
-                    { format: "html" }
-                  )
-                );
-
-                setis_output_window_open(true);
-              }}
-            >
-              <i className="fad fa-code"></i>
-              <span>Code</span>
-            </div>
             {/* <!-- download button end --> */}
-
-            {/* <!-- reset button --> */}
-            <div
-              className="nav-button hide"
-              onClick={(e) => {
-                localStorage.clear();
-                getBody(true);
-                window.location.pathname = "/";
-              }}
-            >
-              <i className="far fa-trash"></i>
-              <span>Delete Design</span>
-            </div>
-            {/* <!-- Designer Name(brand) --> */}
-            <div className="nav-button" onClick={saveToServer}>
-              Share Link
-            </div>
 
             <div className="nav-button disabled">Web Designer</div>
           </div>
