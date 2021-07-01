@@ -780,7 +780,7 @@ $active-menu-background: #18a0fb;
   filter: drop-shadow(0px 0px 6px $nav-color);
   color: white;
   font-size: 0.85rem;
-  animation: fade-in 0.2s ease-in-out;
+  animation: fade-in 0.1s linear;
 
   &:before {
     content: " ";
