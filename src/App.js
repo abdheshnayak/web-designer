@@ -23,6 +23,7 @@ function App() {
       return {
         ...s,
         screen_class: "desktop",
+        editor_height: "300",
       };
     });
   }, []);

@@ -81,8 +81,6 @@ function CssEditor() {
 
     getBody(true);
 
-    // console.log(element[screen_dict[hashmap.screen_class]].cssOverride);
-
     setcss_code(element[screen_dict[hashmap.screen_class]].cssOverride);
   }, [hashmap["active_id"], hashmap["screen_class"]]);
 
@@ -107,16 +105,16 @@ function CssEditor() {
   };
 
   return (
-    <>
+    <div>
       {hashmap.is_css_editor_on === "single" && hashmap.active_id && (
         <AceEditor
           className={
             "css-editor-bottom" +
             (hashmap.is_css_editor_to_right ? " right" : "")
           }
-          style={{ borderTop: "0.15rem solid #18a0fb" }}
           ref={editor_ref}
           width="100%"
+          height={hashmap.editor_height + "px"}
           fontSize="1.25rem"
           mode="css"
           theme="monokai"
@@ -131,7 +129,7 @@ function CssEditor() {
           onCursorChange={onCursorChange}
         />
       )}
-    </>
+    </div>
   );
 }
 

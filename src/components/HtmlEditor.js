@@ -97,9 +97,9 @@ function HtmlEditor() {
             "css-editor-bottom" +
             (hashmap.is_css_editor_to_right ? " right" : "")
           }
-          style={{ borderTop: "0.15rem solid #18a0fb" }}
           ref={editor_ref}
           width="100%"
+          height={hashmap.editor_height + "px"}
           fontSize="1.25rem"
           mode="html"
           theme="monokai"

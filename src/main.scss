@@ -26,7 +26,7 @@ $active-menu-background: #18a0fb;
   animation: load-editor 0.5s ease-in-out;
 
   position: relative;
-  height: 15rem !important;
+  // height: 15rem !important;
 
   &.right {
     height: auto !important;
@@ -817,5 +817,26 @@ $active-menu-background: #18a0fb;
   & > i,
   & > span {
     align-self: center;
+  }
+}
+
+.row-resizer {
+  height: 0.25rem;
+  cursor: row-resize;
+  background-color: $active-menu-background;
+  position: relative;
+  &:hover {
+    background-color: $color-white-dim;
+
+    &:after {
+      background-color: rgba($color: $active-menu-background, $alpha: 0.5);
+      height: 0.75rem;
+      content: " ";
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }

@@ -34,7 +34,7 @@ function Designer() {
   const [ouput_code, setouput_code] = useState("");
 
   const context = useContext(GlobPreference);
-  const { hashmap } = context;
+  const { sethashmap, hashmap } = context;
   const [menu_active, setmenu_active] = useState(false);
 
   const saveToServer = () => {
@@ -55,6 +55,19 @@ function Designer() {
         toast.error("Something Went Wrong");
         console.log(err);
       });
+  };
+
+  const row_resizer = (e) => {
+    var rt = document.getElementById("root");
+
+    if (e.clientY == 0) return;
+
+    sethashmap((s) => {
+      return {
+        ...s,
+        editor_height: rt.clientHeight - e.clientY,
+      };
+    });
   };
 
   return (
@@ -109,9 +122,7 @@ function Designer() {
               }}
             >
               <i
-                className={
-                  "far " + (!menu_active ? " fa-bars" : " fa-window-close")
-                }
+                className={"far " + (!menu_active ? " fa-bars" : " fa-times")}
               ></i>
               <span>Menu</span>
               <div className={"menu-item" + (menu_active ? "" : " hide")}>
@@ -222,7 +233,12 @@ function Designer() {
           </div>
           {!hashmap.is_css_editor_to_right && (
             <>
-              {" "}
+              <div
+                draggable="true"
+                className="row-resizer"
+                onDrag={row_resizer}
+              />
+
               <CssEditor />
               <FullCssEditor />
               <HtmlEditor />
