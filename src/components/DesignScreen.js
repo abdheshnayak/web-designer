@@ -304,7 +304,7 @@ function DesignScreen() {
               Html Inspect
             </span>
 
-            <span
+            {/* <span
               onClick={(e) => {
                 sethashmap((s) => {
                   return {
@@ -323,7 +323,7 @@ function DesignScreen() {
                   To Right <i className="fad fa-arrow-right"></i>
                 </>
               )}
-            </span>
+            </span> */}
           </div>
 
           <div className="zoom-bar">
