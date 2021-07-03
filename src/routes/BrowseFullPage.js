@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { apiBase } from "../config/config";
 import {
@@ -38,7 +38,7 @@ function BrowseFullPage(props) {
       getCssStyles(body, "", "mobileStyles") +
       "}";
 
-    StylesDom.innerText = style_string.replaceAll("\n", " ");
+    StylesDom.innerText = style_string.replace(/\n/g, " ");
 
     var x = document.getElementById("designRoot");
 
@@ -61,11 +61,13 @@ function BrowseFullPage(props) {
     iframe.body.classList.add(body.class_name);
   }, []);
   return (
-    <iframe
-      id="designRoot"
-      frameborder="0"
-      style={{ width: "100vw", height: "100vh" }}
-    ></iframe>
+    <>
+      <iframe
+        id="designRoot"
+        frameborder="0"
+        style={{ width: "100vw", height: "100vh" }}
+      ></iframe>
+    </>
   );
 }
 

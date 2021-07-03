@@ -43,7 +43,7 @@ function DesignScreen() {
       getCssStyles(window.body, "", "mobileStyles") +
       "}";
 
-    StylesDom.innerText = style_string.replaceAll("\n", " ");
+    StylesDom.innerText = style_string.replace(/\n/g, " ");
 
     var x = document.getElementById("designRoot");
 
