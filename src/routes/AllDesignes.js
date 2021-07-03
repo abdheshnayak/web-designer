@@ -27,8 +27,8 @@ function AllDesignes() {
           <div style={{ margin: ".5rem" }}>
             <span>{index + 1}. </span>
 
-            <a href={apiBase + "/view/" + item.id} target="_blank">
-              {apiBase}/view/{item.id}
+            <a href={"/view/" + item.id} target="_blank">
+              https://wd.anayak.com.np/view/{item.id}
             </a>
             <br />
           </div>
