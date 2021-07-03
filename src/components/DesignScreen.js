@@ -47,13 +47,6 @@ function DesignScreen() {
 
     var x = document.getElementById("designRoot");
 
-    //   x.contentWindow.addEventListener("wheel", wheelScrollHandler, {
-    //     passive: false,
-    //   });
-    //   x.contentDocument.addEventListener("wheel", wheelScrollHandler, {
-    //     passive: false,
-    //   });
-
     var iframe = x.contentWindow || x.contentDocument;
     if (iframe.document) iframe = iframe.document;
 

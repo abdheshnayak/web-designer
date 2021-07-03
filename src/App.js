@@ -8,6 +8,9 @@ import BrowseFullPage from "./routes/BrowseFullPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AllDesignes from "./routes/AllDesignes";
+import Login from "./modules/SignIn";
+import PublicRoute from "./auth-utils/PublicRoute";
+import SignUp from "./modules/SignIn/SignUp";
 
 export const GlobPreference = createContext();
 
@@ -49,7 +52,12 @@ function App() {
           <Route path="/all-designs">
             <AllDesignes />
           </Route>
-
+          <Route path="/sign-in">
+            <Login />
+          </Route>
+          <Route path="/sign-up">
+            <SignUp />
+          </Route>
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
