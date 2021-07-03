@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { apiBase } from "../config/config";
 
 function AllDesignes() {
   const [design_links, setdesign_links] = useState([]);
   useEffect(() => {
     axios({
-      url: "https://api.anayak.com.np/design/get-all/",
+      url: apiBase + "/design/get-all/",
       method: "get",
     })
       .then((res) => {
@@ -26,11 +27,8 @@ function AllDesignes() {
           <div style={{ margin: ".5rem" }}>
             <span>{index + 1}. </span>
 
-            <a
-              href={"https://wd.anayak.com.np/view/" + item.id}
-              target="_blank"
-            >
-              https://wd.anayak.com.np/view/{item.id}
+            <a href={apiBase + "/view/" + item.id} target="_blank">
+              {apiBase}/view/{item.id}
             </a>
             <br />
           </div>

@@ -14,6 +14,8 @@ export const GlobPreference = createContext();
 function App() {
   const [hashmap, sethashmap] = useState({ is_css_editor_on: "single" });
 
+  const [is_saving, setis_saving] = useState(0);
+
   useEffect(() => {
     saveActive(hashmap.active_id);
   }, [hashmap.active_id]);
@@ -33,6 +35,8 @@ function App() {
       value={{
         hashmap,
         sethashmap,
+        is_saving,
+        setis_saving,
       }}
     >
       <ToastContainer />

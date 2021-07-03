@@ -840,3 +840,16 @@ $active-menu-background: #18a0fb;
     }
   }
 }
+
+.anim-rotate {
+  @keyframes rotate-it {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  animation: rotate-it 1s infinite linear;
+}

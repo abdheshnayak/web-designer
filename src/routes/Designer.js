@@ -24,6 +24,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import HtmlEditor from "../components/HtmlEditor";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { apiBase } from "../config/config";
 
 function Designer() {
   //   useEffect(() => {
@@ -39,7 +40,7 @@ function Designer() {
 
   const saveToServer = () => {
     axios({
-      url: "https://api.anayak.com.np/design/save",
+      url: apiBase + "/design/save",
       method: "post",
       data: { design: getJsonString(), id: getDesignServerId() },
     })
@@ -174,10 +175,7 @@ function Designer() {
                 <div
                   className="menu-item-button"
                   onClick={(e) => {
-                    window.open(
-                      "https://wd.anayak.com.np/all-designs",
-                      "_blank"
-                    );
+                    window.open(apiBase + "/all-designs", "_blank");
                   }}
                 >
                   <i className="far fa-ballot"></i>
@@ -203,7 +201,19 @@ function Designer() {
             </div>
             {/* <!-- menu button end --> */}
 
-            {/* <!-- download button end --> */}
+            <div className="nav-button">
+              {context.is_saving == 0 ? (
+                <>
+                  <i className="far fa-check-circle"></i>
+                  <span>Saved</span>
+                </>
+              ) : (
+                <>
+                  <i className="far fa-sync anim-rotate"></i>
+                  <span>Saving</span>
+                </>
+              )}
+            </div>
 
             <div className="nav-button disabled">Web Designer</div>
           </div>

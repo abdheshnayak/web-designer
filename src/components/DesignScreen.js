@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobPreference } from "../App";
+import { apiBase } from "../config/config";
 import {
   getBody,
   getCssStyles,
@@ -85,17 +86,27 @@ function DesignScreen() {
 
     // save to server
 
+    context.setis_saving((s) => {
+      return s + 1;
+    });
+
     axios({
-      url: "https://api.anayak.com.np/design/save",
+      url: apiBase + "/design/save",
       method: "post",
       data: { design: getJsonString(), id: getDesignServerId() },
     })
       .then((res) => {
+        context.setis_saving((s) => {
+          return s - 1;
+        });
         if (!getDesignServerId()) {
           saveDesignServerId(res.data.id);
         }
       })
       .catch((err) => {
+        context.setis_saving((s) => {
+          return s - 1;
+        });
         console.log(err);
       });
   }, [hashmap.refresh]);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { apiBase } from "../config/config";
 import {
   getBody,
   getCssStyles,
@@ -11,7 +12,7 @@ import {
 function BrowseFullPage(props) {
   useEffect(async () => {
     var design = await axios({
-      url: "https://api.anayak.com.np/design/" + props.match.params.id,
+      url: apiBase + "/design/" + props.match.params.id,
     });
 
     var body = JsonStringToBody(design.data.design);
