@@ -201,18 +201,22 @@ function Designer() {
             </div>
             {/* <!-- menu button end --> */}
 
-            <div className="nav-button">
+            <div className="nav-button disabled file-name-progress">
               {context.is_saving == 0 ? (
-                <>
-                  <i className="far fa-check-circle"></i>
+                <span style={{ opacity: "0.5" }}>
+                  <i className="far fa-check-circle "></i>
                   <span>Saved</span>
-                </>
+                </span>
               ) : (
-                <>
+                <span style={{ opacity: "0.5" }}>
                   <i className="far fa-sync anim-rotate"></i>
                   <span>Saving</span>
-                </>
+                </span>
               )}
+              {/* <span style={{ opacity: "0.5" }}> | </span>
+              <div className="file-name" title="Untitled.html">
+                Untitled.html
+              </div> */}
             </div>
 
             <div className="nav-button disabled">Web Designer</div>

@@ -129,7 +129,8 @@ $active-menu-background: #18a0fb;
   color: $color-white-dim;
   display: inline-block;
   position: relative;
-  & > i {
+
+  i {
     margin-right: 0.5rem;
   }
   &.disabled {
@@ -852,4 +853,15 @@ $active-menu-background: #18a0fb;
   }
 
   animation: rotate-it 1s infinite linear;
+}
+
+.file-name-progress {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  .file-name {
+    text-overflow: ellipsis;
+    max-width: 5rem;
+    overflow: hidden;
+  }
 }
