@@ -175,7 +175,10 @@ function Designer() {
                 <div
                   className="menu-item-button"
                   onClick={(e) => {
-                    window.open(apiBase + "/all-designs", "_blank");
+                    window.open(
+                      "https://wd.anayak.com.np/all-designs",
+                      "_blank"
+                    );
                   }}
                 >
                   <i className="far fa-ballot"></i>
