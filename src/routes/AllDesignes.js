@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { apiBase } from "../config/config";
+import ItemView from "./ItemView";
 
 function AllDesignes() {
   const [design_links, setdesign_links] = useState([]);
@@ -20,20 +21,15 @@ function AllDesignes() {
   }, []);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>All Designs</h2>
-      {design_links.map((item, index) => {
-        return (
-          <div style={{ margin: ".5rem" }}>
-            <span>{index + 1}. </span>
-
-            <a href={"/view/" + item.id} target="_blank">
-              https://wd.anayak.com.np/view/{item.id}
-            </a>
-            <br />
-          </div>
-        );
-      })}
+    <div>
+      <div className="all-design-app-bar">
+        <h2>All Designs</h2>
+      </div>
+      <div className="iframes-holder">
+        {design_links.map((item, index) => {
+          return <ItemView id={item.id} index={index} />;
+        })}
+      </div>
     </div>
   );
 }

@@ -865,3 +865,69 @@ $active-menu-background: #18a0fb;
     overflow: hidden;
   }
 }
+
+.ifram-container {
+  background-color: white;
+  position: relative;
+
+  & > .open-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    i {
+      transition: all 0.4s ease-in-out;
+
+      font-size: 0;
+      position: relative;
+      top: 1.5rem;
+    }
+
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.25);
+      backdrop-filter: blur(0.5px);
+      i {
+        display: block;
+        top: 0;
+        font-size: 2rem;
+      }
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & > iframe {
+    zoom: 0.25;
+    -moz-transform: scale(1);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(1);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(1);
+    -webkit-transform-origin: 0 0;
+  }
+}
+
+.all-design-app-bar {
+  position: fixed;
+  z-index: 99;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0px 1px 3px rgba($color: #000000, $alpha: 0.29);
+  padding: 0.5rem;
+}
+
+.iframes-holder {
+  background: #eee;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
