@@ -74,14 +74,9 @@ function ItemView(props) {
       <div className="open-overlay" title="open in new tab">
         <i className="fad fa-external-link"></i>
       </div>
-      <iframe
-        ref={ref}
-        frameborder="0"
-        style={{
-          width: "1024px",
-          height: "780px",
-        }}
-      />
+      <div className="iframe-wrapper">
+        <iframe ref={ref} frameborder="0" />
+      </div>
       <hr />
       <div
         style={{

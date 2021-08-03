@@ -901,14 +901,25 @@ $active-menu-background: #18a0fb;
     justify-content: center;
     align-items: center;
   }
-  & > iframe {
-    zoom: 0.25;
-    -moz-transform: scale(1);
-    -moz-transform-origin: 0 0;
-    -o-transform: scale(1);
-    -o-transform-origin: 0 0;
-    -webkit-transform: scale(1);
-    -webkit-transform-origin: 0 0;
+  .iframe-wrapper {
+    // background-color: red;
+    height: 12rem;
+    width: 16rem;
+    overflow: hidden;
+    position: relative;
+    & > iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1024px;
+      height: 780px;
+      -moz-transform: scale(0.25);
+      -moz-transform-origin: 0 0;
+      -o-transform: scale(0.25);
+      -o-transform-origin: 0 0;
+      -webkit-transform: scale(0.25);
+      -webkit-transform-origin: 0 0;
+    }
   }
 }
 
@@ -922,6 +933,7 @@ $active-menu-background: #18a0fb;
 }
 
 .iframes-holder {
+  min-height: 100vh;
   background: #eee;
   display: flex;
   flex-wrap: wrap;
